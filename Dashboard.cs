@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using ProyectoFinalPOS.DBconexion;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,104 @@ namespace ProyectoFinalPOS
 {
     public partial class Dashboard : UserControl
     {
+        private SqlConnection connection = DatabaseConnections.GetInstance().GetConnection();
         public Dashboard()
         {
             InitializeComponent();
+            totalProducts();
+            totalCustomers();
+            totalEmployees();
+        }
+
+        private void totalProducts()
+        {
+            string query = "SELECT COUNT(*) AS TotalProducts FROM Products;";
+
+            try
+            {
+                if (connection.State == System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    int totalProducts = (int)command.ExecuteScalar();
+                    lblTotalProducts.Text = $"{totalProducts}";
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener el total de empleados: " + ex.Message);
+            }
+            finally
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+
+        private void totalCustomers()
+        {
+            string query = "SELECT COUNT(*) AS TotalCustomers FROM Customers;";
+
+            try
+            {
+                if (connection.State == System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    int totalCustomer = (int)command.ExecuteScalar();
+                    lblTotalCustomers.Text = $"{totalCustomer}";
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener el total de empleados: " + ex.Message);
+            }
+            finally
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        private void totalEmployees()
+        {
+            string query = "SELECT COUNT(*) AS TotalEmployees FROM Employees;";
+
+            try
+            {
+                if (connection.State == System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    int totalEmployees = (int)command.ExecuteScalar();
+                    lblTotalEmployees.Text = $"{totalEmployees}";
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener el total de empleados: " + ex.Message);
+            }
+            finally
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
         }
 
 

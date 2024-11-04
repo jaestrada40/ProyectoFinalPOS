@@ -31,19 +31,19 @@
             panel1 = new Panel();
             panel5 = new Panel();
             label8 = new Label();
-            label4 = new Label();
+            lblTotalEmployees = new Label();
             pictureBox5 = new PictureBox();
             panel4 = new Panel();
             label7 = new Label();
-            label3 = new Label();
+            lblTotalCustomers = new Label();
             pictureBox4 = new PictureBox();
             panel3 = new Panel();
             label6 = new Label();
-            label2 = new Label();
+            lblTotalProducts = new Label();
             pictureBox3 = new PictureBox();
             panel2 = new Panel();
             label5 = new Label();
-            label1 = new Label();
+            lblVentasTotal = new Label();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
@@ -74,7 +74,7 @@
             // 
             panel5.BackColor = Color.DarkOliveGreen;
             panel5.Controls.Add(label8);
-            panel5.Controls.Add(label4);
+            panel5.Controls.Add(lblTotalEmployees);
             panel5.Controls.Add(pictureBox5);
             panel5.Location = new Point(630, 19);
             panel5.Name = "panel5";
@@ -92,16 +92,16 @@
             label8.TabIndex = 5;
             label8.Text = "Total de Empleados";
             // 
-            // label4
+            // lblTotalEmployees
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Tahoma", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(162, 13);
-            label4.Name = "label4";
-            label4.Size = new Size(23, 25);
-            label4.TabIndex = 4;
-            label4.Text = "0";
+            lblTotalEmployees.AutoSize = true;
+            lblTotalEmployees.Font = new Font("Tahoma", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTotalEmployees.ForeColor = Color.White;
+            lblTotalEmployees.Location = new Point(162, 13);
+            lblTotalEmployees.Name = "lblTotalEmployees";
+            lblTotalEmployees.Size = new Size(23, 25);
+            lblTotalEmployees.TabIndex = 4;
+            lblTotalEmployees.Text = "0";
             // 
             // pictureBox5
             // 
@@ -116,7 +116,7 @@
             // 
             panel4.BackColor = Color.DarkOliveGreen;
             panel4.Controls.Add(label7);
-            panel4.Controls.Add(label3);
+            panel4.Controls.Add(lblTotalCustomers);
             panel4.Controls.Add(pictureBox4);
             panel4.Location = new Point(424, 19);
             panel4.Name = "panel4";
@@ -134,16 +134,16 @@
             label7.TabIndex = 4;
             label7.Text = "Total de Clientes";
             // 
-            // label3
+            // lblTotalCustomers
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Tahoma", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(161, 13);
-            label3.Name = "label3";
-            label3.Size = new Size(23, 25);
-            label3.TabIndex = 3;
-            label3.Text = "0";
+            lblTotalCustomers.AutoSize = true;
+            lblTotalCustomers.Font = new Font("Tahoma", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTotalCustomers.ForeColor = Color.White;
+            lblTotalCustomers.Location = new Point(161, 13);
+            lblTotalCustomers.Name = "lblTotalCustomers";
+            lblTotalCustomers.Size = new Size(23, 25);
+            lblTotalCustomers.TabIndex = 3;
+            lblTotalCustomers.Text = "0";
             // 
             // pictureBox4
             // 
@@ -158,7 +158,7 @@
             // 
             panel3.BackColor = Color.DarkOliveGreen;
             panel3.Controls.Add(label6);
-            panel3.Controls.Add(label2);
+            panel3.Controls.Add(lblTotalProducts);
             panel3.Controls.Add(pictureBox3);
             panel3.Location = new Point(218, 19);
             panel3.Name = "panel3";
@@ -176,16 +176,16 @@
             label6.TabIndex = 3;
             label6.Text = "Total de Productos";
             // 
-            // label2
+            // lblTotalProducts
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Tahoma", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(165, 13);
-            label2.Name = "label2";
-            label2.Size = new Size(23, 25);
-            label2.TabIndex = 2;
-            label2.Text = "0";
+            lblTotalProducts.AutoSize = true;
+            lblTotalProducts.Font = new Font("Tahoma", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTotalProducts.ForeColor = Color.White;
+            lblTotalProducts.Location = new Point(165, 13);
+            lblTotalProducts.Name = "lblTotalProducts";
+            lblTotalProducts.Size = new Size(23, 25);
+            lblTotalProducts.TabIndex = 2;
+            lblTotalProducts.Text = "0";
             // 
             // pictureBox3
             // 
@@ -200,7 +200,7 @@
             // 
             panel2.BackColor = Color.DarkOliveGreen;
             panel2.Controls.Add(label5);
-            panel2.Controls.Add(label1);
+            panel2.Controls.Add(lblVentasTotal);
             panel2.Controls.Add(pictureBox2);
             panel2.Location = new Point(12, 19);
             panel2.Name = "panel2";
@@ -218,16 +218,16 @@
             label5.TabIndex = 2;
             label5.Text = "Total de Ventas";
             // 
-            // label1
+            // lblVentasTotal
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Tahoma", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(168, 13);
-            label1.Name = "label1";
-            label1.Size = new Size(23, 25);
-            label1.TabIndex = 1;
-            label1.Text = "0";
+            lblVentasTotal.AutoSize = true;
+            lblVentasTotal.Font = new Font("Tahoma", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblVentasTotal.ForeColor = Color.White;
+            lblVentasTotal.Location = new Point(168, 13);
+            lblVentasTotal.Name = "lblVentasTotal";
+            lblVentasTotal.Size = new Size(23, 25);
+            lblVentasTotal.TabIndex = 1;
+            lblVentasTotal.Text = "0";
             // 
             // pictureBox2
             // 
@@ -284,12 +284,12 @@
         private PictureBox pictureBox5;
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
-        private Label label4;
-        private Label label3;
+        private Label lblTotalEmployees;
+        private Label lblTotalCustomers;
         private Label label6;
-        private Label label2;
+        private Label lblTotalProducts;
         private Label label5;
-        private Label label1;
+        private Label lblVentasTotal;
         private Label label8;
         private Label label7;
     }
