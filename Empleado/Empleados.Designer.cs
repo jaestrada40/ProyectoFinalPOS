@@ -45,6 +45,7 @@
             // 
             // employeesTable
             // 
+            employeesTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             employeesTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             employeesTable.Location = new Point(16, 284);
             employeesTable.Name = "employeesTable";

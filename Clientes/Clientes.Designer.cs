@@ -45,9 +45,13 @@
             // 
             // customersTable
             // 
+            customersTable.AllowUserToAddRows = false;
+            customersTable.AllowUserToDeleteRows = false;
+            customersTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             customersTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             customersTable.Location = new Point(16, 284);
             customersTable.Name = "customersTable";
+            customersTable.ReadOnly = true;
             customersTable.Size = new Size(841, 359);
             customersTable.TabIndex = 1;
             // 

@@ -45,6 +45,7 @@
             // 
             // productsTable
             // 
+            productsTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productsTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             productsTable.Location = new Point(16, 284);
             productsTable.Name = "productsTable";
