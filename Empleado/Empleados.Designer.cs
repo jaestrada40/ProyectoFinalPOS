@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            employeeTable = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)employeeTable).BeginInit();
+            employeesTable = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)employeesTable).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -43,23 +43,23 @@
             label1.TabIndex = 0;
             label1.Text = "Empleados";
             // 
-            // employeeTable
+            // employeesTable
             // 
-            employeeTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            employeeTable.Location = new Point(16, 284);
-            employeeTable.Name = "employeeTable";
-            employeeTable.Size = new Size(841, 359);
-            employeeTable.TabIndex = 1;
+            employeesTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            employeesTable.Location = new Point(16, 284);
+            employeesTable.Name = "employeesTable";
+            employeesTable.Size = new Size(841, 359);
+            employeesTable.TabIndex = 1;
             // 
             // Empleados
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(employeeTable);
+            Controls.Add(employeesTable);
             Controls.Add(label1);
             Name = "Empleados";
             Size = new Size(875, 665);
-            ((System.ComponentModel.ISupportInitialize)employeeTable).EndInit();
+            ((System.ComponentModel.ISupportInitialize)employeesTable).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -67,6 +67,6 @@
         #endregion
 
         private Label label1;
-        private DataGridView employeeTable;
+        private DataGridView employeesTable;
     }
 }

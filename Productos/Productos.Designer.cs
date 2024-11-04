@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            productsTable = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)productsTable).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -43,23 +43,23 @@
             label1.TabIndex = 1;
             label1.Text = "Productos";
             // 
-            // dataGridView1
+            // productsTable
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(16, 284);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(841, 359);
-            dataGridView1.TabIndex = 2;
+            productsTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            productsTable.Location = new Point(16, 284);
+            productsTable.Name = "productsTable";
+            productsTable.Size = new Size(841, 359);
+            productsTable.TabIndex = 2;
             // 
             // Productos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(dataGridView1);
+            Controls.Add(productsTable);
             Controls.Add(label1);
             Name = "Productos";
             Size = new Size(875, 665);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)productsTable).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -67,6 +67,6 @@
         #endregion
 
         private Label label1;
-        private DataGridView dataGridView1;
+        private DataGridView productsTable;
     }
 }

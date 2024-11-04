@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            clientstTable = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)clientstTable).BeginInit();
+            customersTable = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)customersTable).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -43,23 +43,23 @@
             label1.TabIndex = 0;
             label1.Text = "Clientes";
             // 
-            // clientstTable
+            // customersTable
             // 
-            clientstTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            clientstTable.Location = new Point(16, 284);
-            clientstTable.Name = "clientstTable";
-            clientstTable.Size = new Size(841, 359);
-            clientstTable.TabIndex = 1;
+            customersTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            customersTable.Location = new Point(16, 284);
+            customersTable.Name = "customersTable";
+            customersTable.Size = new Size(841, 359);
+            customersTable.TabIndex = 1;
             // 
             // Clientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(clientstTable);
+            Controls.Add(customersTable);
             Controls.Add(label1);
             Name = "Clientes";
             Size = new Size(875, 665);
-            ((System.ComponentModel.ISupportInitialize)clientstTable).EndInit();
+            ((System.ComponentModel.ISupportInitialize)customersTable).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -67,6 +67,6 @@
         #endregion
 
         private Label label1;
-        private DataGridView clientstTable;
+        private DataGridView customersTable;
     }
 }
