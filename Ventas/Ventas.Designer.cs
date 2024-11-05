@@ -28,45 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel1 = new Panel();
+            lblVentas = new Label();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // panel1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Tahoma", 15.75F);
-            label1.Location = new Point(16, 23);
-            label1.Name = "label1";
-            label1.Size = new Size(75, 25);
-            label1.TabIndex = 1;
-            label1.Text = "Ventas";
+            panel1.BackColor = Color.FromArgb(0, 119, 70);
+            panel1.Controls.Add(lblVentas);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(875, 55);
+            panel1.TabIndex = 21;
             // 
-            // dataGridView1
+            // lblVentas
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(16, 284);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(841, 359);
-            dataGridView1.TabIndex = 2;
+            lblVentas.AutoSize = true;
+            lblVentas.Font = new Font("Tahoma", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblVentas.ForeColor = Color.White;
+            lblVentas.Location = new Point(16, 14);
+            lblVentas.Name = "lblVentas";
+            lblVentas.Size = new Size(75, 23);
+            lblVentas.TabIndex = 18;
+            lblVentas.Text = "Ventas";
             // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(dataGridView1);
-            Controls.Add(label1);
+            Controls.Add(panel1);
             Name = "Ventas";
             Size = new Size(875, 665);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private DataGridView dataGridView1;
+        private Panel panel1;
+        private Label lblVentas;
     }
 }

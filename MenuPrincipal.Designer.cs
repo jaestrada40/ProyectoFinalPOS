@@ -33,7 +33,7 @@
             btnCerrar = new Button();
             panel2 = new Panel();
             label6 = new Label();
-            button6 = new Button();
+            btnSignOut = new Button();
             btnEmpleados = new Button();
             btnClientes = new Button();
             btnProductos = new Button();
@@ -88,7 +88,7 @@
             // 
             panel2.BackColor = Color.FromArgb(2, 16, 72);
             panel2.Controls.Add(label6);
-            panel2.Controls.Add(button6);
+            panel2.Controls.Add(btnSignOut);
             panel2.Controls.Add(btnEmpleados);
             panel2.Controls.Add(btnClientes);
             panel2.Controls.Add(btnProductos);
@@ -105,25 +105,26 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Tahoma", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.White;
             label6.Location = new Point(46, 625);
             label6.Name = "label6";
-            label6.Size = new Size(33, 18);
+            label6.Size = new Size(44, 18);
             label6.TabIndex = 13;
             label6.Text = "Salir";
             // 
-            // button6
+            // btnSignOut
             // 
-            button6.Cursor = Cursors.Hand;
-            button6.FlatAppearance.BorderSize = 0;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Image = Properties.Resources.account_logout_24;
-            button6.Location = new Point(12, 620);
-            button6.Name = "button6";
-            button6.Size = new Size(24, 24);
-            button6.TabIndex = 7;
-            button6.UseVisualStyleBackColor = true;
+            btnSignOut.Cursor = Cursors.Hand;
+            btnSignOut.FlatAppearance.BorderSize = 0;
+            btnSignOut.FlatStyle = FlatStyle.Flat;
+            btnSignOut.Image = Properties.Resources.account_logout_24;
+            btnSignOut.Location = new Point(12, 620);
+            btnSignOut.Name = "btnSignOut";
+            btnSignOut.Size = new Size(24, 24);
+            btnSignOut.TabIndex = 7;
+            btnSignOut.UseVisualStyleBackColor = true;
+            btnSignOut.Click += btnSignOut_Click;
             // 
             // btnEmpleados
             // 
@@ -131,7 +132,7 @@
             btnEmpleados.Cursor = Cursors.Hand;
             btnEmpleados.FlatAppearance.BorderSize = 0;
             btnEmpleados.FlatStyle = FlatStyle.Flat;
-            btnEmpleados.Font = new Font("Tahoma", 11F);
+            btnEmpleados.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnEmpleados.ForeColor = Color.White;
             btnEmpleados.Image = Properties.Resources.administrator_2_32;
             btnEmpleados.ImageAlign = ContentAlignment.MiddleLeft;
@@ -149,7 +150,7 @@
             btnClientes.Cursor = Cursors.Hand;
             btnClientes.FlatAppearance.BorderSize = 0;
             btnClientes.FlatStyle = FlatStyle.Flat;
-            btnClientes.Font = new Font("Tahoma", 11F);
+            btnClientes.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnClientes.ForeColor = Color.White;
             btnClientes.Image = Properties.Resources.group_32;
             btnClientes.ImageAlign = ContentAlignment.MiddleLeft;
@@ -167,7 +168,7 @@
             btnProductos.Cursor = Cursors.Hand;
             btnProductos.FlatAppearance.BorderSize = 0;
             btnProductos.FlatStyle = FlatStyle.Flat;
-            btnProductos.Font = new Font("Tahoma", 11F);
+            btnProductos.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnProductos.ForeColor = Color.White;
             btnProductos.Image = Properties.Resources.shopping_basket_32;
             btnProductos.ImageAlign = ContentAlignment.MiddleLeft;
@@ -185,7 +186,7 @@
             btnVentas.Cursor = Cursors.Hand;
             btnVentas.FlatAppearance.BorderSize = 0;
             btnVentas.FlatStyle = FlatStyle.Flat;
-            btnVentas.Font = new Font("Tahoma", 11F);
+            btnVentas.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnVentas.ForeColor = Color.White;
             btnVentas.Image = Properties.Resources.cart_59_32;
             btnVentas.ImageAlign = ContentAlignment.MiddleLeft;
@@ -203,7 +204,7 @@
             btnDashboard.Cursor = Cursors.Hand;
             btnDashboard.FlatAppearance.BorderSize = 0;
             btnDashboard.FlatStyle = FlatStyle.Flat;
-            btnDashboard.Font = new Font("Tahoma", 11F);
+            btnDashboard.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnDashboard.ForeColor = Color.White;
             btnDashboard.Image = Properties.Resources.dashboard_2_32;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
@@ -278,11 +279,12 @@
         private Button btnClientes;
         private Button btnProductos;
         private Button btnVentas;
-        private Button button6;
+        private Button btnSignOut;
         private Label label6;
         private Dashboard dashboard1;
         private Productos.Productos productos1;
         private Clientes.Clientes clientes1;
+        private Ventas.Ventas ventas1;
         private Empleado.Empleados empleados1;
         private Panel panelContainer;
     }

@@ -167,12 +167,13 @@ namespace ProyectoFinalPOS.Clientes
         // Método para buscar clientes por NIT o nombre
         private void BuscarCliente()
         {
-            string searchValue = txtBuscar.Text.Trim(); // Eliminar espacios en blanco alrededor del texto
+            // Eliminar espacios en blanco alrededor del texto
+            string searchValue = txtBuscar.Text.Trim(); 
 
             // Si el campo de búsqueda está vacío, carga todos los clientes
             if (string.IsNullOrWhiteSpace(searchValue))
             {
-                CustomersCarga(); // Recargar todos los datos
+                CustomersCarga(); 
                 return;
             }
 
@@ -292,6 +293,11 @@ namespace ProyectoFinalPOS.Clientes
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             ActualizarCliente();
+        }
+
+        private void btnLimiarCampos_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
         }
     }
 }

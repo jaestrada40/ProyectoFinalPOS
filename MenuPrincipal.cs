@@ -54,8 +54,10 @@ namespace ProyectoFinalPOS
 
         private void btnVentas_Click_1(object sender, EventArgs e)
         {
-           
-            
+            ventas1 = new Ventas.Ventas();
+            addUserControl(ventas1);
+
+
         }
 
         private void btnProductos_Click(object sender, EventArgs e)
@@ -78,5 +80,19 @@ namespace ProyectoFinalPOS
             addUserControl(empleados1);
         }
 
+        private void btnSignOut_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Estás seguro de que deseas cerrar sesión?",
+                                                  "Cerrar sesión",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                FormLogIn formLogIn = new FormLogIn();
+                formLogIn.Show();
+                this.Close();
+            }
+        }
     }
 }

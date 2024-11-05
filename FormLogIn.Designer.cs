@@ -35,6 +35,7 @@ namespace ProyectoFinalPOS
             buttonIngresar = new Button();
             label3 = new Label();
             panel1 = new Panel();
+            btnRegistrarse = new Button();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
@@ -43,7 +44,7 @@ namespace ProyectoFinalPOS
             pictureBox1 = new PictureBox();
             btnClose = new Button();
             panel2 = new Panel();
-            checkBox1 = new CheckBox();
+            chkVerContraseña = new CheckBox();
             btnCerrar = new Button();
             panel4 = new Panel();
             pictureBox3 = new PictureBox();
@@ -60,16 +61,17 @@ namespace ProyectoFinalPOS
             // 
             // textBoxUsuario
             // 
+            textBoxUsuario.Anchor = AnchorStyles.None;
             textBoxUsuario.BorderStyle = BorderStyle.None;
             textBoxUsuario.Font = new Font("Century Gothic", 10F);
             textBoxUsuario.ForeColor = Color.FromArgb(41, 128, 185);
-            textBoxUsuario.Location = new Point(55, 4);
+            textBoxUsuario.Location = new Point(55, 11);
             textBoxUsuario.Margin = new Padding(3, 2, 3, 2);
             textBoxUsuario.Multiline = true;
             textBoxUsuario.Name = "textBoxUsuario";
             textBoxUsuario.PlaceholderText = "Ingresar Usuario";
             textBoxUsuario.RightToLeft = RightToLeft.No;
-            textBoxUsuario.Size = new Size(370, 35);
+            textBoxUsuario.Size = new Size(370, 20);
             textBoxUsuario.TabIndex = 1;
             // 
             // textBoxPassword
@@ -77,15 +79,14 @@ namespace ProyectoFinalPOS
             textBoxPassword.BorderStyle = BorderStyle.None;
             textBoxPassword.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBoxPassword.ForeColor = Color.FromArgb(41, 128, 185);
-            textBoxPassword.Location = new Point(57, 4);
+            textBoxPassword.Location = new Point(57, 12);
             textBoxPassword.Margin = new Padding(3, 2, 3, 2);
             textBoxPassword.Multiline = true;
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.PasswordChar = '*';
             textBoxPassword.PlaceholderText = "Ingresar Contraseña";
-            textBoxPassword.Size = new Size(370, 35);
+            textBoxPassword.Size = new Size(370, 20);
             textBoxPassword.TabIndex = 2;
-            textBoxPassword.UseSystemPasswordChar = true;
             // 
             // buttonIngresar
             // 
@@ -105,17 +106,18 @@ namespace ProyectoFinalPOS
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16F);
+            label3.Font = new Font("Tahoma", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(2, 16, 72);
-            label3.Location = new Point(38, 135);
+            label3.Location = new Point(7, 109);
             label3.Name = "label3";
-            label3.Size = new Size(139, 30);
+            label3.Size = new Size(154, 25);
             label3.TabIndex = 6;
             label3.Text = "Iniciar Sesión";
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(2, 16, 72);
+            panel1.Controls.Add(btnRegistrarse);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label6);
@@ -128,12 +130,28 @@ namespace ProyectoFinalPOS
             panel1.Size = new Size(300, 530);
             panel1.TabIndex = 7;
             // 
+            // btnRegistrarse
+            // 
+            btnRegistrarse.BackColor = Color.FromArgb(0, 119, 70);
+            btnRegistrarse.FlatAppearance.BorderSize = 0;
+            btnRegistrarse.FlatStyle = FlatStyle.Flat;
+            btnRegistrarse.Font = new Font("Tahoma", 14F);
+            btnRegistrarse.ForeColor = Color.White;
+            btnRegistrarse.Location = new Point(44, 422);
+            btnRegistrarse.Margin = new Padding(3, 2, 3, 2);
+            btnRegistrarse.Name = "btnRegistrarse";
+            btnRegistrarse.Size = new Size(231, 42);
+            btnRegistrarse.TabIndex = 11;
+            btnRegistrarse.Text = "Registrarse";
+            btnRegistrarse.UseVisualStyleBackColor = false;
+            btnRegistrarse.Click += btnRegistrarse_Click;
+            // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.FromArgb(150, 190, 21);
-            label8.Location = new Point(189, 475);
+            label8.ForeColor = Color.FromArgb(0, 119, 70);
+            label8.Location = new Point(189, 503);
             label8.Name = "label8";
             label8.Size = new Size(93, 16);
             label8.TabIndex = 5;
@@ -143,8 +161,8 @@ namespace ProyectoFinalPOS
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.FromArgb(150, 190, 21);
-            label7.Location = new Point(189, 459);
+            label7.ForeColor = Color.FromArgb(0, 119, 70);
+            label7.Location = new Point(189, 487);
             label7.Name = "label7";
             label7.Size = new Size(72, 16);
             label7.TabIndex = 4;
@@ -154,7 +172,7 @@ namespace ProyectoFinalPOS
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold);
-            label6.ForeColor = Color.FromArgb(150, 190, 21);
+            label6.ForeColor = Color.FromArgb(0, 119, 70);
             label6.Location = new Point(178, 332);
             label6.Name = "label6";
             label6.Size = new Size(100, 25);
@@ -165,7 +183,7 @@ namespace ProyectoFinalPOS
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold);
-            label5.ForeColor = Color.FromArgb(150, 190, 21);
+            label5.ForeColor = Color.FromArgb(0, 119, 70);
             label5.Location = new Point(72, 297);
             label5.Name = "label5";
             label5.Size = new Size(206, 25);
@@ -177,7 +195,7 @@ namespace ProyectoFinalPOS
             label4.AutoSize = true;
             label4.BackColor = Color.FromArgb(2, 16, 72);
             label4.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.FromArgb(150, 190, 21);
+            label4.ForeColor = Color.FromArgb(0, 119, 70);
             label4.Location = new Point(119, 255);
             label4.Name = "label4";
             label4.Size = new Size(159, 25);
@@ -209,7 +227,7 @@ namespace ProyectoFinalPOS
             // 
             // panel2
             // 
-            panel2.Controls.Add(checkBox1);
+            panel2.Controls.Add(chkVerContraseña);
             panel2.Controls.Add(btnCerrar);
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
@@ -221,23 +239,24 @@ namespace ProyectoFinalPOS
             panel2.Size = new Size(450, 530);
             panel2.TabIndex = 9;
             // 
-            // checkBox1
+            // chkVerContraseña
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkBox1.Location = new Point(338, 286);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(109, 18);
-            checkBox1.TabIndex = 10;
-            checkBox1.Text = "Ver contraseña";
-            checkBox1.UseVisualStyleBackColor = true;
+            chkVerContraseña.AutoSize = true;
+            chkVerContraseña.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkVerContraseña.Location = new Point(338, 286);
+            chkVerContraseña.Name = "chkVerContraseña";
+            chkVerContraseña.Size = new Size(109, 18);
+            chkVerContraseña.TabIndex = 10;
+            chkVerContraseña.Text = "Ver contraseña";
+            chkVerContraseña.UseVisualStyleBackColor = true;
+            chkVerContraseña.CheckedChanged += chkVerContraseña_CheckedChanged;
             // 
             // btnCerrar
             // 
             btnCerrar.FlatAppearance.BorderSize = 0;
             btnCerrar.FlatStyle = FlatStyle.Flat;
             btnCerrar.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCerrar.ForeColor = Color.DarkOliveGreen;
+            btnCerrar.ForeColor = Color.FromArgb(0, 119, 70);
             btnCerrar.Location = new Point(409, 1);
             btnCerrar.Name = "btnCerrar";
             btnCerrar.Size = new Size(40, 40);
@@ -335,6 +354,7 @@ namespace ProyectoFinalPOS
         private Panel panel3;
         private PictureBox pictureBox3;
         private Button btnCerrar;
-        private CheckBox checkBox1;
+        private CheckBox chkVerContraseña;
+        private Button btnRegistrarse;
     }
 }

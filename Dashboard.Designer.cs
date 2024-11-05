@@ -115,7 +115,7 @@
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(2, 16, 72);
+            panel4.BackColor = Color.FromArgb(150, 190, 21);
             panel4.Controls.Add(label7);
             panel4.Controls.Add(lblTotalCustomers);
             panel4.Controls.Add(pictureBox4);
@@ -157,7 +157,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(2, 16, 72);
+            panel3.BackColor = Color.FromArgb(253, 217, 95);
             panel3.Controls.Add(label6);
             panel3.Controls.Add(lblTotalProducts);
             panel3.Controls.Add(pictureBox3);
@@ -199,7 +199,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(2, 16, 72);
+            panel2.BackColor = Color.FromArgb(216, 93, 20);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(lblVentasTotal);
             panel2.Controls.Add(pictureBox2);
