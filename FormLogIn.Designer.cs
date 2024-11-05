@@ -90,7 +90,7 @@ namespace ProyectoFinalPOS
             // 
             // buttonIngresar
             // 
-            buttonIngresar.BackColor = Color.FromArgb(2, 16, 72);
+            buttonIngresar.BackColor = Color.FromArgb(37, 42, 60);
             buttonIngresar.FlatStyle = FlatStyle.Flat;
             buttonIngresar.Font = new Font("Tahoma", 14F);
             buttonIngresar.ForeColor = Color.White;
@@ -116,7 +116,7 @@ namespace ProyectoFinalPOS
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(2, 16, 72);
+            panel1.BackColor = Color.FromArgb(37, 42, 60);
             panel1.Controls.Add(btnRegistrarse);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(label7);
@@ -193,7 +193,7 @@ namespace ProyectoFinalPOS
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = Color.FromArgb(2, 16, 72);
+            label4.BackColor = Color.FromArgb(37, 42, 60);
             label4.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.FromArgb(0, 119, 70);
             label4.Location = new Point(119, 255);
@@ -278,7 +278,7 @@ namespace ProyectoFinalPOS
             // 
             // pictureBox3
             // 
-            pictureBox3.Image = Properties.Resources.padlock_24__1_;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(15, 11);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(24, 24);
@@ -299,7 +299,7 @@ namespace ProyectoFinalPOS
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.user_24__1_;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(15, 11);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(24, 24);

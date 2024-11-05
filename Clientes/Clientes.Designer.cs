@@ -193,7 +193,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.BackColor = Color.FromArgb(2, 16, 72);
+            btnGuardar.BackColor = Color.FromArgb(37, 42, 60);
             btnGuardar.Cursor = Cursors.Hand;
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);
@@ -208,7 +208,7 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.BackColor = Color.FromArgb(2, 16, 72);
+            btnEliminar.BackColor = Color.FromArgb(37, 42, 60);
             btnEliminar.Cursor = Cursors.Hand;
             btnEliminar.FlatStyle = FlatStyle.Flat;
             btnEliminar.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);
@@ -223,7 +223,7 @@
             // 
             // btnActualizar
             // 
-            btnActualizar.BackColor = Color.FromArgb(2, 16, 72);
+            btnActualizar.BackColor = Color.FromArgb(37, 42, 60);
             btnActualizar.Cursor = Cursors.Hand;
             btnActualizar.FlatStyle = FlatStyle.Flat;
             btnActualizar.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);
@@ -249,7 +249,7 @@
             // 
             // btnLimiarCampos
             // 
-            btnLimiarCampos.BackColor = Color.FromArgb(2, 16, 72);
+            btnLimiarCampos.BackColor = Color.FromArgb(37, 42, 60);
             btnLimiarCampos.Cursor = Cursors.Hand;
             btnLimiarCampos.FlatStyle = FlatStyle.Flat;
             btnLimiarCampos.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);

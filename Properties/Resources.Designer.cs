@@ -223,6 +223,46 @@ namespace ProyectoFinalPOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap padlock_24__2_ {
+            get {
+                object obj = ResourceManager.GetObject("padlock-24 (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap printer_16 {
+            get {
+                object obj = ResourceManager.GetObject("printer-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap printer_24 {
+            get {
+                object obj = ResourceManager.GetObject("printer-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rename_24 {
+            get {
+                object obj = ResourceManager.GetObject("rename-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap search_12_16 {
             get {
                 object obj = ResourceManager.GetObject("search-12-16", resourceCulture);
@@ -276,6 +316,16 @@ namespace ProyectoFinalPOS.Properties {
         internal static System.Drawing.Bitmap user_24__1_ {
             get {
                 object obj = ResourceManager.GetObject("user-24 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_24__2_ {
+            get {
+                object obj = ResourceManager.GetObject("user-24 (2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

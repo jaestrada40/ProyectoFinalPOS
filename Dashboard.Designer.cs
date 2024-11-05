@@ -73,7 +73,7 @@
             // 
             // panel5
             // 
-            panel5.BackColor = Color.FromArgb(2, 16, 72);
+            panel5.BackColor = Color.FromArgb(37, 42, 60);
             panel5.Controls.Add(label8);
             panel5.Controls.Add(lblTotalEmployees);
             panel5.Controls.Add(pictureBox5);

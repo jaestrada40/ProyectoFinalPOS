@@ -49,6 +49,9 @@
     <Compile Update="Productos\NuevoProducto.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Productos\ProductCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Productos\Productos.cs">
       <SubType>UserControl</SubType>
     </Compile>

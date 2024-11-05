@@ -49,7 +49,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(2, 16, 72);
+            panel1.BackColor = Color.FromArgb(37, 42, 60);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(btnCerrar);
             panel1.Dock = DockStyle.Top;
@@ -86,7 +86,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(2, 16, 72);
+            panel2.BackColor = Color.FromArgb(37, 42, 60);
             panel2.Controls.Add(label6);
             panel2.Controls.Add(btnSignOut);
             panel2.Controls.Add(btnEmpleados);
@@ -128,7 +128,7 @@
             // 
             // btnEmpleados
             // 
-            btnEmpleados.BackColor = Color.FromArgb(2, 16, 72);
+            btnEmpleados.BackColor = Color.FromArgb(37, 42, 60);
             btnEmpleados.Cursor = Cursors.Hand;
             btnEmpleados.FlatAppearance.BorderSize = 0;
             btnEmpleados.FlatStyle = FlatStyle.Flat;
@@ -146,7 +146,7 @@
             // 
             // btnClientes
             // 
-            btnClientes.BackColor = Color.FromArgb(2, 16, 72);
+            btnClientes.BackColor = Color.FromArgb(37, 42, 60);
             btnClientes.Cursor = Cursors.Hand;
             btnClientes.FlatAppearance.BorderSize = 0;
             btnClientes.FlatStyle = FlatStyle.Flat;
@@ -164,7 +164,7 @@
             // 
             // btnProductos
             // 
-            btnProductos.BackColor = Color.FromArgb(2, 16, 72);
+            btnProductos.BackColor = Color.FromArgb(37, 42, 60);
             btnProductos.Cursor = Cursors.Hand;
             btnProductos.FlatAppearance.BorderSize = 0;
             btnProductos.FlatStyle = FlatStyle.Flat;
@@ -182,7 +182,7 @@
             // 
             // btnVentas
             // 
-            btnVentas.BackColor = Color.FromArgb(2, 16, 72);
+            btnVentas.BackColor = Color.FromArgb(37, 42, 60);
             btnVentas.Cursor = Cursors.Hand;
             btnVentas.FlatAppearance.BorderSize = 0;
             btnVentas.FlatStyle = FlatStyle.Flat;
@@ -200,7 +200,7 @@
             // 
             // btnDashboard
             // 
-            btnDashboard.BackColor = Color.FromArgb(2, 16, 72);
+            btnDashboard.BackColor = Color.FromArgb(37, 42, 60);
             btnDashboard.Cursor = Cursors.Hand;
             btnDashboard.FlatAppearance.BorderSize = 0;
             btnDashboard.FlatStyle = FlatStyle.Flat;
