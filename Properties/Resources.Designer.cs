@@ -123,6 +123,26 @@ namespace ProyectoFinalPOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ecoMarket {
+            get {
+                object obj = ResourceManager.GetObject("ecoMarket", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ecoMarketLogin {
+            get {
+                object obj = ResourceManager.GetObject("ecoMarketLogin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap group_24 {
             get {
                 object obj = ResourceManager.GetObject("group-24", resourceCulture);
@@ -146,6 +166,16 @@ namespace ProyectoFinalPOS.Properties {
         internal static System.Drawing.Bitmap group_64 {
             get {
                 object obj = ResourceManager.GetObject("group-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logoLogin {
+            get {
+                object obj = ResourceManager.GetObject("logoLogin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,6 +213,36 @@ namespace ProyectoFinalPOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap padlock_24__1_ {
+            get {
+                object obj = ResourceManager.GetObject("padlock-24 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search_12_16 {
+            get {
+                object obj = ResourceManager.GetObject("search-12-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search_12_24 {
+            get {
+                object obj = ResourceManager.GetObject("search-12-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap shopping_basket_32 {
             get {
                 object obj = ResourceManager.GetObject("shopping-basket-32", resourceCulture);
@@ -206,6 +266,16 @@ namespace ProyectoFinalPOS.Properties {
         internal static System.Drawing.Bitmap user_24 {
             get {
                 object obj = ResourceManager.GetObject("user-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_24__1_ {
+            get {
+                object obj = ResourceManager.GetObject("user-24 (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

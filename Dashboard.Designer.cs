@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             panel1 = new Panel();
             panel5 = new Panel();
             label8 = new Label();
@@ -72,7 +73,7 @@
             // 
             // panel5
             // 
-            panel5.BackColor = Color.DarkOliveGreen;
+            panel5.BackColor = Color.FromArgb(2, 16, 72);
             panel5.Controls.Add(label8);
             panel5.Controls.Add(lblTotalEmployees);
             panel5.Controls.Add(pictureBox5);
@@ -114,7 +115,7 @@
             // 
             // panel4
             // 
-            panel4.BackColor = Color.DarkOliveGreen;
+            panel4.BackColor = Color.FromArgb(2, 16, 72);
             panel4.Controls.Add(label7);
             panel4.Controls.Add(lblTotalCustomers);
             panel4.Controls.Add(pictureBox4);
@@ -156,7 +157,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.DarkOliveGreen;
+            panel3.BackColor = Color.FromArgb(2, 16, 72);
             panel3.Controls.Add(label6);
             panel3.Controls.Add(lblTotalProducts);
             panel3.Controls.Add(pictureBox3);
@@ -198,7 +199,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.DarkOliveGreen;
+            panel2.BackColor = Color.FromArgb(2, 16, 72);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(lblVentasTotal);
             panel2.Controls.Add(pictureBox2);
@@ -240,10 +241,10 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.logomarket1;
-            pictureBox1.Location = new Point(329, 311);
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(221, 308);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(152, 152);
+            pictureBox1.Size = new Size(400, 177);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
