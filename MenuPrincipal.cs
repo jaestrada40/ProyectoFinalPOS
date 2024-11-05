@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoFinalPOS.Ventas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace ProyectoFinalPOS
 {
     public partial class MenuPrincipal : Form
     {
+
         public MenuPrincipal()
         {
             InitializeComponent();
+            dashboard1 = new Dashboard();
+            addUserControl(dashboard1);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -34,50 +38,45 @@ namespace ProyectoFinalPOS
             Application.Exit();
         }
 
+        private void addUserControl(UserControl userControl)
+        {
+            userControl.Dock = DockStyle.Fill;
+            panelContainer.Controls.Clear();
+            panelContainer.Controls.Add(userControl);
+            userControl.BringToFront();
+        }
+
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            dashboard1.Visible = true;
-            ventas1.Visible = false;
-            productos1.Visible = false;
-            clientes1.Visible = false;
-            empleados1.Visible = false;
+            dashboard1 = new Dashboard();
+            addUserControl(dashboard1);
         }
 
         private void btnVentas_Click_1(object sender, EventArgs e)
         {
-            ventas1.Visible = true;
-            dashboard1.Visible = false;
-            productos1.Visible = false;
-            clientes1.Visible = false;
-            empleados1.Visible = false;
+           
+            
         }
 
         private void btnProductos_Click(object sender, EventArgs e)
         {
-            productos1.Visible = true;
-            dashboard1.Visible = false;
-            ventas1.Visible = false;
-            clientes1.Visible = false;
-            empleados1.Visible = false;
+            productos1 = new Productos.Productos();
+            addUserControl(productos1);
+
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            clientes1.Visible = true;
-            dashboard1.Visible = false;
-            ventas1.Visible = false;
-            productos1.Visible = false;
-            empleados1.Visible = false;
+            clientes1 = new Clientes.Clientes();
+            addUserControl(clientes1);
 
         }
 
         private void btnEmpleados_Click(object sender, EventArgs e)
         {
-            empleados1.Visible = true;
-            dashboard1.Visible = false;
-            ventas1.Visible = false;
-            productos1.Visible = false;
-            clientes1.Visible = false;
+            empleados1 = new Empleado.Empleados();
+            addUserControl(empleados1);
         }
+
     }
 }

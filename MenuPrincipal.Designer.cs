@@ -41,16 +41,10 @@
             btnDashboard = new Button();
             label5 = new Label();
             pictureBox1 = new PictureBox();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            dashboard1 = new Dashboard();
-            ventas1 = new Ventas.Ventas();
-            productos1 = new Productos.Productos();
-            clientes1 = new Clientes.Clientes();
-            empleados1 = new Empleado.Empleados();
+            panelContainer = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -60,8 +54,9 @@
             panel1.Controls.Add(btnCerrar);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1100, 35);
+            panel1.Size = new Size(1257, 47);
             panel1.TabIndex = 5;
             // 
             // label4
@@ -69,9 +64,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(12, 9);
+            label4.Location = new Point(14, 12);
             label4.Name = "label4";
-            label4.Size = new Size(193, 18);
+            label4.Size = new Size(248, 23);
             label4.TabIndex = 11;
             label4.Text = "Sistema Gestión de Servicios";
             // 
@@ -82,9 +77,10 @@
             btnCerrar.FlatStyle = FlatStyle.Flat;
             btnCerrar.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCerrar.ForeColor = Color.White;
-            btnCerrar.Location = new Point(1060, 0);
+            btnCerrar.Location = new Point(1211, 0);
+            btnCerrar.Margin = new Padding(3, 4, 3, 4);
             btnCerrar.Name = "btnCerrar";
-            btnCerrar.Size = new Size(40, 35);
+            btnCerrar.Size = new Size(46, 47);
             btnCerrar.TabIndex = 10;
             btnCerrar.Text = "X";
             btnCerrar.UseVisualStyleBackColor = false;
@@ -103,9 +99,10 @@
             panel2.Controls.Add(label5);
             panel2.Controls.Add(pictureBox1);
             panel2.Dock = DockStyle.Left;
-            panel2.Location = new Point(0, 35);
+            panel2.Location = new Point(0, 47);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(225, 665);
+            panel2.Size = new Size(257, 886);
             panel2.TabIndex = 6;
             // 
             // label6
@@ -113,9 +110,9 @@
             label6.AutoSize = true;
             label6.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(46, 625);
+            label6.Location = new Point(53, 833);
             label6.Name = "label6";
-            label6.Size = new Size(33, 18);
+            label6.Size = new Size(46, 23);
             label6.TabIndex = 13;
             label6.Text = "Salir";
             // 
@@ -125,9 +122,10 @@
             button6.FlatAppearance.BorderSize = 0;
             button6.FlatStyle = FlatStyle.Flat;
             button6.Image = Properties.Resources.account_logout_24;
-            button6.Location = new Point(12, 620);
+            button6.Location = new Point(14, 827);
+            button6.Margin = new Padding(3, 4, 3, 4);
             button6.Name = "button6";
-            button6.Size = new Size(24, 24);
+            button6.Size = new Size(27, 32);
             button6.TabIndex = 7;
             button6.UseVisualStyleBackColor = true;
             // 
@@ -141,9 +139,10 @@
             btnEmpleados.ForeColor = Color.White;
             btnEmpleados.Image = Properties.Resources.administrator_2_32;
             btnEmpleados.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEmpleados.Location = new Point(12, 492);
+            btnEmpleados.Location = new Point(14, 607);
+            btnEmpleados.Margin = new Padding(3, 4, 3, 4);
             btnEmpleados.Name = "btnEmpleados";
-            btnEmpleados.Size = new Size(200, 40);
+            btnEmpleados.Size = new Size(229, 53);
             btnEmpleados.TabIndex = 12;
             btnEmpleados.Text = "Empleados";
             btnEmpleados.UseVisualStyleBackColor = false;
@@ -159,9 +158,10 @@
             btnClientes.ForeColor = Color.White;
             btnClientes.Image = Properties.Resources.group_32;
             btnClientes.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClientes.Location = new Point(12, 433);
+            btnClientes.Location = new Point(14, 528);
+            btnClientes.Margin = new Padding(3, 4, 3, 4);
             btnClientes.Name = "btnClientes";
-            btnClientes.Size = new Size(200, 40);
+            btnClientes.Size = new Size(229, 53);
             btnClientes.TabIndex = 11;
             btnClientes.Text = "Clientes";
             btnClientes.UseVisualStyleBackColor = false;
@@ -177,9 +177,10 @@
             btnProductos.ForeColor = Color.White;
             btnProductos.Image = Properties.Resources.shopping_basket_32;
             btnProductos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProductos.Location = new Point(12, 373);
+            btnProductos.Location = new Point(14, 448);
+            btnProductos.Margin = new Padding(3, 4, 3, 4);
             btnProductos.Name = "btnProductos";
-            btnProductos.Size = new Size(200, 40);
+            btnProductos.Size = new Size(229, 53);
             btnProductos.TabIndex = 10;
             btnProductos.Text = "Productos";
             btnProductos.UseVisualStyleBackColor = false;
@@ -195,9 +196,10 @@
             btnVentas.ForeColor = Color.White;
             btnVentas.Image = Properties.Resources.cart_59_32;
             btnVentas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnVentas.Location = new Point(12, 312);
+            btnVentas.Location = new Point(14, 367);
+            btnVentas.Margin = new Padding(3, 4, 3, 4);
             btnVentas.Name = "btnVentas";
-            btnVentas.Size = new Size(200, 40);
+            btnVentas.Size = new Size(229, 53);
             btnVentas.TabIndex = 9;
             btnVentas.Text = "Ventas";
             btnVentas.UseVisualStyleBackColor = false;
@@ -213,9 +215,10 @@
             btnDashboard.ForeColor = Color.White;
             btnDashboard.Image = Properties.Resources.dashboard_2_32;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(12, 251);
+            btnDashboard.Location = new Point(14, 286);
+            btnDashboard.Margin = new Padding(3, 4, 3, 4);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(200, 40);
+            btnDashboard.Size = new Size(229, 53);
             btnDashboard.TabIndex = 8;
             btnDashboard.Text = "Dashboard";
             btnDashboard.UseVisualStyleBackColor = false;
@@ -226,80 +229,40 @@
             label5.AutoSize = true;
             label5.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(31, 202);
+            label5.Location = new Point(35, 220);
             label5.Name = "label5";
-            label5.Size = new Size(148, 19);
+            label5.Size = new Size(185, 24);
             label5.TabIndex = 7;
             label5.Text = "Bienvenido, usuario";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.logomarket1;
-            pictureBox1.Location = new Point(31, 20);
+            pictureBox1.Location = new Point(35, 27);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(150, 150);
+            pictureBox1.Size = new Size(159, 150);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // flowLayoutPanel1
+            // panelContainer
             // 
-            flowLayoutPanel1.Controls.Add(dashboard1);
-            flowLayoutPanel1.Controls.Add(ventas1);
-            flowLayoutPanel1.Controls.Add(productos1);
-            flowLayoutPanel1.Controls.Add(clientes1);
-            flowLayoutPanel1.Controls.Add(empleados1);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(225, 35);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(875, 665);
-            flowLayoutPanel1.TabIndex = 7;
-            // 
-            // dashboard1
-            // 
-            dashboard1.Location = new Point(3, 3);
-            dashboard1.Name = "dashboard1";
-            dashboard1.Size = new Size(875, 665);
-            dashboard1.TabIndex = 12;
-            // 
-            // ventas1
-            // 
-            ventas1.Location = new Point(3, 674);
-            ventas1.Name = "ventas1";
-            ventas1.Size = new Size(875, 665);
-            ventas1.TabIndex = 12;
-            // 
-            // productos1
-            // 
-            productos1.Location = new Point(3, 1345);
-            productos1.Name = "productos1";
-            productos1.Size = new Size(875, 665);
-            productos1.TabIndex = 12;
-            // 
-            // clientes1
-            // 
-            clientes1.Location = new Point(3, 2016);
-            clientes1.Name = "clientes1";
-            clientes1.Size = new Size(875, 665);
-            clientes1.TabIndex = 12;
-            // 
-            // empleados1
-            // 
-            empleados1.Location = new Point(3, 2687);
-            empleados1.Name = "empleados1";
-            empleados1.Size = new Size(875, 665);
-            empleados1.TabIndex = 0;
+            panelContainer.Dock = DockStyle.Fill;
+            panelContainer.Location = new Point(257, 47);
+            panelContainer.Name = "panelContainer";
+            panelContainer.Size = new Size(1000, 886);
+            panelContainer.TabIndex = 7;
             // 
             // MenuPrincipal
             // 
             AccessibleRole = AccessibleRole.TitleBar;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1100, 700);
-            Controls.Add(flowLayoutPanel1);
+            ClientSize = new Size(1257, 933);
+            Controls.Add(panelContainer);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "MenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu Principal";
@@ -308,7 +271,6 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -326,11 +288,10 @@
         private Button btnVentas;
         private Button button6;
         private Label label6;
-        private FlowLayoutPanel flowLayoutPanel1;
         private Dashboard dashboard1;
-        private Ventas.Ventas ventas1;
         private Productos.Productos productos1;
         private Clientes.Clientes clientes1;
         private Empleado.Empleados empleados1;
+        private Panel panelContainer;
     }
 }
