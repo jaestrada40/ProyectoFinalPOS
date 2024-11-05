@@ -25,7 +25,8 @@ namespace ProyectoFinalPOS
 
         private void totalProducts()
         {
-            string query = "SELECT COUNT(*) AS TotalProducts FROM Products;";
+            string query = "SELECT COUNT(*) AS TotalProducts FROM jsoberanis_db.Products;";
+            //string query = "SELECT COUNT(*) AS TotalProducts FROM Products;";
 
             try
             {
@@ -42,7 +43,7 @@ namespace ProyectoFinalPOS
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Error al obtener el total de empleados: " + ex.Message);
+                MessageBox.Show("Error al obtener el total de productos: " + ex.Message);
             }
             finally
             {
@@ -56,7 +57,8 @@ namespace ProyectoFinalPOS
 
         private void totalCustomers()
         {
-            string query = "SELECT COUNT(*) AS TotalCustomers FROM Customers;";
+            string query = "SELECT COUNT(*) AS TotalCustomers FROM jsoberanis_db.Customers;";
+            //string query = "SELECT COUNT(*) AS TotalCustomers FROM Customers;";
 
             try
             {
@@ -73,7 +75,7 @@ namespace ProyectoFinalPOS
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Error al obtener el total de empleados: " + ex.Message);
+                MessageBox.Show("Error al obtener el total de customers: " + ex.Message);
             }
             finally
             {
@@ -86,7 +88,8 @@ namespace ProyectoFinalPOS
 
         private void totalEmployees()
         {
-            string query = "SELECT COUNT(*) AS TotalEmployees FROM Employees;";
+            string query = "SELECT COUNT(*) AS TotalEmployees FROM jsoberanis_db.Employees;";
+            //string query = "SELECT COUNT(*) AS TotalEmployees FROM Employees;";
 
             try
             {
@@ -103,7 +106,7 @@ namespace ProyectoFinalPOS
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Error al obtener el total de empleados: " + ex.Message);
+                MessageBox.Show("Error al obtener el total de employees: " + ex.Message);
             }
             finally
             {

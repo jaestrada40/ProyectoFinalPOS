@@ -24,7 +24,7 @@ namespace ProyectoFinalPOS.Productos
 
         private void ProductosCarga()
         {
-            string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products";
+            string query = "SELECT ProductID as ID, Code as Código, Name as Nombre, Description as Descripción, Price as Precio, Stock, ImagePath as Imagen FROM jsoberanis_db.Products";
             try
             {
                 // Asegúrate de que la conexión esté abierta antes de usarla

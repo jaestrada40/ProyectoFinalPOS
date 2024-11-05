@@ -37,9 +37,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(16, 23);
+            label1.Location = new Point(18, 31);
             label1.Name = "label1";
-            label1.Size = new Size(85, 25);
+            label1.Size = new Size(107, 33);
             label1.TabIndex = 0;
             label1.Text = "Clientes";
             // 
@@ -49,20 +49,23 @@
             customersTable.AllowUserToDeleteRows = false;
             customersTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             customersTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            customersTable.Location = new Point(16, 284);
+            customersTable.Location = new Point(18, 379);
+            customersTable.Margin = new Padding(3, 4, 3, 4);
             customersTable.Name = "customersTable";
             customersTable.ReadOnly = true;
-            customersTable.Size = new Size(841, 359);
+            customersTable.RowHeadersWidth = 51;
+            customersTable.Size = new Size(961, 479);
             customersTable.TabIndex = 1;
             // 
             // Clientes
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(customersTable);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Clientes";
-            Size = new Size(875, 665);
+            Size = new Size(1000, 887);
             ((System.ComponentModel.ISupportInitialize)customersTable).EndInit();
             ResumeLayout(false);
             PerformLayout();

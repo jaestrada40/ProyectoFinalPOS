@@ -15,6 +15,8 @@ namespace ProyectoFinalPOS.Clientes
     public partial class Clientes : UserControl
     {
         private SqlConnection connection = DatabaseConnections.GetInstance().GetConnection();
+
+
         public Clientes()
         {
             InitializeComponent();
@@ -22,9 +24,10 @@ namespace ProyectoFinalPOS.Clientes
         }
 
 
+
         private void CustomersCarga()
         {
-            string query = "SELECT CustomerID, NIT, FirstName, LastName, Address, Phone FROM Customers";
+            string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM jsoberanis_db.Customers";
             try
             {
                 // Asegúrate de que la conexión esté abierta antes de usarla

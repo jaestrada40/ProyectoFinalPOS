@@ -254,10 +254,10 @@ namespace ProyectoFinalPOS
             panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Controls.Add(pictureBox3);
             panel4.Controls.Add(textBoxPassword);
-            panel4.Location = new Point(0, 313);
+            panel4.Location = new Point(8, 313);
             panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(514, 59);
+            panel4.Size = new Size(496, 59);
             panel4.TabIndex = 8;
             // 
             // pictureBox3
@@ -277,10 +277,10 @@ namespace ProyectoFinalPOS
             panel3.Controls.Add(pictureBox2);
             panel3.Controls.Add(textBoxUsuario);
             panel3.ForeColor = SystemColors.AppWorkspace;
-            panel3.Location = new Point(0, 247);
+            panel3.Location = new Point(8, 247);
             panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(514, 59);
+            panel3.Size = new Size(496, 59);
             panel3.TabIndex = 7;
             // 
             // pictureBox2

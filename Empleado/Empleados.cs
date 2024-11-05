@@ -23,7 +23,7 @@ namespace ProyectoFinalPOS.Empleado
 
         private void EmployeeCarga()
         {
-            string query = "SELECT EmployeeID, FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash FROM Employees";
+            string query = "SELECT EmployeeID as ID, FirstName as Nombre, LastName as Apellido, IdentificationNumber as Identificación, Position as Position, Username as Usuario FROM jsoberanis_db.Employees";
             try
             {
                 // Asegúrate de que la conexión esté abierta antes de usarla
