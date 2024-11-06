@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using ProyectoFinalPOS.Carrito;
 using ProyectoFinalPOS.DBconexion;
 using ProyectoFinalPOS.Objects;
 using ProyectoFinalPOS.Productos;
@@ -16,14 +17,13 @@ namespace ProyectoFinalPOS.Ventas
 {
     public partial class Ventas : UserControl
     {
-
         private SqlConnection connection = DatabaseConnections.GetInstance().GetConnection();
+
         public Ventas()
         {
             InitializeComponent();
             CargarFlashCards();
         }
-
 
         private void CargarFlashCards()
         {
@@ -33,8 +33,8 @@ namespace ProyectoFinalPOS.Ventas
             {
                 ProductCard productCard = new ProductCard();
                 productCard.SetProductData(producto);
-                productCard.Width = 200; 
-                productCard.Height = 300; 
+                productCard.Width = 198;
+                productCard.Height = 300;
 
                 flowLayoutPanel1.Controls.Add(productCard);
             }
@@ -85,8 +85,6 @@ namespace ProyectoFinalPOS.Ventas
 
             return productos;
         }
-
-
 
     }
 }

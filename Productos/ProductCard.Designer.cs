@@ -39,61 +39,68 @@
             // 
             // pictureBoxImage
             // 
-            pictureBoxImage.Location = new Point(19, 3);
+            pictureBoxImage.Dock = DockStyle.Top;
+            pictureBoxImage.Location = new Point(0, 0);
+            pictureBoxImage.Margin = new Padding(10);
             pictureBoxImage.Name = "pictureBoxImage";
-            pictureBoxImage.Size = new Size(157, 129);
+            pictureBoxImage.Padding = new Padding(5);
+            pictureBoxImage.Size = new Size(195, 165);
             pictureBoxImage.TabIndex = 0;
             pictureBoxImage.TabStop = false;
             // 
             // lblName
             // 
-            lblName.AutoSize = true;
+            lblName.Dock = DockStyle.Top;
             lblName.Font = new Font("Tahoma", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblName.ForeColor = Color.White;
-            lblName.Location = new Point(51, 151);
+            lblName.Location = new Point(0, 165);
             lblName.Name = "lblName";
-            lblName.Size = new Size(67, 18);
+            lblName.Size = new Size(195, 18);
             lblName.TabIndex = 1;
             lblName.Text = "Nombre";
+            lblName.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblDescription
             // 
-            lblDescription.AutoSize = true;
+            lblDescription.Dock = DockStyle.Top;
             lblDescription.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblDescription.ForeColor = Color.White;
-            lblDescription.Location = new Point(49, 180);
+            lblDescription.Location = new Point(0, 183);
             lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(71, 14);
+            lblDescription.Size = new Size(195, 33);
             lblDescription.TabIndex = 2;
-            lblDescription.Text = "Descripcióm";
-            lblDescription.TextAlign = ContentAlignment.TopCenter;
+            lblDescription.Text = "Descripción";
+            lblDescription.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblPrice
             // 
-            lblPrice.AutoSize = true;
-            lblPrice.Font = new Font("Tahoma", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPrice.Dock = DockStyle.Top;
+            lblPrice.Font = new Font("Tahoma", 9F, FontStyle.Bold);
             lblPrice.ForeColor = Color.White;
-            lblPrice.Location = new Point(56, 209);
+            lblPrice.Location = new Point(0, 216);
             lblPrice.Name = "lblPrice";
-            lblPrice.Size = new Size(56, 18);
+            lblPrice.Size = new Size(195, 32);
             lblPrice.TabIndex = 3;
             lblPrice.Text = "Precio";
+            lblPrice.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblStock
             // 
-            lblStock.AutoSize = true;
+            lblStock.Dock = DockStyle.Top;
             lblStock.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblStock.ForeColor = Color.White;
-            lblStock.Location = new Point(63, 238);
+            lblStock.Location = new Point(0, 248);
             lblStock.Name = "lblStock";
-            lblStock.Size = new Size(42, 14);
+            lblStock.Size = new Size(195, 14);
             lblStock.TabIndex = 4;
             lblStock.Text = "Stock";
+            lblStock.TextAlign = ContentAlignment.MiddleLeft;
             lblStock.Click += lblStock_Click;
             // 
             // btnRegistrarse
             // 
             btnRegistrarse.BackColor = Color.FromArgb(0, 119, 70);
+            btnRegistrarse.Dock = DockStyle.Bottom;
             btnRegistrarse.FlatAppearance.BorderSize = 0;
             btnRegistrarse.FlatStyle = FlatStyle.Flat;
             btnRegistrarse.Font = new Font("Tahoma", 11F, FontStyle.Bold);
@@ -101,8 +108,8 @@
             btnRegistrarse.Location = new Point(0, 267);
             btnRegistrarse.Margin = new Padding(3, 2, 3, 2);
             btnRegistrarse.Name = "btnRegistrarse";
-            btnRegistrarse.Size = new Size(200, 33);
-            btnRegistrarse.TabIndex = 12;
+            btnRegistrarse.Size = new Size(195, 33);
+            btnRegistrarse.TabIndex = 5;
             btnRegistrarse.Text = "Agregar";
             btnRegistrarse.UseVisualStyleBackColor = false;
             // 
@@ -119,10 +126,9 @@
             Controls.Add(lblName);
             Controls.Add(pictureBoxImage);
             Name = "ProductCard";
-            Size = new Size(198, 298);
+            Size = new Size(195, 300);
             ((System.ComponentModel.ISupportInitialize)pictureBoxImage).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using ProyectoFinalPOS.DBconexion;
 using ProyectoFinalPOS.Objects;
+using ProyectoFinalPOS.Ventas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace ProyectoFinalPOS.Productos
 {
     public partial class ProductCard : UserControl
     {
+        private Product producto;
 
         public ProductCard()
         {
@@ -23,20 +25,25 @@ namespace ProyectoFinalPOS.Productos
 
         public void SetProductData(Product product)
         {
-            lblName.Text = product.Name;
-            lblDescription.Text = product.Description;
-            lblPrice.Text = $"${product.Price:F2}";
-            lblStock.Text = $"Stock: {product.Stock}";
+            this.producto = product;
+            lblName.Text = producto.Name;
+            lblDescription.Text = producto.Description;
+            lblPrice.Text = $"Precio: Q{producto.Price:F2}";
+            lblStock.Text = $"Stock: {producto.Stock}";
 
-            // Cargar imagen si existe
-            if (!string.IsNullOrEmpty(product.ImagePath) && File.Exists(product.ImagePath))
+            if (!string.IsNullOrEmpty(producto.ImagePath) && File.Exists(producto.ImagePath))
             {
-                pictureBoxImage.Image = Image.FromFile(product.ImagePath);
+                pictureBoxImage.Image = Image.FromFile(producto.ImagePath);
             }
             else
             {
-                pictureBoxImage.Image = null; 
+                pictureBoxImage.Image = null;
             }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void lblStock_Click(object sender, EventArgs e)

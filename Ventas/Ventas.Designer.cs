@@ -31,18 +31,21 @@
             panel1 = new Panel();
             lblVentas = new Label();
             panel2 = new Panel();
-            panel5 = new Panel();
+            pnlCarrito = new Panel();
+            flowLayoutPanelCarrito = new FlowLayoutPanel();
             panel4 = new Panel();
             btnPagar = new Button();
             panel8 = new Panel();
-            label2 = new Label();
+            lblTotals = new Label();
             label1 = new Label();
             panel3 = new Panel();
-            btnPrint = new Button();
+            label3 = new Label();
+            lblCliente = new Label();
             panel6 = new Panel();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            pnlCarrito.SuspendLayout();
             panel4.SuspendLayout();
             panel8.SuspendLayout();
             panel3.SuspendLayout();
@@ -72,7 +75,7 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(panel5);
+            panel2.Controls.Add(pnlCarrito);
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Right;
@@ -81,14 +84,23 @@
             panel2.Size = new Size(263, 610);
             panel2.TabIndex = 22;
             // 
-            // panel5
+            // pnlCarrito
             // 
-            panel5.BackColor = Color.FromArgb(37, 42, 60);
-            panel5.Dock = DockStyle.Fill;
-            panel5.Location = new Point(0, 44);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(263, 440);
-            panel5.TabIndex = 2;
+            pnlCarrito.BackColor = Color.FromArgb(37, 42, 60);
+            pnlCarrito.Controls.Add(flowLayoutPanelCarrito);
+            pnlCarrito.Dock = DockStyle.Fill;
+            pnlCarrito.Location = new Point(0, 44);
+            pnlCarrito.Name = "pnlCarrito";
+            pnlCarrito.Size = new Size(263, 440);
+            pnlCarrito.TabIndex = 2;
+            // 
+            // flowLayoutPanelCarrito
+            // 
+            flowLayoutPanelCarrito.Dock = DockStyle.Top;
+            flowLayoutPanelCarrito.Location = new Point(0, 0);
+            flowLayoutPanelCarrito.Name = "flowLayoutPanelCarrito";
+            flowLayoutPanelCarrito.Size = new Size(263, 437);
+            flowLayoutPanelCarrito.TabIndex = 0;
             // 
             // panel4
             // 
@@ -118,7 +130,7 @@
             // panel8
             // 
             panel8.BackColor = Color.FromArgb(37, 42, 60);
-            panel8.Controls.Add(label2);
+            panel8.Controls.Add(lblTotals);
             panel8.Controls.Add(label1);
             panel8.Dock = DockStyle.Top;
             panel8.Location = new Point(0, 0);
@@ -126,16 +138,16 @@
             panel8.Size = new Size(263, 33);
             panel8.TabIndex = 2;
             // 
-            // label2
+            // lblTotals
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(178, 7);
-            label2.Name = "label2";
-            label2.Size = new Size(81, 19);
-            label2.TabIndex = 1;
-            label2.Text = "Q 200.00";
+            lblTotals.AutoSize = true;
+            lblTotals.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotals.ForeColor = Color.White;
+            lblTotals.Location = new Point(178, 7);
+            lblTotals.Name = "lblTotals";
+            lblTotals.Size = new Size(81, 19);
+            lblTotals.TabIndex = 1;
+            lblTotals.Text = "Q 200.00";
             // 
             // label1
             // 
@@ -151,23 +163,35 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(37, 42, 60);
-            panel3.Controls.Add(btnPrint);
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(lblCliente);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(263, 44);
             panel3.TabIndex = 0;
             // 
-            // btnPrint
+            // label3
             // 
-            btnPrint.FlatAppearance.BorderSize = 0;
-            btnPrint.FlatStyle = FlatStyle.Flat;
-            btnPrint.Image = Properties.Resources.printer_24;
-            btnPrint.Location = new Point(8, 6);
-            btnPrint.Name = "btnPrint";
-            btnPrint.Size = new Size(75, 32);
-            btnPrint.TabIndex = 0;
-            btnPrint.UseVisualStyleBackColor = true;
+            label3.AutoSize = true;
+            label3.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(63, 14);
+            label3.Name = "label3";
+            label3.Size = new Size(69, 16);
+            label3.TabIndex = 1;
+            label3.Text = "Juan Perez";
+            // 
+            // lblCliente
+            // 
+            lblCliente.AutoSize = true;
+            lblCliente.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCliente.ForeColor = Color.White;
+            lblCliente.Location = new Point(6, 14);
+            lblCliente.Name = "lblCliente";
+            lblCliente.Size = new Size(56, 16);
+            lblCliente.TabIndex = 0;
+            lblCliente.Text = "Cliente:";
             // 
             // panel6
             // 
@@ -181,9 +205,9 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Location = new Point(3, 3);
+            flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(609, 604);
+            flowLayoutPanel1.Size = new Size(612, 610);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // Ventas
@@ -198,10 +222,12 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
+            pnlCarrito.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
             panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             panel6.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -211,15 +237,17 @@
         private Panel panel1;
         private Label lblVentas;
         private Panel panel2;
-        private Panel panel5;
+        private Panel pnlCarrito;
         private Panel panel4;
         private Panel panel3;
         private Panel panel6;
         private Panel panel8;
-        private Label label2;
+        private Label lblTotals;
         private Label label1;
-        private Button btnPrint;
         private Button btnPagar;
         private FlowLayoutPanel flowLayoutPanel1;
+        private Label label3;
+        private Label lblCliente;
+        private FlowLayoutPanel flowLayoutPanelCarrito;
     }
 }
