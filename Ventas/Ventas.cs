@@ -56,7 +56,8 @@ namespace ProyectoFinalPOS.Ventas
             {
                 // Si el producto ya existe, incrementamos su cantidad
                 itemExistente.IncrementarCantidad();
-                totalCarrito += producto.Price; // Sumar el precio al total
+                // Sumar el precio al total
+                totalCarrito += producto.Price; 
             }
             else
             {
@@ -68,7 +69,8 @@ namespace ProyectoFinalPOS.Ventas
 
                 flowLayoutPanelCarrito.Controls.Add(itemCarrito);
 
-                totalCarrito += producto.Price; // Sumar el precio al total
+                // Sumar el precio al total
+                totalCarrito += producto.Price; 
             }
 
             // Actualizar el total en la interfaz
@@ -93,6 +95,7 @@ namespace ProyectoFinalPOS.Ventas
         private List<Product> ObtenerProductos()
         {
             List<Product> productos = new List<Product>();
+            //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products";
             string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products";
 
             try
