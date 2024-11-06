@@ -36,7 +36,7 @@
             panel4 = new Panel();
             btnPagar = new Button();
             panel8 = new Panel();
-            lblTotals = new Label();
+            lblTotal = new Label();
             label1 = new Label();
             panel3 = new Panel();
             label3 = new Label();
@@ -96,10 +96,12 @@
             // 
             // flowLayoutPanelCarrito
             // 
-            flowLayoutPanelCarrito.Dock = DockStyle.Top;
+            flowLayoutPanelCarrito.AutoScroll = true;
+            flowLayoutPanelCarrito.AutoSize = true;
+            flowLayoutPanelCarrito.Dock = DockStyle.Fill;
             flowLayoutPanelCarrito.Location = new Point(0, 0);
             flowLayoutPanelCarrito.Name = "flowLayoutPanelCarrito";
-            flowLayoutPanelCarrito.Size = new Size(263, 437);
+            flowLayoutPanelCarrito.Size = new Size(263, 440);
             flowLayoutPanelCarrito.TabIndex = 0;
             // 
             // panel4
@@ -126,11 +128,12 @@
             btnPagar.TabIndex = 3;
             btnPagar.Text = "Pagar";
             btnPagar.UseVisualStyleBackColor = false;
+            btnPagar.Click += btnPagar_Click;
             // 
             // panel8
             // 
             panel8.BackColor = Color.FromArgb(37, 42, 60);
-            panel8.Controls.Add(lblTotals);
+            panel8.Controls.Add(lblTotal);
             panel8.Controls.Add(label1);
             panel8.Dock = DockStyle.Top;
             panel8.Location = new Point(0, 0);
@@ -138,16 +141,16 @@
             panel8.Size = new Size(263, 33);
             panel8.TabIndex = 2;
             // 
-            // lblTotals
+            // lblTotal
             // 
-            lblTotals.AutoSize = true;
-            lblTotals.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTotals.ForeColor = Color.White;
-            lblTotals.Location = new Point(178, 7);
-            lblTotals.Name = "lblTotals";
-            lblTotals.Size = new Size(81, 19);
-            lblTotals.TabIndex = 1;
-            lblTotals.Text = "Q 200.00";
+            lblTotal.AutoSize = true;
+            lblTotal.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotal.ForeColor = Color.White;
+            lblTotal.Location = new Point(72, 7);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(81, 19);
+            lblTotal.TabIndex = 1;
+            lblTotal.Text = "Q 200.00";
             // 
             // label1
             // 
@@ -223,6 +226,7 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             pnlCarrito.ResumeLayout(false);
+            pnlCarrito.PerformLayout();
             panel4.ResumeLayout(false);
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
@@ -242,7 +246,7 @@
         private Panel panel3;
         private Panel panel6;
         private Panel panel8;
-        private Label lblTotals;
+        private Label lblTotal;
         private Label label1;
         private Button btnPagar;
         private FlowLayoutPanel flowLayoutPanel1;

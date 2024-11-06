@@ -31,25 +31,24 @@
             lblName = new Label();
             lblPrice = new Label();
             btnEliminar = new Button();
+            lblCantidad = new Label();
             SuspendLayout();
             // 
             // lblName
             // 
-            lblName.AutoSize = true;
             lblName.ForeColor = Color.White;
-            lblName.Location = new Point(14, 11);
+            lblName.Location = new Point(3, 11);
             lblName.Name = "lblName";
-            lblName.Size = new Size(51, 15);
+            lblName.Size = new Size(113, 15);
             lblName.TabIndex = 0;
             lblName.Text = "Nombre";
             // 
             // lblPrice
             // 
-            lblPrice.AutoSize = true;
             lblPrice.ForeColor = Color.White;
-            lblPrice.Location = new Point(118, 11);
+            lblPrice.Location = new Point(162, 11);
             lblPrice.Name = "lblPrice";
-            lblPrice.Size = new Size(40, 15);
+            lblPrice.Size = new Size(60, 15);
             lblPrice.TabIndex = 1;
             lblPrice.Text = "Precio";
             // 
@@ -58,24 +57,33 @@
             btnEliminar.FlatAppearance.BorderSize = 0;
             btnEliminar.FlatStyle = FlatStyle.Flat;
             btnEliminar.Image = Properties.Resources.x_mark_3_24;
-            btnEliminar.Location = new Point(182, 7);
+            btnEliminar.Location = new Point(218, 7);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(75, 25);
+            btnEliminar.Size = new Size(39, 25);
             btnEliminar.TabIndex = 2;
             btnEliminar.UseVisualStyleBackColor = true;
+            // 
+            // lblCantidad
+            // 
+            lblCantidad.ForeColor = Color.White;
+            lblCantidad.Location = new Point(122, 11);
+            lblCantidad.Name = "lblCantidad";
+            lblCantidad.Size = new Size(34, 14);
+            lblCantidad.TabIndex = 3;
+            lblCantidad.Text = "Cantidad";
             // 
             // CarritoItemCard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(37, 42, 60);
+            Controls.Add(lblCantidad);
             Controls.Add(btnEliminar);
             Controls.Add(lblPrice);
             Controls.Add(lblName);
             Name = "CarritoItemCard";
             Size = new Size(260, 39);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -83,5 +91,6 @@
         private Label lblName;
         private Label lblPrice;
         private Button btnEliminar;
+        private Label lblCantidad;
     }
 }

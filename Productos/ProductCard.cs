@@ -18,6 +18,9 @@ namespace ProyectoFinalPOS.Productos
     {
         private Product producto;
 
+        // Evento para notificar cuando se agregue un producto al carrito
+        public event EventHandler<Product> AgregarAlCarritoClicked;
+
         public ProductCard()
         {
             InitializeComponent();
@@ -41,14 +44,15 @@ namespace ProyectoFinalPOS.Productos
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void lblStock_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AgregarAlCarritoClicked?.Invoke(this, producto);
         }
     }
 }

@@ -33,7 +33,7 @@
             lblDescription = new Label();
             lblPrice = new Label();
             lblStock = new Label();
-            btnRegistrarse = new Button();
+            btnAgregar = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxImage).BeginInit();
             SuspendLayout();
             // 
@@ -97,21 +97,22 @@
             lblStock.TextAlign = ContentAlignment.MiddleLeft;
             lblStock.Click += lblStock_Click;
             // 
-            // btnRegistrarse
+            // btnAgregar
             // 
-            btnRegistrarse.BackColor = Color.FromArgb(0, 119, 70);
-            btnRegistrarse.Dock = DockStyle.Bottom;
-            btnRegistrarse.FlatAppearance.BorderSize = 0;
-            btnRegistrarse.FlatStyle = FlatStyle.Flat;
-            btnRegistrarse.Font = new Font("Tahoma", 11F, FontStyle.Bold);
-            btnRegistrarse.ForeColor = Color.White;
-            btnRegistrarse.Location = new Point(0, 267);
-            btnRegistrarse.Margin = new Padding(3, 2, 3, 2);
-            btnRegistrarse.Name = "btnRegistrarse";
-            btnRegistrarse.Size = new Size(195, 33);
-            btnRegistrarse.TabIndex = 5;
-            btnRegistrarse.Text = "Agregar";
-            btnRegistrarse.UseVisualStyleBackColor = false;
+            btnAgregar.BackColor = Color.FromArgb(0, 119, 70);
+            btnAgregar.Dock = DockStyle.Bottom;
+            btnAgregar.FlatAppearance.BorderSize = 0;
+            btnAgregar.FlatStyle = FlatStyle.Flat;
+            btnAgregar.Font = new Font("Tahoma", 11F, FontStyle.Bold);
+            btnAgregar.ForeColor = Color.White;
+            btnAgregar.Location = new Point(0, 267);
+            btnAgregar.Margin = new Padding(3, 2, 3, 2);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(195, 33);
+            btnAgregar.TabIndex = 5;
+            btnAgregar.Text = "Agregar";
+            btnAgregar.UseVisualStyleBackColor = false;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // ProductCard
             // 
@@ -119,7 +120,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(36, 41, 59);
             BorderStyle = BorderStyle.FixedSingle;
-            Controls.Add(btnRegistrarse);
+            Controls.Add(btnAgregar);
             Controls.Add(lblStock);
             Controls.Add(lblPrice);
             Controls.Add(lblDescription);
@@ -138,6 +139,6 @@
         private Label lblDescription;
         private Label lblPrice;
         private Label lblStock;
-        private Button btnRegistrarse;
+        private Button btnAgregar;
     }
 }
