@@ -32,6 +32,7 @@ namespace ProyectoFinalPOS.Clientes
 
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(query, this.connection);
                 DataTable dataTable = new DataTable();
+                // Ejecuta la consutla de sql y llena el objeto dataTable
                 dataAdapter.Fill(dataTable);
                 customersTable.DataSource = dataTable;
             }

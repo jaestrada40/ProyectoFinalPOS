@@ -19,6 +19,7 @@ namespace ProyectoFinalPOS
             string password = textBoxPassword.Text.Trim();
 
             // Validación de campos vacíos
+            // if (username == null || username == "" || password == null || password == "")
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Por favor, ingrese el usuario y la contraseña.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -93,6 +94,7 @@ namespace ProyectoFinalPOS
 
         private void chkVerContraseña_CheckedChanged(object sender, EventArgs e)
         {
+            // Es un operador ternario que evalúa si chkVerContraseña.Checked es true o false.
             textBoxPassword.PasswordChar = chkVerContraseña.Checked ? '\0' : '*';
         }
     }

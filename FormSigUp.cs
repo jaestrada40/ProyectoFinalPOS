@@ -114,6 +114,7 @@ namespace ProyectoFinalPOS
 
         private void chkVerContraseña_CheckedChanged(object sender, EventArgs e)
         {
+            // Es un operador ternario que evalúa si chkVerContraseña.Checked es true o false.
             txtContraseña.PasswordChar = chkVerContraseña.Checked ? '\0' : '*';
         }
     }
