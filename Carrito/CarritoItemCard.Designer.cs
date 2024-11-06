@@ -62,6 +62,7 @@
             btnEliminar.Size = new Size(39, 25);
             btnEliminar.TabIndex = 2;
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // lblCantidad
             // 
