@@ -61,6 +61,9 @@
     <Compile Update="Recibo\ReciboForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ToastForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Ventas\MenuVentas.cs">
       <SubType>Form</SubType>
     </Compile>
