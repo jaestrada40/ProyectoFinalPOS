@@ -37,6 +37,9 @@
     <Compile Update="FormSigUp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormularioPrueba.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Productos\EditarProducto.cs">
       <SubType>Form</SubType>
     </Compile>

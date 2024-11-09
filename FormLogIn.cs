@@ -98,5 +98,6 @@ namespace ProyectoFinalPOS
             // Es un operador ternario que evalúa si chkVerContraseña.Checked es true o false.
             textBoxPassword.PasswordChar = chkVerContraseña.Checked ? '\0' : '*';
         }
+
     }
 }

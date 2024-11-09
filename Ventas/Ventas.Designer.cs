@@ -148,9 +148,9 @@
             lblTotal.ForeColor = Color.White;
             lblTotal.Location = new Point(72, 7);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(81, 19);
+            lblTotal.Size = new Size(61, 19);
             lblTotal.TabIndex = 1;
-            lblTotal.Text = "Q 200.00";
+            lblTotal.Text = "Q 0.00";
             // 
             // label1
             // 
