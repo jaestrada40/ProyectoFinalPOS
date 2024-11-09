@@ -20,24 +20,17 @@ namespace ProyectoFinalPOS
             dashboard1 = new Dashboard();
             addUserControl(dashboard1);
         }
-        public void ShowToast(string type, string message)
-        {
-            ToastForm toast = new ToastForm(type, message);
-            toast.Show();
-        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Form MenuMantenimiento = new MenuMantenimiento();
             MenuMantenimiento.Show();
-            ShowToast("Mantenimiento", "Mostrando información de Menú de Mantenimiento");
         }
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
             Form MenuVentas = new MenuVentas();
             MenuVentas.Show();
-            ShowToast("Ventas", "Mostrando información de Menú de Ventas");
-
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
