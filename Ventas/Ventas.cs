@@ -95,8 +95,8 @@ namespace ProyectoFinalPOS.Ventas
         private List<Product> ObtenerProductos()
         {
             List<Product> productos = new List<Product>();
-            //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products";
-            string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products";
+            string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products";
+            //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products";
 
             try
             {
