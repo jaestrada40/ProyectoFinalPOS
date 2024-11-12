@@ -19,6 +19,7 @@ namespace ProyectoFinalPOS
         public FormSigUp()
         {
             InitializeComponent();
+            this.ActiveControl = txtNombre;
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -49,10 +50,10 @@ namespace ProyectoFinalPOS
             }
 
             // Consulta SQL para insertar un nuevo empleado
-            //string query = "INSERT INTO jsoberanis_db.Employees (FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash) " +
-            //               "VALUES (@FirstName, @LastName, @IdentificationNumber, @Position, @Username, @PasswordHash)";
-            string query = "INSERT INTO Employees (FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash) " +
-               "VALUES (@FirstName, @LastName, @IdentificationNumber, @Position, @Username, @PasswordHash)";
+            string query = "INSERT INTO jsoberanis_db.Employees (FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash) " +
+                           "VALUES (@FirstName, @LastName, @IdentificationNumber, @Position, @Username, @PasswordHash)";
+            //string query = "INSERT INTO Employees (FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash) " +
+            //   "VALUES (@FirstName, @LastName, @IdentificationNumber, @Position, @Username, @PasswordHash)";
 
             try
             {

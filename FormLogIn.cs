@@ -11,6 +11,10 @@ namespace ProyectoFinalPOS
         public FormLogIn()
         {
             InitializeComponent();
+            textBoxPassword.KeyDown += textBoxPassword_KeyDown;
+            textBoxUsuario.KeyDown += textBoxUsuario_KeyDown; // Manejar Enter en el usuario
+            this.AcceptButton = buttonIngresar;
+            this.ActiveControl = textBoxUsuario;
         }
 
         private void buttonIngresar_Click(object sender, EventArgs e)
@@ -42,10 +46,28 @@ namespace ProyectoFinalPOS
             }
         }
 
+        private void textBoxUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Evita el sonido de "ding" al presionar Enter
+                buttonIngresar_Click(sender, e); // Llama al método de clic del botón
+            }
+        }
+
+        private void textBoxPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Evita el sonido de "ding" al presionar Enter
+                buttonIngresar_Click(sender, e); // Llama al método de clic del botón
+            }
+        }
+
         private bool ValidarCredenciales(string username, string password)
         {
-            //string query = "SELECT COUNT(1) FROM jsoberanis_db.Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
-            string query = "SELECT COUNT(1) FROM Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
+            string query = "SELECT COUNT(1) FROM jsoberanis_db.Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
+            //string query = "SELECT COUNT(1) FROM Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
             bool esValido = false;
 
             try
