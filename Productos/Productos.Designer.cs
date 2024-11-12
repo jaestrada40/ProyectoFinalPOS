@@ -44,16 +44,21 @@
             btnLimpiar = new Button();
             label5 = new Label();
             txtStock = new TextBox();
+            txtBuscar = new TextBox();
+            btnBuscar = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)productsTable).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Tahoma", 15.75F);
+            label1.BackColor = SystemColors.ButtonFace;
+            label1.Font = new Font("Tahoma", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.Location = new Point(18, 31);
             label1.Name = "label1";
-            label1.Size = new Size(133, 33);
+            label1.Size = new Size(156, 34);
             label1.TabIndex = 1;
             label1.Text = "Productos";
             // 
@@ -155,6 +160,7 @@
             btnGuardar.TabIndex = 13;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnActualizar
             // 
@@ -167,6 +173,7 @@
             btnActualizar.TabIndex = 14;
             btnActualizar.Text = "Actualizar";
             btnActualizar.UseVisualStyleBackColor = false;
+            btnActualizar.Click += btnActualizar_Click;
             // 
             // btnEliminar
             // 
@@ -179,6 +186,7 @@
             btnEliminar.TabIndex = 15;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnLimpiar
             // 
@@ -191,6 +199,7 @@
             btnLimpiar.TabIndex = 16;
             btnLimpiar.Text = "Limpiar";
             btnLimpiar.UseVisualStyleBackColor = false;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // label5
             // 
@@ -211,10 +220,33 @@
             txtStock.Size = new Size(220, 27);
             txtStock.TabIndex = 17;
             // 
+            // txtBuscar
+            // 
+            txtBuscar.BackColor = SystemColors.Window;
+            txtBuscar.BorderStyle = BorderStyle.FixedSingle;
+            txtBuscar.Location = new Point(160, 326);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(460, 27);
+            txtBuscar.TabIndex = 19;
+            // 
+            // btnBuscar
+            // 
+            btnBuscar.Image = Properties.Resources.search_12_24;
+            btnBuscar.Location = new Point(630, 326);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(24, 24);
+            btnBuscar.SizeMode = PictureBoxSizeMode.StretchImage;
+            btnBuscar.TabIndex = 20;
+            btnBuscar.TabStop = false;
+            btnBuscar.Click += btnBuscar_Click;
+            // 
             // Productos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ButtonFace;
+            Controls.Add(btnBuscar);
+            Controls.Add(txtBuscar);
             Controls.Add(label5);
             Controls.Add(txtStock);
             Controls.Add(btnLimpiar);
@@ -235,6 +267,7 @@
             Name = "Productos";
             Size = new Size(1000, 887);
             ((System.ComponentModel.ISupportInitialize)productsTable).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -257,5 +290,7 @@
         private Button btnLimpiar;
         private Label label5;
         private TextBox txtStock;
+        private TextBox txtBuscar;
+        private PictureBox btnBuscar;
     }
 }
