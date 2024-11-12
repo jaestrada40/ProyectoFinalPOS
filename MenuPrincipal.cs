@@ -1,4 +1,5 @@
-﻿using ProyectoFinalPOS.Ventas;
+﻿using ProyectoFinalPOS.Objects;
+using ProyectoFinalPOS.Ventas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +14,15 @@ namespace ProyectoFinalPOS
 {
     public partial class MenuPrincipal : Form
     {
-
         public MenuPrincipal()
         {
             InitializeComponent();
             dashboard1 = new Dashboard();
             addUserControl(dashboard1);
+
+            // Mostrar el nombre completo (FirstName + Username)
+            lblNombre.Text = $"Bienvenido, {Global.FirstName}";
+            lblUsuario.Text = $"Usuario: {Global.Username}";
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -56,22 +60,18 @@ namespace ProyectoFinalPOS
         {
             ventas1 = new Ventas.Ventas();
             addUserControl(ventas1);
-
-
         }
 
         private void btnProductos_Click(object sender, EventArgs e)
         {
             productos1 = new Productos.Productos();
             addUserControl(productos1);
-
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
             clientes1 = new Clientes.Clientes();
             addUserControl(clientes1);
-
         }
 
         private void btnEmpleados_Click(object sender, EventArgs e)
