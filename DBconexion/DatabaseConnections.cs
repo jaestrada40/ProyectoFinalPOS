@@ -11,8 +11,8 @@ namespace ProyectoFinalPOS.DBconexion
     {
         private static DatabaseConnections instance = null;
 
-        private string connectionString = "Server=tcp:uspg.database.windows.net,1433;Database=winforms-pos;User Id=jsoberanis;Password=9^pz6Pwr*7&@#50Y;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-        //private string connectionString = "Server=localhost,1400;Database=PointOfSale;User Id=sa;Password=S2V@Cs2JOWgQ;TrustServerCertificate=true;";
+        //private string connectionString = "Server=tcp:uspg.database.windows.net,1433;Database=winforms-pos;User Id=jsoberanis;Password=9^pz6Pwr*7&@#50Y;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private string connectionString = "Server=localhost,1400;Database=PointOfSale;User Id=sa;Password=S2V@Cs2JOWgQ;TrustServerCertificate=true;";
 
         private SqlConnection connection;
 

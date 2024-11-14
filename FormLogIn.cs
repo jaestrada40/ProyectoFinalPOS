@@ -13,7 +13,7 @@ namespace ProyectoFinalPOS
         {
             InitializeComponent();
             textBoxPassword.KeyDown += textBoxPassword_KeyDown;
-            textBoxUsuario.KeyDown += textBoxUsuario_KeyDown; // Manejar Enter en el usuario
+            textBoxUsuario.KeyDown += textBoxUsuario_KeyDown; 
             this.AcceptButton = buttonIngresar;
             this.ActiveControl = textBoxUsuario;
         }
@@ -66,8 +66,8 @@ namespace ProyectoFinalPOS
 
         private bool ValidarCredenciales(string username, string password)
         {
-            string query = "SELECT EmployeeID, Username, FirstName FROM jsoberanis_db.Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
-            //string query = "SELECT EmployeeID, Username, FirstName FROM Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
+            //string query = "SELECT EmployeeID, Username, FirstName FROM jsoberanis_db.Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
+            string query = "SELECT EmployeeID, Username, FirstName FROM Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
             bool esValido = false;
 
             try
@@ -132,6 +132,7 @@ namespace ProyectoFinalPOS
 
         private void chkVerContraseña_CheckedChanged(object sender, EventArgs e)
         {
+            // Es un operador ternario que evalúa si chkVerContraseña.Checked es true o false.
             textBoxPassword.PasswordChar = chkVerContraseña.Checked ? '\0' : '*';
         }
     }
