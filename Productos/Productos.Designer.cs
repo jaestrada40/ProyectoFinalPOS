@@ -46,8 +46,12 @@
             txtStock = new TextBox();
             txtBuscar = new TextBox();
             btnBuscar = new PictureBox();
+            txtImagePath = new TextBox();
+            label7 = new Label();
+            pictureBoxProducto = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)productsTable).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxProducto).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -77,7 +81,7 @@
             // 
             txtCodigo.BackColor = SystemColors.Window;
             txtCodigo.BorderStyle = BorderStyle.FixedSingle;
-            txtCodigo.Location = new Point(160, 106);
+            txtCodigo.Location = new Point(134, 106);
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(220, 27);
             txtCodigo.TabIndex = 3;
@@ -86,7 +90,7 @@
             // 
             txtNombre.BackColor = SystemColors.Window;
             txtNombre.BorderStyle = BorderStyle.FixedSingle;
-            txtNombre.Location = new Point(160, 148);
+            txtNombre.Location = new Point(134, 148);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(220, 27);
             txtNombre.TabIndex = 4;
@@ -95,18 +99,18 @@
             // 
             txtPrecio.BackColor = SystemColors.Window;
             txtPrecio.BorderStyle = BorderStyle.FixedSingle;
-            txtPrecio.Location = new Point(453, 107);
+            txtPrecio.Location = new Point(427, 107);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(220, 27);
+            txtPrecio.Size = new Size(134, 27);
             txtPrecio.TabIndex = 5;
             // 
             // txtDescripcion
             // 
             txtDescripcion.BackColor = SystemColors.Window;
             txtDescripcion.BorderStyle = BorderStyle.FixedSingle;
-            txtDescripcion.Location = new Point(160, 193);
+            txtDescripcion.Location = new Point(134, 199);
             txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(513, 27);
+            txtDescripcion.Size = new Size(427, 27);
             txtDescripcion.TabIndex = 6;
             // 
             // label2
@@ -143,7 +147,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Tahoma", 9F, FontStyle.Bold);
-            label6.Location = new Point(386, 110);
+            label6.Location = new Point(360, 110);
             label6.Name = "label6";
             label6.Size = new Size(61, 18);
             label6.TabIndex = 12;
@@ -205,7 +209,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Tahoma", 9F, FontStyle.Bold);
-            label5.Location = new Point(386, 151);
+            label5.Location = new Point(360, 151);
             label5.Name = "label5";
             label5.Size = new Size(55, 18);
             label5.TabIndex = 18;
@@ -215,9 +219,9 @@
             // 
             txtStock.BackColor = SystemColors.Window;
             txtStock.BorderStyle = BorderStyle.FixedSingle;
-            txtStock.Location = new Point(453, 148);
+            txtStock.Location = new Point(427, 148);
             txtStock.Name = "txtStock";
-            txtStock.Size = new Size(220, 27);
+            txtStock.Size = new Size(134, 27);
             txtStock.TabIndex = 17;
             // 
             // txtBuscar
@@ -240,11 +244,41 @@
             btnBuscar.TabStop = false;
             btnBuscar.Click += btnBuscar_Click;
             // 
+            // txtImagePath
+            // 
+            txtImagePath.BackColor = SystemColors.Window;
+            txtImagePath.BorderStyle = BorderStyle.FixedSingle;
+            txtImagePath.Location = new Point(653, 107);
+            txtImagePath.Name = "txtImagePath";
+            txtImagePath.Size = new Size(254, 27);
+            txtImagePath.TabIndex = 21;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            label7.Location = new Point(578, 109);
+            label7.Name = "label7";
+            label7.Size = new Size(69, 18);
+            label7.TabIndex = 22;
+            label7.Text = "Imagen:";
+            // 
+            // pictureBoxProducto
+            // 
+            pictureBoxProducto.Location = new Point(715, 168);
+            pictureBoxProducto.Name = "pictureBoxProducto";
+            pictureBoxProducto.Size = new Size(192, 180);
+            pictureBoxProducto.TabIndex = 23;
+            pictureBoxProducto.TabStop = false;
+            // 
             // Productos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
+            Controls.Add(pictureBoxProducto);
+            Controls.Add(label7);
+            Controls.Add(txtImagePath);
             Controls.Add(btnBuscar);
             Controls.Add(txtBuscar);
             Controls.Add(label5);
@@ -268,6 +302,7 @@
             Size = new Size(1000, 887);
             ((System.ComponentModel.ISupportInitialize)productsTable).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxProducto).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -292,5 +327,8 @@
         private TextBox txtStock;
         private TextBox txtBuscar;
         private PictureBox btnBuscar;
+        private TextBox txtImagePath;
+        private Label label7;
+        private PictureBox pictureBoxProducto;
     }
 }

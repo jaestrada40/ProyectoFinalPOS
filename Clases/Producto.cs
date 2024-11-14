@@ -13,14 +13,16 @@ namespace ProyectoFinalPOS.Clases
         public string Descripcion { get; set; }
         public double Precio { get; set; }
         public int Stock { get; set; }
+        public string ImagePath { get; set; }
 
-       public Producto(string codigo, string  nombre, string descripcion, double precio, int stock)
+       public Producto(string codigo, string  nombre, string descripcion, double precio, int stock, string imagePath)
         {
             Codigo = codigo;
             Nombre = nombre;
             Descripcion = descripcion;
             Precio = precio;
             Stock = stock;
+            ImagePath = imagePath;
         }
 
     }

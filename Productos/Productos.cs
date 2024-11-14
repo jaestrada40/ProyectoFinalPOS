@@ -27,7 +27,7 @@ namespace ProyectoFinalPOS.Productos
 
         private void ProductosCarga()
         {
-            string query = "SELECT ProductID as ID, Code as Codigo, Name as Nombre, Description as Descripcion, Price as Precio, Stock FROM jsoberanis_db.Products";
+            string query = "SELECT ProductID as ID, Code as Código, Name as Nombre, Description as Descripción, Price as Precio, Stock, ImagePath FROM jsoberanis_db.Products";
             //string query = "SELECT ProductID as ID, Code as Código, Name as Nombre, Description as Descripción, Price as Precio, Stock, ImagePath as Imagen FROM Products";
             try
             {
@@ -68,12 +68,13 @@ namespace ProyectoFinalPOS.Productos
             txtPrecio.Text = "";
             txtStock.Text = "";
             txtBuscar.Text = "";
+            txtImagePath.Text = "";
         }
 
         // Metodo para guardar productos en base de datos
         private void GuardarProducto()
         {
-            string query = "INSERT INTO jsoberanis_db.Products (Code, Name, Description, Price, Stock) VALUES (@Code, @Name, @Description, @Price, @Stock)";
+            string query = "INSERT INTO jsoberanis_db.Products (Code, Name, Description, Price, Stock, ImagePath) VALUES (@Code, @Name, @Description, @Price, @Stock, @ImagePath)";
             //string query = "INSERT INTO Products (Code, Name, Description, Price, Stock, ImagePath) VALUES (@Code, @Name, @Description, @Price, @Stock, @ImagePath)";
 
             try
@@ -90,7 +91,7 @@ namespace ProyectoFinalPOS.Productos
                     command.Parameters.AddWithValue("@Description", txtDescripcion.Text);
                     command.Parameters.AddWithValue("@Price", txtPrecio.Text);
                     command.Parameters.AddWithValue("@Stock", txtStock.Text);
-                    //command.Parameters.AddWithValue("@ImagePath", txtStock.Text);
+                    command.Parameters.AddWithValue("@ImagePath", txtStock.Text);
 
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
@@ -125,11 +126,23 @@ namespace ProyectoFinalPOS.Productos
             {
                 DataGridViewRow selectedRow = productsTable.SelectedRows[0];
 
-                txtCodigo.Text = selectedRow.Cells["Codigo"].Value.ToString();
+                txtCodigo.Text = selectedRow.Cells["Código"].Value.ToString();
                 txtNombre.Text = selectedRow.Cells["Nombre"].Value.ToString();
-                txtDescripcion.Text = selectedRow.Cells["Descripcion"].Value.ToString();
+                txtDescripcion.Text = selectedRow.Cells["Descripción"].Value.ToString();
                 txtPrecio.Text = selectedRow.Cells["Precio"].Value.ToString();
                 txtStock.Text = selectedRow.Cells["Stock"].Value.ToString();
+                txtImagePath.Text = selectedRow.Cells["ImagePath"].Value.ToString();
+
+                string imagePath = selectedRow.Cells["ImagePath"].Value.ToString();
+                if (File.Exists(imagePath))
+                {
+                    pictureBoxProducto.Image = Image.FromFile(imagePath);
+                }
+                else
+                {
+                    pictureBoxProducto.Image = null;
+                }
+
             }
         }
         // Metodo para Actualizar los productos
@@ -138,7 +151,7 @@ namespace ProyectoFinalPOS.Productos
             if (productsTable.SelectedRows.Count > 0)
             {
                 int productId = Convert.ToInt32(productsTable.SelectedRows[0].Cells["ID"].Value);
-                string query = "INSERT INTO jsoberanis_db.Products (Code, Name, Description, Price, Stock) VALUES (@Code, @Name, @Description, @Price, @Stock)";
+                string query = "UPDATE jsoberanis_db.Products SET Code = @Code, Name = @Name, Description = @Description, Price = @Price, Stock = @Stock, ImagePath = @ImagePath WHERE ProductID = @ProductID";
                 //string query = "INSERT INTO Products (Code, Name, Description, Price, Stock, ImagePath) VALUES (@Code, @Name, @Description, @Price, @Stock, @ImagePath)";
 
                 try
@@ -156,6 +169,7 @@ namespace ProyectoFinalPOS.Productos
                         command.Parameters.AddWithValue("@Description", txtDescripcion.Text);
                         command.Parameters.AddWithValue("@Price", txtPrecio.Text);
                         command.Parameters.AddWithValue("@Stock", txtStock.Text);
+                        command.Parameters.AddWithValue("@ImagePath", txtImagePath.Text);
 
                         int rowsAffected = command.ExecuteNonQuery();
                         if (rowsAffected > 0)
@@ -233,7 +247,7 @@ namespace ProyectoFinalPOS.Productos
         {
             int productId = Convert.ToInt32(productsTable.SelectedRows[0].Cells["ID"].Value);
 
-            string query = "DELETE FROM Products WHERE ProductID = @ProductID";
+            string query = "DELETE FROM jsoberanis_db.Products WHERE ProductID = @ProductID";
 
             try
             {
@@ -262,17 +276,17 @@ namespace ProyectoFinalPOS.Productos
             {
                 MessageBox.Show("Error al eliminar el producto: " + ex.Message);
             }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Por favor, selecciona un producto para eliminar.");
-                }
-            }
+            //finally
+            //{
+            //    if (connection.State == ConnectionState.Open)
+            //    {
+            //        connection.Close();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Por favor, selecciona un producto para eliminar.");
+            //    }
+            //}
         }
 
 
