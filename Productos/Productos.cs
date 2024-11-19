@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace ProyectoFinalPOS.Productos
 {
@@ -20,6 +22,9 @@ namespace ProyectoFinalPOS.Productos
         {
             InitializeComponent();
             ProductosCarga();
+
+           ResetBotones();
+
             txtBuscar.TextChanged += txtBuscar_TextChanged;
             productsTable.SelectionChanged += ProductsTable_SelectionChanged;
 
@@ -44,6 +49,12 @@ namespace ProyectoFinalPOS.Productos
 
                 // Asigna el DataTable como fuente de datos del DataGridView
                 productsTable.DataSource = dataTable;
+
+                //Ocultar columna de imagePath en DataGrid
+                if (productsTable.Columns["ImagePath"] != null)
+                {
+                    productsTable.Columns["ImagePath"].Visible = false;
+                }
             }
             catch (SqlException ex)
             {
@@ -69,6 +80,7 @@ namespace ProyectoFinalPOS.Productos
             txtStock.Text = "";
             txtBuscar.Text = "";
             txtImagePath.Text = "";
+            pictureBoxProducto.Image = null;
         }
 
         // Metodo para guardar productos en base de datos
@@ -77,6 +89,16 @@ namespace ProyectoFinalPOS.Productos
             string query = "INSERT INTO jsoberanis_db.Products (Code, Name, Description, Price, Stock, ImagePath) VALUES (@Code, @Name, @Description, @Price, @Stock, @ImagePath)";
             //string query = "INSERT INTO Products (Code, Name, Description, Price, Stock, ImagePath) VALUES (@Code, @Name, @Description, @Price, @Stock, @ImagePath)";
 
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text) ||
+                string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtDescripcion.Text) ||
+                string.IsNullOrWhiteSpace(txtPrecio.Text) ||
+                string.IsNullOrWhiteSpace(txtStock.Text) ||
+                string.IsNullOrWhiteSpace(txtImagePath.Text))
+            {
+                MessageBox.Show("Por favor, complete todos los campos.", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -91,9 +113,10 @@ namespace ProyectoFinalPOS.Productos
                     command.Parameters.AddWithValue("@Description", txtDescripcion.Text);
                     command.Parameters.AddWithValue("@Price", txtPrecio.Text);
                     command.Parameters.AddWithValue("@Stock", txtStock.Text);
-                    command.Parameters.AddWithValue("@ImagePath", txtStock.Text);
+                    command.Parameters.AddWithValue("@ImagePath", txtImagePath.Text);
 
                     int rowsAffected = command.ExecuteNonQuery();
+
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("Producto Guardado exitosamente.");
@@ -142,9 +165,17 @@ namespace ProyectoFinalPOS.Productos
                 {
                     pictureBoxProducto.Image = null;
                 }
-
+                btnGuardar.Enabled = false;
+                btnGuardar.ForeColor = Color.Gray;
+                btnActualizar.Enabled = true;
+                btnActualizar.ForeColor = Color.White;
+            }
+            else
+            {
+                ResetBotones();
             }
         }
+        
         // Metodo para Actualizar los productos
         private void ActualizarProducto()
         {
@@ -245,6 +276,26 @@ namespace ProyectoFinalPOS.Productos
         //Metodo para Eliminar productos
         private void EliminarProducto()
         {
+            if (productsTable.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Por Favor, seleccione un producto para eliminar.", "Eliminar Producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            //Cuadro de dialogo para confirmacion
+            DialogResult confirmResult = MessageBox.Show(
+                "¿Está seguro de que desea eliminar este producto?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+        );
+
+            //Si el usuario selecciona no, cancela
+            if (confirmResult != DialogResult.Yes)
+            {
+                return;
+            }
+
             int productId = Convert.ToInt32(productsTable.SelectedRows[0].Cells["ID"].Value);
 
             string query = "DELETE FROM jsoberanis_db.Products WHERE ProductID = @ProductID";
@@ -298,26 +349,99 @@ namespace ProyectoFinalPOS.Productos
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             GuardarProducto();
+           // LimpiarCampos();
+            ResetBotones();
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             ActualizarProducto();
+            LimpiarCampos();
+            ResetBotones();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             EliminarProducto();
+            LimpiarCampos();
+            ResetBotones();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
+            ResetBotones();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             BuscarProducto();
         }
+
+        private async void btnImagen_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+
+                    string imageUrl = await SubirImagenAImgur(filePath);
+
+                    txtImagePath.Text = openFileDialog.FileName;
+                    pictureBoxProducto.Image = Image.FromFile(openFileDialog.FileName);
+                }
+            }
+        }
+
+        private void ResetBotones()
+        {
+            productsTable.ClearSelection();
+
+            btnGuardar.Enabled = true;
+            btnGuardar.ForeColor = Color.White;
+            btnActualizar.Enabled = false;
+            btnActualizar.ForeColor = SystemColors.Control;
+        }
+
+
+        //Subir imagenes a Imgur
+        private async Task<string> SubirImagenAImgur(string filePath)
+        {
+            string acessToken = "93b781ab9d19380d53d8401946e94c31296f2bb6";
+            string uploadUrl = "https://api.imgur.com/3/image";
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", acessToken);
+                    using (MultipartFormDataContent form = new MultipartFormDataContent())
+                    {
+                        // para leer el archivo y agregarlo al formulario
+                        byte[] imageData = File.ReadAllBytes(filePath);
+                        form.Add(new ByteArrayContent(imageData, 0, imageData.Length), "image", Path.GetFileName(filePath));
+
+                        //Enviar la solicitud POST
+                        HttpResponseMessage response = await client.PostAsync(uploadUrl, form);
+                        response.EnsureSuccessStatusCode();
+
+                        //leer la respuesta como JSON
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+                        dynamic jsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonResponse);
+
+                        //retornar el enlace directo de la imagen
+                        return jsonObject.data.link.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al subir la imagen: {ex.Message}");
+                return null;
+            }
+        }
+           
     }
 }

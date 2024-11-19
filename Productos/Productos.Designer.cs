@@ -49,6 +49,7 @@
             txtImagePath = new TextBox();
             label7 = new Label();
             pictureBoxProducto = new PictureBox();
+            btnImagen = new Button();
             ((System.ComponentModel.ISupportInitialize)productsTable).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProducto).BeginInit();
@@ -265,17 +266,32 @@
             // 
             // pictureBoxProducto
             // 
-            pictureBoxProducto.Location = new Point(715, 168);
+            pictureBoxProducto.Location = new Point(756, 207);
             pictureBoxProducto.Name = "pictureBoxProducto";
-            pictureBoxProducto.Size = new Size(192, 180);
+            pictureBoxProducto.Size = new Size(151, 146);
+            pictureBoxProducto.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxProducto.TabIndex = 23;
             pictureBoxProducto.TabStop = false;
+            // 
+            // btnImagen
+            // 
+            btnImagen.BackColor = SystemColors.ActiveCaptionText;
+            btnImagen.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            btnImagen.ForeColor = SystemColors.ControlLight;
+            btnImagen.Location = new Point(787, 148);
+            btnImagen.Name = "btnImagen";
+            btnImagen.Size = new Size(120, 41);
+            btnImagen.TabIndex = 24;
+            btnImagen.Text = "Subir";
+            btnImagen.UseVisualStyleBackColor = false;
+            btnImagen.Click += btnImagen_Click;
             // 
             // Productos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
+            Controls.Add(btnImagen);
             Controls.Add(pictureBoxProducto);
             Controls.Add(label7);
             Controls.Add(txtImagePath);
@@ -330,5 +346,6 @@
         private TextBox txtImagePath;
         private Label label7;
         private PictureBox pictureBoxProducto;
+        private Button btnImagen;
     }
 }
