@@ -66,8 +66,8 @@ namespace ProyectoFinalPOS
 
         private bool ValidarCredenciales(string username, string password)
         {
-            //string query = "SELECT EmployeeID, Username, FirstName FROM jsoberanis_db.Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
-            string query = "SELECT EmployeeID, Username, FirstName FROM Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
+            string query = "SELECT EmployeeID, Username, FirstName FROM jsoberanis_db.Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
+            //string query = "SELECT EmployeeID, Username, FirstName FROM Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
             bool esValido = false;
 
             try

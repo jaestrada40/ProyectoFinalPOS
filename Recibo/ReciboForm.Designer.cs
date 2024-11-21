@@ -32,6 +32,7 @@
             lblFecha = new Label();
             lblTotal = new Label();
             flowLayoutPanelRecibo = new FlowLayoutPanel();
+            buttonCompletar = new Button();
             SuspendLayout();
             // 
             // lblEncabezado
@@ -76,18 +77,34 @@
             flowLayoutPanelRecibo.Size = new Size(575, 183);
             flowLayoutPanelRecibo.TabIndex = 4;
             // 
+            // buttonCompletar
+            // 
+            buttonCompletar.BackColor = Color.FromArgb(0, 119, 70);
+            buttonCompletar.FlatStyle = FlatStyle.Popup;
+            buttonCompletar.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttonCompletar.ForeColor = SystemColors.ButtonHighlight;
+            buttonCompletar.Location = new Point(13, 234);
+            buttonCompletar.Name = "buttonCompletar";
+            buttonCompletar.Size = new Size(141, 35);
+            buttonCompletar.TabIndex = 5;
+            buttonCompletar.Text = "Completar Compra";
+            buttonCompletar.UseVisualStyleBackColor = false;
+            buttonCompletar.Click += buttonCompletar_Click;
+            // 
             // ReciboForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(37, 42, 60);
             ClientSize = new Size(599, 281);
+            Controls.Add(buttonCompletar);
             Controls.Add(flowLayoutPanelRecibo);
             Controls.Add(lblTotal);
             Controls.Add(lblFecha);
             Controls.Add(lblEncabezado);
             Name = "ReciboForm";
             Text = "Recibo";
+            Load += ReciboForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -98,5 +115,6 @@
         private Label lblFecha;
         private Label lblTotal;
         private FlowLayoutPanel flowLayoutPanelRecibo;
+        private Button buttonCompletar;
     }
 }

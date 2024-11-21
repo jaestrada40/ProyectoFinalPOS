@@ -45,6 +45,7 @@
             pictureBoxImage.Name = "pictureBoxImage";
             pictureBoxImage.Padding = new Padding(5);
             pictureBoxImage.Size = new Size(195, 165);
+            pictureBoxImage.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxImage.TabIndex = 0;
             pictureBoxImage.TabStop = false;
             // 

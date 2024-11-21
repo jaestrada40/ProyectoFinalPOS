@@ -80,5 +80,16 @@ namespace ProyectoFinalPOS.Recibo
         {
 
         }
+
+        private void ReciboForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCompletar_Click(object sender, EventArgs e)
+        {
+            Form Factura = new Factura();
+            Factura.Show();
+        }
     }
 }

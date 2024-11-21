@@ -19,9 +19,11 @@ namespace ProyectoFinalPOS.Carrito
         public decimal Price => producto.Price;
 
         // Crear un campo para la cantidad
-        public int Cantidad { get; set; } = 1;
+        public int Cantidad { get => cantidad; }
 
-        public string ProductName => producto.Name;
+        public event EventHandler<(Product producto, int cantidad)> CantidadReducida; // Nuevo evento para reducir la cantidad manualmente
+
+        // public string ProductName => producto.Name;
 
         public CarritoItemCard(Product product)
         {
@@ -29,13 +31,20 @@ namespace ProyectoFinalPOS.Carrito
             this.producto = product;
             lblName.Text = product.Name;
             lblPrice.Text = $"Q {product.Price:F2}";
+
+            numericEliminar.Minimum = 1;
+            numericEliminar.Maximum = cantidad;
+            numericEliminar.Value = 1;
+
+
             ActualizarCantidad();
         }
 
         public void IncrementarCantidad()
-        {
+        { 
             cantidad++;
             ActualizarCantidad();
+            numericEliminar.Maximum = cantidad;
         }
 
         private void ActualizarCantidad()
@@ -46,10 +55,37 @@ namespace ProyectoFinalPOS.Carrito
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            // Dispara el evento ProductoEliminado pasando el producto actual
-            ProductoEliminado?.Invoke(this, producto);
-            // Eliminar este control del panel del carrito
-            this.Parent?.Controls.Remove(this);
+            int cantidadAEliminar = (int)numericEliminar.Value;
+            if (cantidadAEliminar >= cantidad)
+            {
+                // Dispara el evento ProductoEliminado pasando el producto actual
+                ProductoEliminado?.Invoke(this, producto);
+                // Eliminar este control del panel del carrito
+                this.Parent?.Controls.Remove(this);
+                ActualizarCantidad();
+            }
+            else
+            {
+                cantidad -= cantidadAEliminar;
+                CantidadReducida?.Invoke(this, (producto, cantidadAEliminar));
+                ActualizarCantidad();
+
+                numericEliminar.Maximum = cantidad;
+            }
+        }
+
+        private void numericEliminar_ValueChanged(object sender, EventArgs e)
+        {
+            int cantidadAEliminar = (int)numericEliminar.Value;
+
+            if (cantidadAEliminar > 0 && cantidadAEliminar <= cantidad)
+            {
+                cantidad -= cantidadAEliminar;
+                ActualizarCantidad();
+
+                // Disparar el evento para notificar al control padre
+                CantidadReducida?.Invoke(this, (producto, cantidadAEliminar));
+            }
         }
     }
 }

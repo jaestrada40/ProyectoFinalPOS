@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using ProyectoFinalPOS.Carrito;
+using ProyectoFinalPOS.Clases;
 using ProyectoFinalPOS.DBconexion;
 using ProyectoFinalPOS.Objects;
 using ProyectoFinalPOS.Productos;
@@ -57,7 +58,8 @@ namespace ProyectoFinalPOS.Ventas
                 // Si el producto ya existe, incrementamos su cantidad
                 itemExistente.IncrementarCantidad();
                 // Sumar el precio al total
-                totalCarrito += producto.Price; 
+                totalCarrito += producto.Price;
+
             }
             else
             {
@@ -70,91 +72,114 @@ namespace ProyectoFinalPOS.Ventas
                 flowLayoutPanelCarrito.Controls.Add(itemCarrito);
 
                 // Sumar el precio al total
-                totalCarrito += producto.Price; 
+                totalCarrito += producto.Price;
+
+                itemCarrito.CantidadReducida += ItemCarrito_CantidadReducida; //
             }
 
             // Actualizar el total en la interfaz
             ActualizarTotal();
         }
 
-        // Método manejador para el evento de eliminación de producto
-        private void ItemCarrito_ProductoEliminado(object sender, Product producto)
+        private void ItemCarrito_CantidadReducida(object sender, (Product producto, int cantidad) args)
         {
-            // Restar el precio del producto eliminado al total y actualizar la etiqueta
-            totalCarrito -= producto.Price;
-            ActualizarTotal();
-        }
+            totalCarrito -= args.producto.Price * args.cantidad;
 
-        private void ActualizarTotal()
-        {
-            lblTotal.Text = $"Q{totalCarrito:F2}";
-        }
-
-
-        // Método Productos
-        private List<Product> ObtenerProductos()
-        {
-            List<Product> productos = new List<Product>();
-            string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products";
-            //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products";
-
-            try
+            if (totalCarrito < 0)
             {
-                if (connection.State == ConnectionState.Closed)
                 {
-                    connection.Open();
+                    totalCarrito = 0;
                 }
 
-                using (SqlCommand command = new SqlCommand(query, connection))
-                using (SqlDataReader reader = command.ExecuteReader())
+                ActualizarTotal();
+            }
+        }
+
+
+            // Método manejador para el evento de eliminación de producto
+            private void ItemCarrito_ProductoEliminado(object sender, Product producto)
+            {
+
+                var item = (CarritoItemCard)sender;
+                totalCarrito -= producto.Price * item.Cantidad;
+                flowLayoutPanelCarrito.Controls.Remove(item);
+                ActualizarTotal();
+            }
+
+            private void ActualizarTotal()
+            {
+                totalCarrito = flowLayoutPanelCarrito.Controls
+                    .OfType<CarritoItemCard>()
+                    .Sum(item => item.Price * item.Cantidad);
+                lblTotal.Text = $"Q{totalCarrito:F2}";
+            }
+
+
+            // Método Productos
+            private List<Product> ObtenerProductos()
+            {
+                List<Product> productos = new List<Product>();
+                string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products";
+                //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products";
+
+                try
                 {
-                    while (reader.Read())
+                    if (connection.State == ConnectionState.Closed)
                     {
-                        Product producto = new Product
+                        connection.Open();
+                    }
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
                         {
-                            ProductID = reader.GetInt32(0),
-                            Code = reader.GetString(1),
-                            Name = reader.GetString(2),
-                            Description = reader.GetString(3),
-                            Price = reader.GetDecimal(4),
-                            Stock = reader.GetInt32(5),
-                            ImagePath = reader.IsDBNull(6) ? null : reader.GetString(6)
-                        };
-                        productos.Add(producto);
+                            Product producto = new Product
+                            {
+                                ProductID = reader.GetInt32(0),
+                                Code = reader.GetString(1),
+                                Name = reader.GetString(2),
+                                Description = reader.GetString(3),
+                                Price = reader.GetDecimal(4),
+                                Stock = reader.GetInt32(5),
+                                ImagePath = reader.IsDBNull(6) ? null : reader.GetString(6)
+                            };
+                            productos.Add(producto);
+                        }
                     }
                 }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error al cargar productos: " + ex.Message);
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
+                catch (SqlException ex)
                 {
-                    connection.Close();
+                    MessageBox.Show("Error al cargar productos: " + ex.Message);
                 }
+                finally
+                {
+                    if (connection.State == ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+                }
+
+                return productos;
             }
 
-            return productos;
-        }
-
-        private void btnPagar_Click(object sender, EventArgs e)
-        {
-            // Lista para almacenar los items en el carrito
-            List<CarritoItemCard> itemsCarrito = new List<CarritoItemCard>();
-            decimal total = 0;
-
-            // Calcular el total y llenar la lista de items en el carrito
-            foreach (CarritoItemCard item in flowLayoutPanelCarrito.Controls)
+            private void btnPagar_Click(object sender, EventArgs e)
             {
-                itemsCarrito.Add(item);
-                total += item.Price * item.Cantidad;
-            }
+                // Lista para almacenar los items en el carrito
+                List<CarritoItemCard> itemsCarrito = new List<CarritoItemCard>();
+                decimal total = 0;
 
-            // Mostrar el recibo
-            ReciboForm recibo = new ReciboForm(itemsCarrito, total);
-            recibo.ShowDialog();
-        }
+                // Calcular el total y llenar la lista de items en el carrito
+                foreach (CarritoItemCard item in flowLayoutPanelCarrito.Controls)
+                {
+                    itemsCarrito.Add(item);
+                    total += item.Price * item.Cantidad;
+                }
+
+                // Mostrar el recibo
+                ReciboForm recibo = new ReciboForm(itemsCarrito, total);
+                recibo.ShowDialog();
+            }
+        
     }
 }

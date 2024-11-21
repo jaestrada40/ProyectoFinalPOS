@@ -58,9 +58,8 @@
             panel1.Controls.Add(lblVentas);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1000, 73);
+            panel1.Size = new Size(874, 55);
             panel1.TabIndex = 21;
             // 
             // lblVentas
@@ -68,9 +67,9 @@
             lblVentas.AutoSize = true;
             lblVentas.Font = new Font("Tahoma", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblVentas.ForeColor = Color.White;
-            lblVentas.Location = new Point(18, 19);
+            lblVentas.Location = new Point(16, 14);
             lblVentas.Name = "lblVentas";
-            lblVentas.Size = new Size(94, 29);
+            lblVentas.Size = new Size(75, 23);
             lblVentas.TabIndex = 18;
             lblVentas.Text = "Ventas";
             // 
@@ -80,10 +79,9 @@
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(699, 73);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(611, 55);
             panel2.Name = "panel2";
-            panel2.Size = new Size(301, 814);
+            panel2.Size = new Size(263, 610);
             panel2.TabIndex = 22;
             // 
             // pnlCarrito
@@ -91,10 +89,9 @@
             pnlCarrito.BackColor = Color.FromArgb(37, 42, 60);
             pnlCarrito.Controls.Add(flowLayoutPanelCarrito);
             pnlCarrito.Dock = DockStyle.Fill;
-            pnlCarrito.Location = new Point(0, 59);
-            pnlCarrito.Margin = new Padding(3, 4, 3, 4);
+            pnlCarrito.Location = new Point(0, 44);
             pnlCarrito.Name = "pnlCarrito";
-            pnlCarrito.Size = new Size(301, 587);
+            pnlCarrito.Size = new Size(263, 440);
             pnlCarrito.TabIndex = 2;
             // 
             // flowLayoutPanelCarrito
@@ -103,9 +100,8 @@
             flowLayoutPanelCarrito.AutoSize = true;
             flowLayoutPanelCarrito.Dock = DockStyle.Fill;
             flowLayoutPanelCarrito.Location = new Point(0, 0);
-            flowLayoutPanelCarrito.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanelCarrito.Name = "flowLayoutPanelCarrito";
-            flowLayoutPanelCarrito.Size = new Size(301, 587);
+            flowLayoutPanelCarrito.Size = new Size(263, 440);
             flowLayoutPanelCarrito.TabIndex = 0;
             // 
             // panel4
@@ -114,10 +110,9 @@
             panel4.Controls.Add(btnPagar);
             panel4.Controls.Add(panel8);
             panel4.Dock = DockStyle.Bottom;
-            panel4.Location = new Point(0, 646);
-            panel4.Margin = new Padding(3, 4, 3, 4);
+            panel4.Location = new Point(0, 484);
             panel4.Name = "panel4";
-            panel4.Size = new Size(301, 168);
+            panel4.Size = new Size(263, 126);
             panel4.TabIndex = 1;
             // 
             // btnPagar
@@ -127,10 +122,9 @@
             btnPagar.FlatStyle = FlatStyle.Flat;
             btnPagar.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPagar.ForeColor = Color.White;
-            btnPagar.Location = new Point(61, 85);
-            btnPagar.Margin = new Padding(3, 4, 3, 4);
+            btnPagar.Location = new Point(53, 64);
             btnPagar.Name = "btnPagar";
-            btnPagar.Size = new Size(183, 56);
+            btnPagar.Size = new Size(160, 42);
             btnPagar.TabIndex = 3;
             btnPagar.Text = "Pagar";
             btnPagar.UseVisualStyleBackColor = false;
@@ -143,9 +137,8 @@
             panel8.Controls.Add(label1);
             panel8.Dock = DockStyle.Top;
             panel8.Location = new Point(0, 0);
-            panel8.Margin = new Padding(3, 4, 3, 4);
             panel8.Name = "panel8";
-            panel8.Size = new Size(301, 44);
+            panel8.Size = new Size(263, 33);
             panel8.TabIndex = 2;
             // 
             // lblTotal
@@ -153,9 +146,9 @@
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTotal.ForeColor = Color.White;
-            lblTotal.Location = new Point(82, 9);
+            lblTotal.Location = new Point(72, 7);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(76, 24);
+            lblTotal.Size = new Size(61, 19);
             lblTotal.TabIndex = 1;
             lblTotal.Text = "Q 0.00";
             // 
@@ -164,9 +157,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(9, 9);
+            label1.Location = new Point(8, 7);
             label1.Name = "label1";
-            label1.Size = new Size(67, 24);
+            label1.Size = new Size(58, 19);
             label1.TabIndex = 0;
             label1.Text = "Total:";
             // 
@@ -177,9 +170,8 @@
             panel3.Controls.Add(lblCliente);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
-            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(301, 59);
+            panel3.Size = new Size(263, 44);
             panel3.TabIndex = 0;
             // 
             // label3
@@ -187,9 +179,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(72, 19);
+            label3.Location = new Point(63, 14);
             label3.Name = "label3";
-            label3.Size = new Size(90, 21);
+            label3.Size = new Size(69, 16);
             label3.TabIndex = 1;
             label3.Text = "Juan Perez";
             // 
@@ -198,9 +190,9 @@
             lblCliente.AutoSize = true;
             lblCliente.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCliente.ForeColor = Color.White;
-            lblCliente.Location = new Point(7, 19);
+            lblCliente.Location = new Point(6, 14);
             lblCliente.Name = "lblCliente";
-            lblCliente.Size = new Size(75, 21);
+            lblCliente.Size = new Size(56, 16);
             lblCliente.TabIndex = 0;
             lblCliente.Text = "Cliente:";
             // 
@@ -208,31 +200,28 @@
             // 
             panel6.Controls.Add(flowLayoutPanel1);
             panel6.Dock = DockStyle.Fill;
-            panel6.Location = new Point(0, 73);
-            panel6.Margin = new Padding(3, 4, 3, 4);
+            panel6.Location = new Point(0, 55);
             panel6.Name = "panel6";
-            panel6.Size = new Size(699, 814);
+            panel6.Size = new Size(611, 610);
             panel6.TabIndex = 23;
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(699, 813);
+            flowLayoutPanel1.Size = new Size(612, 610);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // Ventas
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel6);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Ventas";
-            Size = new Size(1000, 887);
+            Size = new Size(874, 665);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
