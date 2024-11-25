@@ -66,10 +66,10 @@ namespace ProyectoFinalPOS.Carrito
             {
                 cantidad -= cantidadAEliminar;
                 CantidadReducida?.Invoke(this, (producto, cantidadAEliminar));
-                ActualizarCantidad();
 
                 numericEliminar.Maximum = cantidad;
             }
+            ActualizarCantidad();
         }
 
         private void numericEliminar_ValueChanged(object sender, EventArgs e)

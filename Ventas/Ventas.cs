@@ -22,12 +22,16 @@ namespace ProyectoFinalPOS.Ventas
     {
         private SqlConnection connection = DatabaseConnections.GetInstance().GetConnection();
         private decimal totalCarrito = 0m;
+        private string NombreCliente = null;
+        private string ApellidoCliente = null;
+        private string NitCliente = null;
         public Ventas()
         {
             InitializeComponent();
             CargarFlashCards();
 
             textBuscar.TextChanged += TextBuscar_TextChanged;
+
         }
 
         private void CargarFlashCards()
@@ -89,13 +93,12 @@ namespace ProyectoFinalPOS.Ventas
             totalCarrito -= args.producto.Price * args.cantidad;
 
             if (totalCarrito < 0)
-            {
-                {
-                    totalCarrito = 0;
-                }
 
-                ActualizarTotal();
+            {
+                totalCarrito = 0;
             }
+
+            ActualizarTotal();
         }
 
 
@@ -104,8 +107,17 @@ namespace ProyectoFinalPOS.Ventas
         {
 
             var item = (CarritoItemCard)sender;
-            totalCarrito -= producto.Price * item.Cantidad;
-            flowLayoutPanelCarrito.Controls.Remove(item);
+
+            // Verifica que el control existe antes de eliminarlo
+            if (flowLayoutPanelCarrito.Controls.Contains(item))
+            {
+                // Actualiza el total antes de eliminarlo
+                totalCarrito -= producto.Price * item.Cantidad;
+
+                flowLayoutPanelCarrito.Controls.Remove(item); // Elimina el control del contenedor
+            }
+
+            // Actualiza el total en la interfaz después de eliminar
             ActualizarTotal();
         }
 
@@ -115,6 +127,8 @@ namespace ProyectoFinalPOS.Ventas
                 .OfType<CarritoItemCard>()
                 .Sum(item => item.Price * item.Cantidad);
             lblTotal.Text = $"Q{totalCarrito:F2}";
+
+
         }
 
 
@@ -169,6 +183,23 @@ namespace ProyectoFinalPOS.Ventas
         //Logica del boton pagar
         private void btnPagar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(NombreCliente) && string.IsNullOrEmpty(NitCliente) )
+            {
+                DialogResult result = MessageBox.Show("No se ha ingresado un NIT. ¿Desea proceder con 'CF'?",
+                    "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    NombreCliente = "Consumidor Final";
+                    NitCliente = "CF";
+                }
+                else
+                {
+                    MessageBox.Show("Debe ingresar un NIT para proceder con la compra.",
+                        "NIT requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
             if (flowLayoutPanelCarrito.Controls.Count == 0)
             {
                 MessageBox.Show("El carrito está vacío, por favor, agregue productos para continuar.",
@@ -235,6 +266,9 @@ namespace ProyectoFinalPOS.Ventas
             flowLayoutPanelCarrito.Controls.Clear();
             totalCarrito = 0;
             lblTotal.Text = $"Q{totalCarrito:F2}";
+            NombreCliente = null;
+            NitCliente = null;
+            lblCliente.Text = "Cliente: ";
         }
 
 
@@ -254,7 +288,7 @@ namespace ProyectoFinalPOS.Ventas
                     connection.Open();
                 }
 
-                string query = "SELECT Name, Address, Phone FROM Clients WHERE Nit = @Nit";
+                string query = "SELECT FirstName, LastName, Phone FROM jsoberanis_db.Customers WHERE NIT = @NIT";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Nit", nit);
@@ -263,10 +297,10 @@ namespace ProyectoFinalPOS.Ventas
                         if (reader.Read())
                         {
                             string name = reader.GetString(0);
-                            string address = reader.GetString(1);
+                            string lastname = reader.GetString(1);
                             string phone = reader.GetString(2);
 
-                            MessageBox.Show($"Cliente: {name}\nDirección: {address}\nTeléfono: {phone}",
+                            MessageBox.Show($"Cliente: {name}\nDirección: {lastname}\nApellido: {phone}",
                        "Información del Cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
@@ -294,23 +328,9 @@ namespace ProyectoFinalPOS.Ventas
         private void TextBuscar_TextChanged(object sender, EventArgs e)
         {
             BuscarProductos();
-            //string filtro = textBuscar.Text.Trim().ToLower();
-
-
-            //foreach (var tarjeta in flowLayoutPanel1.Controls.OfType<ProductCard>())
-            //{
-            //    bool contieneNombre = tarjeta.ProductName?.ToLower().Contains(filtro) ?? false;
-            //    bool contieneCodigo = tarjeta.ProductName?.ToLower().Contains(filtro) ?? false;
-
-            //    tarjeta.Visible = contieneNombre || contieneCodigo;
-
-            //}
         }
 
-        private void btnNit_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void MostrarRecibo(List<CarritoItemCard> itemsCarrito, decimal total)
         {
@@ -322,7 +342,8 @@ namespace ProyectoFinalPOS.Ventas
                 Stock = item.Cantidad
             }).ToList();
 
-            ReciboForm reciboForm = new ReciboForm(itemsCarrito, total);
+            string nombreCompleto = $"{NombreCliente} {ApellidoCliente}";
+            ReciboForm reciboForm = new ReciboForm(itemsCarrito, total, nombreCompleto, NitCliente);
             reciboForm.ShowDialog();
         }
 
@@ -402,6 +423,62 @@ namespace ProyectoFinalPOS.Ventas
                     }
                 }
             }
+        }
+
+        private void lblCliente_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnNit_Click(object sender, EventArgs e)
+        {
+            string nit = txtNit.Text.Trim();
+            if (string.IsNullOrEmpty(nit))
+            {
+                MessageBox.Show("Por favor, ingrese un NIT", "NIT Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            try
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                string query = "SELECT FirstName, LastName, Phone FROM jsoberanis_db.Customers WHERE NIT = @NIT";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Nit", nit);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            NombreCliente = reader.GetString(0);
+                            ApellidoCliente = reader.GetString(1);
+                            NitCliente = nit;
+
+                            lblCliente.Text = $"Cliente: {NombreCliente} {ApellidoCliente}";
+                            MessageBox.Show($"Cliente encontrado: {NombreCliente} {ApellidoCliente}", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró un cliente con este NIT.", "Cliente no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al buscar cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+            txtNit.Clear();
         }
     }
 }

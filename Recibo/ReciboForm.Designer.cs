@@ -34,6 +34,8 @@
             flowLayoutPanelRecibo = new FlowLayoutPanel();
             buttonCompletar = new Button();
             pictureBox1 = new PictureBox();
+            lblCliente = new Label();
+            lblNit = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -74,10 +76,10 @@
             // flowLayoutPanelRecibo
             // 
             flowLayoutPanelRecibo.ForeColor = Color.White;
-            flowLayoutPanelRecibo.Location = new Point(14, 204);
+            flowLayoutPanelRecibo.Location = new Point(14, 251);
             flowLayoutPanelRecibo.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanelRecibo.Name = "flowLayoutPanelRecibo";
-            flowLayoutPanelRecibo.Size = new Size(657, 392);
+            flowLayoutPanelRecibo.Size = new Size(657, 345);
             flowLayoutPanelRecibo.TabIndex = 4;
             // 
             // buttonCompletar
@@ -105,12 +107,36 @@
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
+            // lblCliente
+            // 
+            lblCliente.AutoSize = true;
+            lblCliente.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCliente.ForeColor = Color.White;
+            lblCliente.Location = new Point(234, 165);
+            lblCliente.Name = "lblCliente";
+            lblCliente.Size = new Size(67, 21);
+            lblCliente.TabIndex = 7;
+            lblCliente.Text = "Cliente:";
+            // 
+            // lblNit
+            // 
+            lblNit.AutoSize = true;
+            lblNit.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNit.ForeColor = Color.White;
+            lblNit.Location = new Point(234, 186);
+            lblNit.Name = "lblNit";
+            lblNit.Size = new Size(43, 21);
+            lblNit.TabIndex = 8;
+            lblNit.Text = "NIT:";
+            // 
             // ReciboForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(37, 42, 60);
             ClientSize = new Size(685, 680);
+            Controls.Add(lblNit);
+            Controls.Add(lblCliente);
             Controls.Add(pictureBox1);
             Controls.Add(buttonCompletar);
             Controls.Add(flowLayoutPanelRecibo);
@@ -134,5 +160,7 @@
         private FlowLayoutPanel flowLayoutPanelRecibo;
         private Button buttonCompletar;
         private PictureBox pictureBox1;
+        private Label lblCliente;
+        private Label lblNit;
     }
 }

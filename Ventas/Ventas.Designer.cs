@@ -42,7 +42,6 @@
             lblTotal = new Label();
             label1 = new Label();
             panel3 = new Panel();
-            label3 = new Label();
             lblCliente = new Label();
             panel6 = new Panel();
             flowLayoutPanel1 = new FlowLayoutPanel();
@@ -64,8 +63,9 @@
             panel1.Controls.Add(txtNit);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(874, 55);
+            panel1.Size = new Size(999, 73);
             panel1.TabIndex = 21;
             // 
             // btnNit
@@ -75,9 +75,10 @@
             btnNit.FlatStyle = FlatStyle.Flat;
             btnNit.Font = new Font("Tahoma", 10F, FontStyle.Bold);
             btnNit.ForeColor = Color.White;
-            btnNit.Location = new Point(287, 11);
+            btnNit.Location = new Point(328, 15);
+            btnNit.Margin = new Padding(3, 4, 3, 4);
             btnNit.Name = "btnNit";
-            btnNit.Size = new Size(90, 31);
+            btnNit.Size = new Size(103, 41);
             btnNit.TabIndex = 22;
             btnNit.Text = "Buscar";
             btnNit.UseVisualStyleBackColor = false;
@@ -85,11 +86,10 @@
             // 
             // textBuscar
             // 
-            textBuscar.Location = new Point(471, 16);
-            textBuscar.Margin = new Padding(3, 2, 3, 2);
+            textBuscar.Location = new Point(538, 21);
             textBuscar.Name = "textBuscar";
             textBuscar.PlaceholderText = "Buscar productos por Código o Nombre";
-            textBuscar.Size = new Size(272, 23);
+            textBuscar.Size = new Size(310, 27);
             textBuscar.TabIndex = 21;
             // 
             // label2
@@ -97,18 +97,17 @@
             label2.AutoSize = true;
             label2.Font = new Font("Tahoma", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(38, 18);
+            label2.Location = new Point(43, 24);
             label2.Name = "label2";
-            label2.Size = new Size(118, 17);
+            label2.Size = new Size(143, 21);
             label2.TabIndex = 20;
             label2.Text = "Ingrese su NIT:";
             // 
             // txtNit
             // 
-            txtNit.Location = new Point(169, 16);
-            txtNit.Margin = new Padding(3, 2, 3, 2);
+            txtNit.Location = new Point(193, 21);
             txtNit.Name = "txtNit";
-            txtNit.Size = new Size(112, 23);
+            txtNit.Size = new Size(127, 27);
             txtNit.TabIndex = 19;
             // 
             // panel2
@@ -117,9 +116,10 @@
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(611, 55);
+            panel2.Location = new Point(698, 73);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(263, 610);
+            panel2.Size = new Size(301, 814);
             panel2.TabIndex = 22;
             // 
             // pnlCarrito
@@ -127,9 +127,10 @@
             pnlCarrito.BackColor = Color.FromArgb(37, 42, 60);
             pnlCarrito.Controls.Add(flowLayoutPanelCarrito);
             pnlCarrito.Dock = DockStyle.Fill;
-            pnlCarrito.Location = new Point(0, 44);
+            pnlCarrito.Location = new Point(0, 59);
+            pnlCarrito.Margin = new Padding(3, 4, 3, 4);
             pnlCarrito.Name = "pnlCarrito";
-            pnlCarrito.Size = new Size(263, 440);
+            pnlCarrito.Size = new Size(301, 587);
             pnlCarrito.TabIndex = 2;
             // 
             // flowLayoutPanelCarrito
@@ -138,8 +139,9 @@
             flowLayoutPanelCarrito.AutoSize = true;
             flowLayoutPanelCarrito.Dock = DockStyle.Fill;
             flowLayoutPanelCarrito.Location = new Point(0, 0);
+            flowLayoutPanelCarrito.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanelCarrito.Name = "flowLayoutPanelCarrito";
-            flowLayoutPanelCarrito.Size = new Size(263, 440);
+            flowLayoutPanelCarrito.Size = new Size(301, 587);
             flowLayoutPanelCarrito.TabIndex = 0;
             // 
             // panel4
@@ -148,9 +150,10 @@
             panel4.Controls.Add(btnPagar);
             panel4.Controls.Add(panel8);
             panel4.Dock = DockStyle.Bottom;
-            panel4.Location = new Point(0, 484);
+            panel4.Location = new Point(0, 646);
+            panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(263, 126);
+            panel4.Size = new Size(301, 168);
             panel4.TabIndex = 1;
             // 
             // btnPagar
@@ -160,9 +163,10 @@
             btnPagar.FlatStyle = FlatStyle.Flat;
             btnPagar.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPagar.ForeColor = Color.White;
-            btnPagar.Location = new Point(53, 64);
+            btnPagar.Location = new Point(61, 85);
+            btnPagar.Margin = new Padding(3, 4, 3, 4);
             btnPagar.Name = "btnPagar";
-            btnPagar.Size = new Size(160, 42);
+            btnPagar.Size = new Size(183, 56);
             btnPagar.TabIndex = 3;
             btnPagar.Text = "Pagar";
             btnPagar.UseVisualStyleBackColor = false;
@@ -175,8 +179,9 @@
             panel8.Controls.Add(label1);
             panel8.Dock = DockStyle.Top;
             panel8.Location = new Point(0, 0);
+            panel8.Margin = new Padding(3, 4, 3, 4);
             panel8.Name = "panel8";
-            panel8.Size = new Size(263, 33);
+            panel8.Size = new Size(301, 44);
             panel8.TabIndex = 2;
             // 
             // lblTotal
@@ -184,9 +189,9 @@
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTotal.ForeColor = Color.White;
-            lblTotal.Location = new Point(72, 7);
+            lblTotal.Location = new Point(82, 9);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(61, 19);
+            lblTotal.Size = new Size(76, 24);
             lblTotal.TabIndex = 1;
             lblTotal.Text = "Q 0.00";
             // 
@@ -195,71 +200,64 @@
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(8, 7);
+            label1.Location = new Point(9, 9);
             label1.Name = "label1";
-            label1.Size = new Size(58, 19);
+            label1.Size = new Size(67, 24);
             label1.TabIndex = 0;
             label1.Text = "Total:";
             // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(37, 42, 60);
-            panel3.Controls.Add(label3);
             panel3.Controls.Add(lblCliente);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(263, 44);
+            panel3.Size = new Size(301, 59);
             panel3.TabIndex = 0;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(63, 14);
-            label3.Name = "label3";
-            label3.Size = new Size(69, 16);
-            label3.TabIndex = 1;
-            label3.Text = "Juan Perez";
             // 
             // lblCliente
             // 
             lblCliente.AutoSize = true;
             lblCliente.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCliente.ForeColor = Color.White;
-            lblCliente.Location = new Point(6, 14);
+            lblCliente.Location = new Point(7, 19);
             lblCliente.Name = "lblCliente";
-            lblCliente.Size = new Size(56, 16);
+            lblCliente.Size = new Size(75, 21);
             lblCliente.TabIndex = 0;
             lblCliente.Text = "Cliente:";
+            lblCliente.Click += lblCliente_Click;
             // 
             // panel6
             // 
             panel6.Controls.Add(flowLayoutPanel1);
             panel6.Dock = DockStyle.Fill;
-            panel6.Location = new Point(0, 55);
+            panel6.Location = new Point(0, 73);
+            panel6.Margin = new Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
-            panel6.Size = new Size(611, 610);
+            panel6.Size = new Size(698, 814);
             panel6.TabIndex = 23;
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(612, 610);
+            flowLayoutPanel1.Size = new Size(699, 813);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // Ventas
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel6);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Ventas";
-            Size = new Size(874, 665);
+            Size = new Size(999, 887);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -287,7 +285,6 @@
         private Label label1;
         private Button btnPagar;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Label label3;
         private Label lblCliente;
         private FlowLayoutPanel flowLayoutPanelCarrito;
         private Label label2;

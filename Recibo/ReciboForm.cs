@@ -15,9 +15,11 @@ namespace ProyectoFinalPOS.Recibo
     {
         public List<CarritoItemCard> ItemsCarrito { get; set; }
         public decimal Total { get; set; }
-        public ReciboForm(List<CarritoItemCard> itemsCarrito, decimal total)
+        public ReciboForm(List<CarritoItemCard> itemsCarrito, decimal total, string nombreCompleto, string nitCliente)
         {
             InitializeComponent();
+            lblCliente.Text = $"Cliente: {nombreCompleto}";
+            lblNit.Text = $"NIT: {nitCliente}";
             ItemsCarrito = itemsCarrito;
             Total = total;
 
