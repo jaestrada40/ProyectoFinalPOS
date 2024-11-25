@@ -61,9 +61,6 @@
     <Compile Update="Productos\Productos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Recibo\Factura.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Recibo\ReciboForm.cs">
       <SubType>Form</SubType>
     </Compile>

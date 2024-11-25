@@ -8,22 +8,19 @@ namespace ProyectoFinalPOS.Carrito
     {
         private Product producto;
         private int cantidad = 1;
-        // Propiedad para obtener el ID del producto
         public int ProductID => producto.ProductID;
+        public decimal Price => producto.Price;
+        public int Cantidad => cantidad;
+        public string ProductName => producto.Name;
 
         // Evento para notificar cuando se elimina un producto del carrito
         public event EventHandler<Product> ProductoEliminado;
 
-
-        // Agregar la propiedad para acceder al precio
-        public decimal Price => producto.Price;
-
         // Crear un campo para la cantidad
-        public int Cantidad { get => cantidad; }
 
         public event EventHandler<(Product producto, int cantidad)> CantidadReducida; // Nuevo evento para reducir la cantidad manualmente
 
-        // public string ProductName => producto.Name;
+       
 
         public CarritoItemCard(Product product)
         {
@@ -51,6 +48,7 @@ namespace ProyectoFinalPOS.Carrito
         {
             lblCantidad.Text = $"{cantidad}";
             lblPrice.Text = $"Q{(producto.Price * cantidad):F2}";
+            numericEliminar.Maximum = cantidad;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

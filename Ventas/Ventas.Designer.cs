@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            lblVentas = new Label();
+            btnNit = new Button();
+            textBuscar = new TextBox();
+            label2 = new Label();
+            txtNit = new TextBox();
             panel2 = new Panel();
             pnlCarrito = new Panel();
             flowLayoutPanelCarrito = new FlowLayoutPanel();
@@ -55,23 +58,58 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(0, 119, 70);
-            panel1.Controls.Add(lblVentas);
+            panel1.Controls.Add(btnNit);
+            panel1.Controls.Add(textBuscar);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(txtNit);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(874, 55);
             panel1.TabIndex = 21;
             // 
-            // lblVentas
+            // btnNit
             // 
-            lblVentas.AutoSize = true;
-            lblVentas.Font = new Font("Tahoma", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblVentas.ForeColor = Color.White;
-            lblVentas.Location = new Point(16, 14);
-            lblVentas.Name = "lblVentas";
-            lblVentas.Size = new Size(75, 23);
-            lblVentas.TabIndex = 18;
-            lblVentas.Text = "Ventas";
+            btnNit.BackColor = Color.FromArgb(37, 42, 60);
+            btnNit.FlatAppearance.BorderSize = 0;
+            btnNit.FlatStyle = FlatStyle.Flat;
+            btnNit.Font = new Font("Tahoma", 10F, FontStyle.Bold);
+            btnNit.ForeColor = Color.White;
+            btnNit.Location = new Point(287, 11);
+            btnNit.Name = "btnNit";
+            btnNit.Size = new Size(90, 31);
+            btnNit.TabIndex = 22;
+            btnNit.Text = "Buscar";
+            btnNit.UseVisualStyleBackColor = false;
+            btnNit.Click += btnNit_Click;
+            // 
+            // textBuscar
+            // 
+            textBuscar.Location = new Point(471, 16);
+            textBuscar.Margin = new Padding(3, 2, 3, 2);
+            textBuscar.Name = "textBuscar";
+            textBuscar.PlaceholderText = "Buscar productos por Código o Nombre";
+            textBuscar.Size = new Size(272, 23);
+            textBuscar.TabIndex = 21;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Tahoma", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(38, 18);
+            label2.Name = "label2";
+            label2.Size = new Size(118, 17);
+            label2.TabIndex = 20;
+            label2.Text = "Ingrese su NIT:";
+            // 
+            // txtNit
+            // 
+            txtNit.Location = new Point(169, 16);
+            txtNit.Margin = new Padding(3, 2, 3, 2);
+            txtNit.Name = "txtNit";
+            txtNit.Size = new Size(112, 23);
+            txtNit.TabIndex = 19;
             // 
             // panel2
             // 
@@ -239,7 +277,6 @@
         #endregion
 
         private Panel panel1;
-        private Label lblVentas;
         private Panel panel2;
         private Panel pnlCarrito;
         private Panel panel4;
@@ -253,5 +290,9 @@
         private Label label3;
         private Label lblCliente;
         private FlowLayoutPanel flowLayoutPanelCarrito;
+        private Label label2;
+        private TextBox txtNit;
+        private TextBox textBuscar;
+        private Button btnNit;
     }
 }

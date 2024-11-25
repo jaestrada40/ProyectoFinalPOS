@@ -16,6 +16,10 @@ namespace ProyectoFinalPOS.Productos
 {
     public partial class ProductCard : UserControl
     {
+        public string ProductName { get; set; }
+        public string ProductCode { get; set; }
+        public int Cantidad { get; set; }
+        public string ProductID { get; set; }
         private Product producto;
 
         // Evento para notificar cuando se agregue un producto al carrito
@@ -24,15 +28,21 @@ namespace ProyectoFinalPOS.Productos
         public ProductCard()
         {
             InitializeComponent();
+            ProductName = string.Empty;
+            ProductCode = string.Empty;
         }
 
-        public void SetProductData(Product product)
+        public void SetProductData(Product producto)
         {
-            this.producto = product;
+            ProductName= producto.Name;
+            ProductCode= producto.Code;
+
+            this.producto = producto;
             lblName.Text = producto.Name;
             lblDescription.Text = producto.Description;
             lblPrice.Text = $"Precio: Q{producto.Price:F2}";
             lblStock.Text = $"Stock: {producto.Stock}";
+            lblCodigo.Text = producto.Code;
 
             if (!string.IsNullOrEmpty(producto.ImagePath) && File.Exists(producto.ImagePath))
             {
