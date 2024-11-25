@@ -112,7 +112,7 @@
             btnHistorial.FlatStyle = FlatStyle.Flat;
             btnHistorial.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnHistorial.ForeColor = Color.White;
-            btnHistorial.Image = Properties.Resources.administrator_2_32;
+            btnHistorial.Image = Properties.Resources.material_symbols__point_of_sale;
             btnHistorial.ImageAlign = ContentAlignment.MiddleLeft;
             btnHistorial.Location = new Point(12, 513);
             btnHistorial.Name = "btnHistorial";

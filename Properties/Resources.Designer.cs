@@ -203,6 +203,26 @@ namespace ProyectoFinalPOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap material_symbols__point_of_sale {
+            get {
+                object obj = ResourceManager.GetObject("material-symbols--point-of-sale", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap material_symbols__point_of_sale__1_ {
+            get {
+                object obj = ResourceManager.GetObject("material-symbols--point-of-sale (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap padlock_24 {
             get {
                 object obj = ResourceManager.GetObject("padlock-24", resourceCulture);
