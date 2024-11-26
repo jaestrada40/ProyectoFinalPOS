@@ -44,7 +44,7 @@
             txtNombre.Name = "txtNombre";
             txtNombre.PlaceholderText = "Primer Nombre";
             txtNombre.Size = new Size(243, 23);
-            txtNombre.TabIndex = 0;
+            txtNombre.TabIndex = 1;
             // 
             // buttonGuardar
             // 
@@ -55,7 +55,7 @@
             buttonGuardar.Margin = new Padding(3, 2, 3, 2);
             buttonGuardar.Name = "buttonGuardar";
             buttonGuardar.Size = new Size(243, 36);
-            buttonGuardar.TabIndex = 2;
+            buttonGuardar.TabIndex = 5;
             buttonGuardar.Text = "Guardar Cliente";
             buttonGuardar.UseVisualStyleBackColor = false;
             buttonGuardar.Click += buttonGuardar_Click;
@@ -67,7 +67,7 @@
             txtApellido.Name = "txtApellido";
             txtApellido.PlaceholderText = "Primer Apellido";
             txtApellido.Size = new Size(243, 23);
-            txtApellido.TabIndex = 3;
+            txtApellido.TabIndex = 2;
             // 
             // txtNit
             // 
@@ -76,7 +76,7 @@
             txtNit.Name = "txtNit";
             txtNit.PlaceholderText = "Ingrese su NIT";
             txtNit.Size = new Size(243, 23);
-            txtNit.TabIndex = 4;
+            txtNit.TabIndex = 0;
             // 
             // txtDireccion
             // 
@@ -85,7 +85,7 @@
             txtDireccion.Name = "txtDireccion";
             txtDireccion.PlaceholderText = "Dirección Fiscal";
             txtDireccion.Size = new Size(243, 23);
-            txtDireccion.TabIndex = 5;
+            txtDireccion.TabIndex = 3;
             // 
             // label1
             // 
@@ -104,7 +104,7 @@
             txtNumero.Name = "txtNumero";
             txtNumero.PlaceholderText = "Número Telefónico";
             txtNumero.Size = new Size(243, 23);
-            txtNumero.TabIndex = 7;
+            txtNumero.TabIndex = 4;
             // 
             // NuevoCliente
             // 

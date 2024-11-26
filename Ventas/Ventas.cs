@@ -32,7 +32,7 @@ namespace ProyectoFinalPOS.Ventas
             CargarFlashCards();
 
             textBuscar.TextChanged += TextBuscar_TextChanged;
-
+            btnPagar.Enabled = false;
         }
 
         private void CargarFlashCards()
@@ -87,6 +87,7 @@ namespace ProyectoFinalPOS.Ventas
 
             // Actualizar el total en la interfaz
             ActualizarTotal();
+            btnPagar.Enabled = true;
         }
 
         // Para que al agregar una cantidad en el counter, lo elimine al presionar X
@@ -121,6 +122,7 @@ namespace ProyectoFinalPOS.Ventas
 
             // Actualiza el total en la interfaz después de eliminar
             ActualizarTotal();
+            btnPagar.Enabled= false;
         }
 
         //Metodo para actualizar el total
@@ -272,6 +274,7 @@ namespace ProyectoFinalPOS.Ventas
             NombreCliente = null;
             NitCliente = null;
             lblCliente.Text = "Cliente: ";
+            btnPagar.Enabled = false;
         }
 
 
@@ -432,6 +435,8 @@ namespace ProyectoFinalPOS.Ventas
         {
 
         }
+
+        //Evento para validar el NIT
         private void btnNit_Click(object sender, EventArgs e)
         {
             string nit = txtNit.Text.Trim();
@@ -484,6 +489,7 @@ namespace ProyectoFinalPOS.Ventas
             txtNit.Clear();
         }
 
+        //Formulario de nuevo cliente
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             NuevoCliente nuevoCliente = new NuevoCliente();
