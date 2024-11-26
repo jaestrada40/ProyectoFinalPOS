@@ -25,6 +25,7 @@ namespace ProyectoFinalPOS.Ventas
         private string NombreCliente = null;
         private string ApellidoCliente = null;
         private string NitCliente = null;
+
         public Ventas()
         {
             InitializeComponent();
@@ -81,13 +82,14 @@ namespace ProyectoFinalPOS.Ventas
                 // Sumar el precio al total
                 totalCarrito += producto.Price;
 
-                itemCarrito.CantidadReducida += ItemCarrito_CantidadReducida; //
+                itemCarrito.CantidadReducida += ItemCarrito_CantidadReducida;
             }
 
             // Actualizar el total en la interfaz
             ActualizarTotal();
         }
 
+        // Para que al agregar una cantidad en el counter, lo elimine al presionar X
         private void ItemCarrito_CantidadReducida(object sender, (Product producto, int cantidad) args)
         {
             totalCarrito -= args.producto.Price * args.cantidad;
@@ -121,6 +123,7 @@ namespace ProyectoFinalPOS.Ventas
             ActualizarTotal();
         }
 
+        //Metodo para actualizar el total
         private void ActualizarTotal()
         {
             totalCarrito = flowLayoutPanelCarrito.Controls
@@ -183,7 +186,7 @@ namespace ProyectoFinalPOS.Ventas
         //Logica del boton pagar
         private void btnPagar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(NombreCliente) && string.IsNullOrEmpty(NitCliente) )
+            if (string.IsNullOrEmpty(NombreCliente) && string.IsNullOrEmpty(NitCliente))
             {
                 DialogResult result = MessageBox.Show("No se ha ingresado un NIT. ¿Desea proceder con 'CF'?",
                     "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -479,6 +482,12 @@ namespace ProyectoFinalPOS.Ventas
                 }
             }
             txtNit.Clear();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            NuevoCliente nuevoCliente = new NuevoCliente();
+            nuevoCliente.ShowDialog();
         }
     }
 }

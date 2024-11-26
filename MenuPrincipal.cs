@@ -33,7 +33,7 @@ namespace ProyectoFinalPOS
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            Form MenuVentas = new MenuVentas();
+            Form MenuVentas = new NuevoCliente();
             MenuVentas.Show();
         }
 
