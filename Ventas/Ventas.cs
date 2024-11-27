@@ -33,6 +33,7 @@ namespace ProyectoFinalPOS.Ventas
 
             textBuscar.TextChanged += TextBuscar_TextChanged;
             btnPagar.Enabled = false;
+            btnEliminar.Enabled = false;
         }
 
         private void CargarFlashCards()
@@ -51,6 +52,54 @@ namespace ProyectoFinalPOS.Ventas
 
                 flowLayoutPanel1.Controls.Add(productCard);
             }
+        }
+
+        // Método Productos
+        private List<Product> ObtenerProductos()
+        {
+            List<Product> productos = new List<Product>();
+            string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products";
+            //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products";
+
+            try
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Product producto = new Product
+                        {
+                            ProductID = reader.GetInt32(0),
+                            Code = reader.GetString(1),
+                            Name = reader.GetString(2),
+                            Description = reader.GetString(3),
+                            Price = reader.GetDecimal(4),
+                            Stock = reader.GetInt32(5),
+                            ImagePath = reader.IsDBNull(6) ? null : reader.GetString(6)
+                        };
+                        productos.Add(producto);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al cargar productos: " + ex.Message);
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+
+            return productos;
         }
 
         // Método manejador de eventos para agregar el producto al carrito
@@ -122,7 +171,6 @@ namespace ProyectoFinalPOS.Ventas
 
             // Actualiza el total en la interfaz después de eliminar
             ActualizarTotal();
-            btnPagar.Enabled= false;
         }
 
         //Metodo para actualizar el total
@@ -132,62 +180,13 @@ namespace ProyectoFinalPOS.Ventas
                 .OfType<CarritoItemCard>()
                 .Sum(item => item.Price * item.Cantidad);
             lblTotal.Text = $"Q{totalCarrito:F2}";
-
-
-        }
-
-
-        // Método Productos
-        private List<Product> ObtenerProductos()
-        {
-            List<Product> productos = new List<Product>();
-            string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products";
-            //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products";
-
-            try
-            {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Product producto = new Product
-                        {
-                            ProductID = reader.GetInt32(0),
-                            Code = reader.GetString(1),
-                            Name = reader.GetString(2),
-                            Description = reader.GetString(3),
-                            Price = reader.GetDecimal(4),
-                            Stock = reader.GetInt32(5),
-                            ImagePath = reader.IsDBNull(6) ? null : reader.GetString(6)
-                        };
-                        productos.Add(producto);
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error al cargar productos: " + ex.Message);
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
-            }
-
-            return productos;
+            btnPagar.Enabled = totalCarrito > 0;
         }
 
         //Logica del boton pagar
         private void btnPagar_Click(object sender, EventArgs e)
         {
+            //Validacion del campo de NIT
             if (string.IsNullOrEmpty(NombreCliente) && string.IsNullOrEmpty(NitCliente))
             {
                 DialogResult result = MessageBox.Show("No se ha ingresado un NIT. ¿Desea proceder con 'CF'?",
@@ -205,6 +204,7 @@ namespace ProyectoFinalPOS.Ventas
                     return;
                 }
             }
+            //Validacion si no hay productos en el carrito
             if (flowLayoutPanelCarrito.Controls.Count == 0)
             {
                 MessageBox.Show("El carrito está vacío, por favor, agregue productos para continuar.",
@@ -222,6 +222,24 @@ namespace ProyectoFinalPOS.Ventas
                     connection.Open(); // Abre la conexión antes de la transacción
                 }
 
+                //Validacion de stock disponible
+                foreach (var item in itemsCarrito)
+                {
+                    string queryCheckStock = "SELECT Stock FROM jsoberanis_db.Products WHERE ProductID = @ProductID";
+                    using (SqlCommand command = new SqlCommand(queryCheckStock, connection))
+                    {
+                        command.Parameters.AddWithValue("@ProductID", item.ProductID);
+                        int stockDisponible = Convert.ToInt32(command.ExecuteScalar());
+
+                        if (item.Cantidad > stockDisponible)
+                        {
+                            MessageBox.Show($"El producto {item.ProductName} tiene un stock insuficiente. Disponible: {stockDisponible}.",
+                                "Stock insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // Salir del proceso si hay un problema con el stock
+                        }
+                    }
+                }
+                //Resta de productos en SQL
                 using (SqlTransaction transaction = connection.BeginTransaction())
                 {
                     try
@@ -276,8 +294,6 @@ namespace ProyectoFinalPOS.Ventas
             lblCliente.Text = "Cliente: ";
             btnPagar.Enabled = false;
         }
-
-
         private void Ventas_Load(object sender, EventArgs e)
         {
             txtNit.TextChanged += txtNit_TextChanged;
@@ -336,8 +352,6 @@ namespace ProyectoFinalPOS.Ventas
             BuscarProductos();
         }
 
-
-
         private void MostrarRecibo(List<CarritoItemCard> itemsCarrito, decimal total)
         {
             List<Product> productos = itemsCarrito.Select(item => new Product
@@ -359,6 +373,7 @@ namespace ProyectoFinalPOS.Ventas
             CargarFlashCards();
         }
 
+        //Metodo para Buscar productos
         private void BuscarProductos()
         {
             {
@@ -466,6 +481,7 @@ namespace ProyectoFinalPOS.Ventas
 
                             lblCliente.Text = $"Cliente: {NombreCliente} {ApellidoCliente}";
                             MessageBox.Show($"Cliente encontrado: {NombreCliente} {ApellidoCliente}", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            btnEliminar.Enabled = true;
                         }
                         else
                         {
@@ -494,6 +510,20 @@ namespace ProyectoFinalPOS.Ventas
         {
             NuevoCliente nuevoCliente = new NuevoCliente();
             nuevoCliente.ShowDialog();
+        }
+
+        //Metodo para Eliminar cliente en el carrito
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            NombreCliente = null;
+            ApellidoCliente = null;
+            NitCliente = null;
+
+            // Actualizar la etiqueta y deshabilitar el botón
+            lblCliente.Text = "Cliente: ";
+            btnEliminar.Enabled = false;
+
+            MessageBox.Show("Cliente eliminado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
