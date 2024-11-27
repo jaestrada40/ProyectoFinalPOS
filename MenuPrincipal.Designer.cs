@@ -32,6 +32,7 @@
             label4 = new Label();
             btnCerrar = new Button();
             panel2 = new Panel();
+            btnHistorial = new Button();
             label6 = new Label();
             btnSignOut = new Button();
             btnEmpleados = new Button();
@@ -87,6 +88,7 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(37, 42, 60);
+            panel2.Controls.Add(btnHistorial);
             panel2.Controls.Add(label6);
             panel2.Controls.Add(btnSignOut);
             panel2.Controls.Add(btnEmpleados);
@@ -101,6 +103,24 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(225, 665);
             panel2.TabIndex = 6;
+            // 
+            // btnHistorial
+            // 
+            btnHistorial.BackColor = Color.FromArgb(37, 42, 60);
+            btnHistorial.Cursor = Cursors.Hand;
+            btnHistorial.FlatAppearance.BorderSize = 0;
+            btnHistorial.FlatStyle = FlatStyle.Flat;
+            btnHistorial.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
+            btnHistorial.ForeColor = Color.White;
+            btnHistorial.Image = Properties.Resources.material_symbols__point_of_sale;
+            btnHistorial.ImageAlign = ContentAlignment.MiddleLeft;
+            btnHistorial.Location = new Point(12, 513);
+            btnHistorial.Name = "btnHistorial";
+            btnHistorial.Size = new Size(200, 40);
+            btnHistorial.TabIndex = 14;
+            btnHistorial.Text = "Historial";
+            btnHistorial.UseVisualStyleBackColor = false;
+            btnHistorial.Click += btnHistorial_Click;
             // 
             // label6
             // 
@@ -287,5 +307,7 @@
         private Ventas.Ventas ventas1;
         private Empleado.Empleados empleados1;
         private Panel panelContainer;
+        private Button btnHistorial;
+        private Historial.Historial historial1;
     }
 }

@@ -94,5 +94,11 @@ namespace ProyectoFinalPOS
                 this.Close();
             }
         }
+
+        private void btnHistorial_Click(object sender, EventArgs e)
+        {
+            historial1 = new Historial.Historial();
+            addUserControl(historial1);
+        }
     }
 }

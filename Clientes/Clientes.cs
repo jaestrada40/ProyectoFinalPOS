@@ -172,12 +172,12 @@ namespace ProyectoFinalPOS.Clientes
         private void BuscarCliente()
         {
             // Eliminar espacios en blanco alrededor del texto
-            string searchValue = txtBuscar.Text.Trim(); 
+            string searchValue = txtBuscar.Text.Trim();
 
             // Si el campo de búsqueda está vacío, carga todos los clientes
             if (string.IsNullOrWhiteSpace(searchValue))
             {
-                CustomersCarga(); 
+                CustomersCarga();
                 return;
             }
 
@@ -304,5 +304,6 @@ namespace ProyectoFinalPOS.Clientes
         {
             LimpiarCampos();
         }
+
     }
 }
