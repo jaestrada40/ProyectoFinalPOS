@@ -19,6 +19,7 @@ namespace ProyectoFinalPOS
         public FormSigUp()
         {
             InitializeComponent();
+            this.ActiveControl = txtNombre;
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

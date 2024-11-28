@@ -32,6 +32,8 @@
             lblPrice = new Label();
             btnEliminar = new Button();
             lblCantidad = new Label();
+            numericEliminar = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)numericEliminar).BeginInit();
             SuspendLayout();
             // 
             // lblName
@@ -73,17 +75,26 @@
             lblCantidad.TabIndex = 3;
             lblCantidad.Text = "Cantidad";
             // 
+            // numericEliminar
+            // 
+            numericEliminar.Location = new Point(199, 38);
+            numericEliminar.Name = "numericEliminar";
+            numericEliminar.Size = new Size(58, 23);
+            numericEliminar.TabIndex = 4;
+            // 
             // CarritoItemCard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(37, 42, 60);
+            Controls.Add(numericEliminar);
             Controls.Add(lblCantidad);
             Controls.Add(btnEliminar);
             Controls.Add(lblPrice);
             Controls.Add(lblName);
             Name = "CarritoItemCard";
-            Size = new Size(260, 39);
+            Size = new Size(260, 70);
+            ((System.ComponentModel.ISupportInitialize)numericEliminar).EndInit();
             ResumeLayout(false);
         }
 
@@ -93,5 +104,6 @@
         private Label lblPrice;
         private Button btnEliminar;
         private Label lblCantidad;
+        private NumericUpDown numericEliminar;
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            lblUsuario = new Label();
             label4 = new Label();
             btnCerrar = new Button();
             panel2 = new Panel();
@@ -40,7 +41,7 @@
             btnProductos = new Button();
             btnVentas = new Button();
             btnDashboard = new Button();
-            label5 = new Label();
+            lblNombre = new Label();
             pictureBox1 = new PictureBox();
             panelContainer = new Panel();
             panel1.SuspendLayout();
@@ -51,6 +52,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(37, 42, 60);
+            panel1.Controls.Add(lblUsuario);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(btnCerrar);
             panel1.Dock = DockStyle.Top;
@@ -58,6 +60,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1100, 35);
             panel1.TabIndex = 5;
+            // 
+            // lblUsuario
+            // 
+            lblUsuario.AutoSize = true;
+            lblUsuario.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblUsuario.ForeColor = Color.White;
+            lblUsuario.Location = new Point(884, 9);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(68, 18);
+            lblUsuario.TabIndex = 12;
+            lblUsuario.Text = "lblUsuario";
             // 
             // label4
             // 
@@ -96,7 +109,7 @@
             panel2.Controls.Add(btnProductos);
             panel2.Controls.Add(btnVentas);
             panel2.Controls.Add(btnDashboard);
-            panel2.Controls.Add(label5);
+            panel2.Controls.Add(lblNombre);
             panel2.Controls.Add(pictureBox1);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 35);
@@ -214,7 +227,7 @@
             btnVentas.Name = "btnVentas";
             btnVentas.Size = new Size(200, 40);
             btnVentas.TabIndex = 9;
-            btnVentas.Text = "Ventas";
+            btnVentas.Text = "Carrito";
             btnVentas.UseVisualStyleBackColor = false;
             btnVentas.Click += btnVentas_Click_1;
             // 
@@ -236,16 +249,16 @@
             btnDashboard.UseVisualStyleBackColor = false;
             btnDashboard.Click += btnDashboard_Click;
             // 
-            // label5
+            // lblNombre
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(31, 165);
-            label5.Name = "label5";
-            label5.Size = new Size(148, 19);
-            label5.TabIndex = 7;
-            label5.Text = "Bienvenido, usuario";
+            lblNombre.AutoSize = true;
+            lblNombre.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNombre.ForeColor = Color.White;
+            lblNombre.Location = new Point(31, 165);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(148, 19);
+            lblNombre.TabIndex = 7;
+            lblNombre.Text = "Bienvenido, usuario";
             // 
             // pictureBox1
             // 
@@ -293,7 +306,7 @@
         private Label label4;
         private Panel panel2;
         private PictureBox pictureBox1;
-        private Label label5;
+        private Label lblNombre;
         private Button btnDashboard;
         private Button btnEmpleados;
         private Button btnClientes;
@@ -307,7 +320,5 @@
         private Ventas.Ventas ventas1;
         private Empleado.Empleados empleados1;
         private Panel panelContainer;
-        private Button btnHistorial;
-        private Historial.Historial historial1;
     }
 }
