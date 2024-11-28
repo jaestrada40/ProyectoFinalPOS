@@ -46,7 +46,17 @@ namespace ProyectoFinalPOS.Productos
 
             if (!string.IsNullOrEmpty(producto.ImagePath) && File.Exists(producto.ImagePath))
             {
-                pictureBoxImage.Image = Image.FromFile(producto.ImagePath);
+                try
+                {
+                //pictureBoxImage.Image = Image.FromFile(producto.ImagePath);
+                pictureBoxImage.Load(producto.ImagePath);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al cargar la imagen desde la URL: {ex.Message}", "Error de Carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    pictureBoxImage.Image = null;
+                }
             }
             else
             {
