@@ -55,7 +55,7 @@ namespace ProyectoFinalPOS.Ventas
         }
 
         // Método Productos
-        private List<Product> ObtenerProductos()
+        private List<Product> ObtenerProductos()    
         {
             List<Product> productos = new List<Product>();
             string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products";
@@ -219,7 +219,7 @@ namespace ProyectoFinalPOS.Ventas
             {
                 if (connection.State == ConnectionState.Closed)
                 {
-                    connection.Open(); // Abre la conexión antes de la transacción
+                    connection.Open(); // Abre la conexión antes de la transacción para verificar stock
                 }
 
                 //Validacion de stock disponible
