@@ -127,11 +127,11 @@
             btnHistorial.ForeColor = Color.White;
             btnHistorial.Image = Properties.Resources.material_symbols__point_of_sale;
             btnHistorial.ImageAlign = ContentAlignment.MiddleLeft;
-            btnHistorial.Location = new Point(12, 513);
+            btnHistorial.Location = new Point(12, 512);
             btnHistorial.Name = "btnHistorial";
             btnHistorial.Size = new Size(200, 40);
             btnHistorial.TabIndex = 14;
-            btnHistorial.Text = "Historial";
+            btnHistorial.Text = "Historial Ventas";
             btnHistorial.UseVisualStyleBackColor = false;
             btnHistorial.Click += btnHistorial_Click;
             // 
@@ -320,5 +320,8 @@
         private Ventas.Ventas ventas1;
         private Empleado.Empleados empleados1;
         private Panel panelContainer;
+        private Label lblUsuario;
+        private Button btnHistorial;
+        private Historial.Historial historial1;
     }
 }

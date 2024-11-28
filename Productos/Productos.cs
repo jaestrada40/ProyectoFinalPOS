@@ -87,18 +87,18 @@ namespace ProyectoFinalPOS.Productos
         private void GuardarProducto()
         {
             string query = "INSERT INTO jsoberanis_db.Products (Code, Name, Description, Price, Stock, ImagePath) VALUES (@Code, @Name, @Description, @Price, @Stock, @ImagePath)";
-            //string query = "INSERT INTO Products (Code, Name, Description, Price, Stock, ImagePath) VALUES (@Code, @Name, @Description, @Price, @Stock, @ImagePath)";
 
             if (string.IsNullOrWhiteSpace(txtCodigo.Text) ||
                 string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtDescripcion.Text) ||
                 string.IsNullOrWhiteSpace(txtPrecio.Text) ||
                 string.IsNullOrWhiteSpace(txtStock.Text) ||
-                string.IsNullOrWhiteSpace(txtImagePath.Text))
+                string.IsNullOrWhiteSpace(txtImagePath.Text))  // Aquí se verifica la URL de la imagen
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -113,7 +113,7 @@ namespace ProyectoFinalPOS.Productos
                     command.Parameters.AddWithValue("@Description", txtDescripcion.Text);
                     command.Parameters.AddWithValue("@Price", txtPrecio.Text);
                     command.Parameters.AddWithValue("@Stock", txtStock.Text);
-                    command.Parameters.AddWithValue("@ImagePath", txtImagePath.Text);
+                    command.Parameters.AddWithValue("@ImagePath", txtImagePath.Text);  // Guardar la URL
 
                     int rowsAffected = command.ExecuteNonQuery();
 
@@ -139,7 +139,6 @@ namespace ProyectoFinalPOS.Productos
                 {
                     connection.Close();
                 }
-
             }
         }
 
@@ -157,14 +156,22 @@ namespace ProyectoFinalPOS.Productos
                 txtImagePath.Text = selectedRow.Cells["ImagePath"].Value.ToString();
 
                 string imagePath = selectedRow.Cells["ImagePath"].Value.ToString();
-                if (File.Exists(imagePath))
+                if (Uri.IsWellFormedUriString(imagePath, UriKind.Absolute)) // Verificar si es una URL válida
                 {
-                    pictureBoxProducto.Image = Image.FromFile(imagePath);
+                    try
+                    {
+                        pictureBoxProducto.Load(imagePath); // Cargar la imagen desde la URL
+                    }
+                    catch
+                    {
+                        pictureBoxProducto.Image = null; // En caso de error cargar una imagen predeterminada o dejar vacía
+                    }
                 }
                 else
                 {
-                    pictureBoxProducto.Image = null;
+                    pictureBoxProducto.Image = null; // Si no es una URL válida
                 }
+
                 btnGuardar.Enabled = false;
                 btnGuardar.ForeColor = Color.Gray;
                 btnActualizar.Enabled = true;
@@ -175,7 +182,7 @@ namespace ProyectoFinalPOS.Productos
                 ResetBotones();
             }
         }
-        
+
         // Metodo para Actualizar los productos
         private void ActualizarProducto()
         {
@@ -387,13 +394,19 @@ namespace ProyectoFinalPOS.Productos
                 {
                     string filePath = openFileDialog.FileName;
 
+                    // Subir la imagen a Imgur y obtener la URL
                     string imageUrl = await SubirImagenAImgur(filePath);
 
-                    txtImagePath.Text = openFileDialog.FileName;
-                    pictureBoxProducto.Image = Image.FromFile(openFileDialog.FileName);
+                    if (!string.IsNullOrEmpty(imageUrl))
+                    {
+                        // Guardar la URL en el campo de texto y mostrar la imagen
+                        txtImagePath.Text = imageUrl;  // Guarda la URL de Imgur
+                        pictureBoxProducto.Image = Image.FromFile(filePath);  // Muestra la imagen local
+                    }
                 }
             }
         }
+
 
         private void ResetBotones()
         {
@@ -409,39 +422,41 @@ namespace ProyectoFinalPOS.Productos
         //Subir imagenes a Imgur
         private async Task<string> SubirImagenAImgur(string filePath)
         {
-            string acessToken = "93b781ab9d19380d53d8401946e94c31296f2bb6";
+            string accessToken = "93b781ab9d19380d53d8401946e94c31296f2bb6"; // Asegúrate de que este token sea válido
             string uploadUrl = "https://api.imgur.com/3/image";
 
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", acessToken);
-                    using (MultipartFormDataContent form = new MultipartFormDataContent())
-                    {
-                        // para leer el archivo y agregarlo al formulario
-                        byte[] imageData = File.ReadAllBytes(filePath);
-                        form.Add(new ByteArrayContent(imageData, 0, imageData.Length), "image", Path.GetFileName(filePath));
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
 
-                        //Enviar la solicitud POST
+                    using (var form = new MultipartFormDataContent())
+                    {
+                        var fileContent = new ByteArrayContent(File.ReadAllBytes(filePath));
+                        fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/jpeg");
+                        form.Add(fileContent, "image", Path.GetFileName(filePath));
+
                         HttpResponseMessage response = await client.PostAsync(uploadUrl, form);
                         response.EnsureSuccessStatusCode();
 
-                        //leer la respuesta como JSON
-                        string jsonResponse = await response.Content.ReadAsStringAsync();
-                        dynamic jsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonResponse);
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        dynamic jsonResponse = Newtonsoft.Json.JsonConvert.DeserializeObject(responseBody);
 
-                        //retornar el enlace directo de la imagen
-                        return jsonObject.data.link.ToString();
+                        // Obtén la URL de la imagen subida
+                        string imageUrl = jsonResponse.data.link;
+                        return imageUrl;
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al subir la imagen: {ex.Message}");
+                MessageBox.Show("Error al subir la imagen: " + ex.Message);
                 return null;
             }
         }
-           
+
+
+
     }
 }
