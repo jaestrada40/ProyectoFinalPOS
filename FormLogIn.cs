@@ -44,8 +44,8 @@ namespace ProyectoFinalPOS
 
         private bool ValidarCredenciales(string username, string password)
         {
-            //string query = "SELECT COUNT(1) FROM jsoberanis_db.Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
-            string query = "SELECT COUNT(1) FROM Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
+            string query = "SELECT COUNT(1) FROM jsoberanis_db.Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
+            //string query = "SELECT COUNT(1) FROM Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
             bool esValido = false;
 
             try
@@ -59,7 +59,7 @@ namespace ProyectoFinalPOS
                 {
                     // Agregar los parámetros para la consulta
                     command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@PasswordHash", password); // Asegúrate de que el password esté encriptado si la base de datos así lo requiere
+                    command.Parameters.AddWithValue("@PasswordHash", password); 
 
                     // Ejecutar la consulta
                     int count = Convert.ToInt32(command.ExecuteScalar());

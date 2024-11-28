@@ -30,34 +30,34 @@ namespace ProyectoFinalPOS.Historial
 
         private void HistorialCarga()
         {
-            //string query = @"
-            //                SELECT 
-            //                    jsoberanis_db.Sales.SaleID as ID,
-            //                    jsoberanis_db.Employees.FirstName + ' ' + jsoberanis_db.Employees.LastName AS [Nombre del Empleado],
-            //                    jsoberanis_db.Customers.FirstName + ' ' + jsoberanis_db.Customers.LastName AS [Nombre del Cliente],
-            //                    jsoberanis_db.Customers.NIT,
-            //                    COUNT(jsoberanis_db.SaleDetails.ProductID) AS [Total de Productos],
-            //                    jsoberanis_db.Sales.Total
-            //                FROM jsoberanis_db.Sales
-            //                JOIN jsoberanis_db.Employees ON jsoberanis_db.Sales.EmployeeID = Employees.EmployeeID
-            //                JOIN jsoberanis_db.Customers ON jsoberanis_db.Sales.CustomerID = Customers.CustomerID
-            //                JOIN jsoberanis_db.SaleDetails ON Sales.SaleID = jsoberanis_db.SaleDetails.SaleID
-            //                GROUP BY jsoberanis_db.Sales.SaleID, jsoberanis_db.Employees.FirstName, jsoberanis_db.Employees.LastName, jsoberanis_db.Customers.FirstName, jsoberanis_db.Customers.LastName, jsoberanis_db.Customers.NIT, jsoberanis_db.Sales.Total";
-
-
             string query = @"
                             SELECT 
-                                Sales.SaleID as ID,
-                                Employees.FirstName + ' ' + Employees.LastName AS [Nombre del Empleado],
-                                Customers.FirstName + ' ' + Customers.LastName AS [Nombre del Cliente],
-                                Customers.NIT,
-                                COUNT(SaleDetails.ProductID) AS [Total de Productos],
-                                Sales.Total
-                            FROM Sales
-                            JOIN Employees ON Sales.EmployeeID = Employees.EmployeeID
-                            JOIN Customers ON Sales.CustomerID = Customers.CustomerID
-                            JOIN SaleDetails ON Sales.SaleID = SaleDetails.SaleID
-                            GROUP BY Sales.SaleID, Employees.FirstName, Employees.LastName, Customers.FirstName, Customers.LastName, Customers.NIT, Sales.Total";
+                                jsoberanis_db.Sales.SaleID as ID,
+                                jsoberanis_db.Employees.FirstName + ' ' + jsoberanis_db.Employees.LastName AS [Nombre del Empleado],
+                                jsoberanis_db.Customers.FirstName + ' ' + jsoberanis_db.Customers.LastName AS [Nombre del Cliente],
+                                jsoberanis_db.Customers.NIT,
+                                COUNT(jsoberanis_db.SaleDetails.ProductID) AS [Total de Productos],
+                                jsoberanis_db.Sales.Total
+                            FROM jsoberanis_db.Sales
+                            JOIN jsoberanis_db.Employees ON jsoberanis_db.Sales.EmployeeID = Employees.EmployeeID
+                            JOIN jsoberanis_db.Customers ON jsoberanis_db.Sales.CustomerID = Customers.CustomerID
+                            JOIN jsoberanis_db.SaleDetails ON Sales.SaleID = jsoberanis_db.SaleDetails.SaleID
+                            GROUP BY jsoberanis_db.Sales.SaleID, jsoberanis_db.Employees.FirstName, jsoberanis_db.Employees.LastName, jsoberanis_db.Customers.FirstName, jsoberanis_db.Customers.LastName, jsoberanis_db.Customers.NIT, jsoberanis_db.Sales.Total";
+
+
+            //string query = @"
+            //                SELECT 
+            //                    Sales.SaleID as ID,
+            //                    Employees.FirstName + ' ' + Employees.LastName AS [Nombre del Empleado],
+            //                    Customers.FirstName + ' ' + Customers.LastName AS [Nombre del Cliente],
+            //                    Customers.NIT,
+            //                    COUNT(SaleDetails.ProductID) AS [Total de Productos],
+            //                    Sales.Total
+            //                FROM Sales
+            //                JOIN Employees ON Sales.EmployeeID = Employees.EmployeeID
+            //                JOIN Customers ON Sales.CustomerID = Customers.CustomerID
+            //                JOIN SaleDetails ON Sales.SaleID = SaleDetails.SaleID
+            //                GROUP BY Sales.SaleID, Employees.FirstName, Employees.LastName, Customers.FirstName, Customers.LastName, Customers.NIT, Sales.Total";
 
                                 try
             {
@@ -132,54 +132,54 @@ namespace ProyectoFinalPOS.Historial
             }
 
             // Si hay texto en el campo, realiza la búsqueda
-            //string query =
-            //        @"
-            //        SELECT
-            //            jsoberanis_db.Sales.SaleID as ID,
-            //            jsoberanis_db.Employees.FirstName + ' ' + jsoberanis_db.Employees.LastName AS[Nombre del Empleado],
-            //            jsoberanis_db.Customers.FirstName + ' ' + jsoberanis_db.Customers.LastName AS[Nombre del Cliente],
-            //            jsoberanis_db.Customers.NIT,
-            //            COUNT(jsoberanis_db.SaleDetails.ProductID) AS[Total de Productos],
-            //            jsoberanis_db.Sales.Total
-            //        FROM jsoberanis_db.Sales
-            //        JOIN jsoberanis_db.Employees ON Sales.EmployeeID = jsoberanis_db.Employees.EmployeeID
-            //        JOIN jsoberanis_db.Customers ON Sales.CustomerID = jsoberanis_db.Customers.CustomerID
-            //        JOIN jsoberanis_db.SaleDetails ON Sales.SaleID = jsoberanis_db.SaleDetails.SaleID
-            //        WHERE
-            //            CONCAT(jsoberanis_db.Employees.FirstName, ' ', jsoberanis_db.Employees.LastName) LIKE @search OR
-            //            CONCAT(jsoberanis_db.Customers.FirstName, ' ', jsoberanis_db.Customers.LastName) LIKE @search OR
-            //            jsoberanis_db.Customers.NIT LIKE @search
-            //        GROUP BY
-            //            jsoberanis_db.Sales.SaleID, 
-            //            jsoberanis_db.Employees.FirstName, jsoberanis_db.Employees.LastName, 
-            //            jsoberanis_db.Customers.FirstName, jsoberanis_db.Customers.LastName, 
-            //            jsoberanis_db.Customers.NIT, 
-            //            jsoberanis_db.Sales.Total;";
-
-
             string query =
                     @"
                     SELECT
-                        Sales.SaleID as ID,
-                        Employees.FirstName + ' ' + Employees.LastName AS[Nombre del Empleado],
-                        Customers.FirstName + ' ' + Customers.LastName AS[Nombre del Cliente],
-                        Customers.NIT,
-                        COUNT(SaleDetails.ProductID) AS[Total de Productos],
-                        Sales.Total
-                    FROM Sales
-                    JOIN Employees ON Sales.EmployeeID = Employees.EmployeeID
-                    JOIN Customers ON Sales.CustomerID = Customers.CustomerID
-                    JOIN SaleDetails ON Sales.SaleID = SaleDetails.SaleID
+                        jsoberanis_db.Sales.SaleID as ID,
+                        jsoberanis_db.Employees.FirstName + ' ' + jsoberanis_db.Employees.LastName AS[Nombre del Empleado],
+                        jsoberanis_db.Customers.FirstName + ' ' + jsoberanis_db.Customers.LastName AS[Nombre del Cliente],
+                        jsoberanis_db.Customers.NIT,
+                        COUNT(jsoberanis_db.SaleDetails.ProductID) AS[Total de Productos],
+                        jsoberanis_db.Sales.Total
+                    FROM jsoberanis_db.Sales
+                    JOIN jsoberanis_db.Employees ON Sales.EmployeeID = jsoberanis_db.Employees.EmployeeID
+                    JOIN jsoberanis_db.Customers ON Sales.CustomerID = jsoberanis_db.Customers.CustomerID
+                    JOIN jsoberanis_db.SaleDetails ON Sales.SaleID = jsoberanis_db.SaleDetails.SaleID
                     WHERE
-                        CONCAT(Employees.FirstName, ' ', Employees.LastName) LIKE @search OR
-                        CONCAT(Customers.FirstName, ' ', Customers.LastName) LIKE @search OR
-                        Customers.NIT LIKE @search
+                        CONCAT(jsoberanis_db.Employees.FirstName, ' ', jsoberanis_db.Employees.LastName) LIKE @search OR
+                        CONCAT(jsoberanis_db.Customers.FirstName, ' ', jsoberanis_db.Customers.LastName) LIKE @search OR
+                        jsoberanis_db.Customers.NIT LIKE @search
                     GROUP BY
-                        Sales.SaleID, 
-                        Employees.FirstName, Employees.LastName, 
-                        Customers.FirstName, Customers.LastName, 
-                        Customers.NIT, 
-                        Sales.Total;";
+                        jsoberanis_db.Sales.SaleID, 
+                        jsoberanis_db.Employees.FirstName, jsoberanis_db.Employees.LastName, 
+                        jsoberanis_db.Customers.FirstName, jsoberanis_db.Customers.LastName, 
+                        jsoberanis_db.Customers.NIT, 
+                        jsoberanis_db.Sales.Total;";
+
+
+            //string query =
+            //        @"
+            //        SELECT
+            //            Sales.SaleID as ID,
+            //            Employees.FirstName + ' ' + Employees.LastName AS[Nombre del Empleado],
+            //            Customers.FirstName + ' ' + Customers.LastName AS[Nombre del Cliente],
+            //            Customers.NIT,
+            //            COUNT(SaleDetails.ProductID) AS[Total de Productos],
+            //            Sales.Total
+            //        FROM Sales
+            //        JOIN Employees ON Sales.EmployeeID = Employees.EmployeeID
+            //        JOIN Customers ON Sales.CustomerID = Customers.CustomerID
+            //        JOIN SaleDetails ON Sales.SaleID = SaleDetails.SaleID
+            //        WHERE
+            //            CONCAT(Employees.FirstName, ' ', Employees.LastName) LIKE @search OR
+            //            CONCAT(Customers.FirstName, ' ', Customers.LastName) LIKE @search OR
+            //            Customers.NIT LIKE @search
+            //        GROUP BY
+            //            Sales.SaleID, 
+            //            Employees.FirstName, Employees.LastName, 
+            //            Customers.FirstName, Customers.LastName, 
+            //            Customers.NIT, 
+            //            Sales.Total;";
 
 
             try
