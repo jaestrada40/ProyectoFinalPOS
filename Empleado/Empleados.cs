@@ -28,8 +28,8 @@ namespace ProyectoFinalPOS.Empleado
 
         private void EmployeeCarga()
         {
-            string query = "SELECT EmployeeID as ID, FirstName as Nombre, LastName as Apellido, IdentificationNumber as Identificación, Position as Position, Username as Usuario FROM jsoberanis_db.Employees";
-            //string query = "SELECT EmployeeID as ID, FirstName as Nombre, LastName as Apellido, IdentificationNumber as Identificación, Position as Position, Username as Usuario FROM Employees";
+            //string query = "SELECT EmployeeID as ID, FirstName as Nombre, LastName as Apellido, IdentificationNumber as Identificación, Position as Position, Username as Usuario FROM jsoberanis_db.Employees";
+            string query = "SELECT EmployeeID as ID, FirstName as Nombre, LastName as Apellido, IdentificationNumber as Identificación, Position as Cargo, Username as Usuario FROM Employees";
             try
             {
                 // Asegúrate de que la conexión esté abierta antes de usarla
@@ -70,14 +70,14 @@ namespace ProyectoFinalPOS.Empleado
             }
 
             // Consulta para verificar si el Username ya existe
-            string checkUsernameQuery = "SELECT COUNT(*) FROM jsoberanis_db.Employees WHERE Username = @Username";
+            //string checkUsernameQuery = "SELECT COUNT(*) FROM jsoberanis_db.Employees WHERE Username = @Username";
             // Consulta para verificar si el IdentificationNumber ya existe
-            string checkIdQuery = "SELECT COUNT(*) FROM jsoberanis_db.Employees WHERE IdentificationNumber = @IdentificationNumber";
+            //string checkIdQuery = "SELECT COUNT(*) FROM jsoberanis_db.Employees WHERE IdentificationNumber = @IdentificationNumber";
 
             // Consulta para verificar si el Username ya existe
-            //string checkUsernameQuery = "SELECT COUNT(*) FROM Employees WHERE Username = @Username";
+            string checkUsernameQuery = "SELECT COUNT(*) FROM Employees WHERE Username = @Username";
             // Consulta para verificar si el IdentificationNumber ya existe
-            //string checkIdQuery = "SELECT COUNT(*) FROM Employees WHERE IdentificationNumber = @IdentificationNumber";
+            string checkIdQuery = "SELECT COUNT(*) FROM Employees WHERE IdentificationNumber = @IdentificationNumber";
 
             try
             {
@@ -108,7 +108,7 @@ namespace ProyectoFinalPOS.Empleado
                 // Si alguno de los valores existe, mostramos los mensajes correspondientes
                 if (usernameExists && idExists)
                 {
-                    MessageBox.Show("El Username y el IdentificationNumber ya están registrados.");
+                    MessageBox.Show("El Username y el Identificador ya están registrados.");
                     return;
                 }
                 else if (usernameExists)
@@ -118,17 +118,17 @@ namespace ProyectoFinalPOS.Empleado
                 }
                 else if (idExists)
                 {
-                    MessageBox.Show("El IdentificationNumber ya está registrado.");
+                    MessageBox.Show("El Identificador ya está registrado.");
                     return;
                 }
                 // Si no hay duplicados, realizamos la inserción
-                string insertQuery = @"
-                                    INSERT INTO jsoberanis_db.Employees (FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash) 
-                                    VALUES (@FirstName, @LastName, @IdentificationNumber, @Position, @Username, @PasswordHash)";
-                // Si no hay duplicados, realizamos la inserción
                 //string insertQuery = @"
-                //                    INSERT INTO Employees (FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash) 
+                //                    INSERT INTO jsoberanis_db.Employees (FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash) 
                 //                    VALUES (@FirstName, @LastName, @IdentificationNumber, @Position, @Username, @PasswordHash)";
+                // Si no hay duplicados, realizamos la inserción
+                string insertQuery = @"
+                                    INSERT INTO Employees (FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash) 
+                                    VALUES (@FirstName, @LastName, @IdentificationNumber, @Position, @Username, @PasswordHash)";
 
                 using (SqlCommand command = new SqlCommand(insertQuery, connection))
                 {
@@ -250,8 +250,17 @@ namespace ProyectoFinalPOS.Empleado
             if (employeesTable.SelectedRows.Count > 0)
             {
                 int employeeId = Convert.ToInt32(employeesTable.SelectedRows[0].Cells["ID"].Value);
-                string query = "UPDATE jsoberanis_db.Employees SET FirstName = @FirstName, LastName = @LastName, IdentificationNumber = @IdentificationNumber, Position = @Position, Username = @Username, PasswordHash = @PasswordHash WHERE EmployeeID = @EmployeeID";
-                //string query = "UPDATE Employees SET FirstName = @FirstName, LastName = @LastName, IdentificationNumber = @IdentificationNumber, Position = @Position, Username = @Username, PasswordHash = @PasswordHash WHERE EmployeeID = @EmployeeID";
+
+                // Inicializar la consulta básica sin el campo de la contraseña
+                string query = "UPDATE Employees SET FirstName = @FirstName, LastName = @LastName, IdentificationNumber = @IdentificationNumber, Position = @Position, Username = @Username";
+
+                // Verificar si el campo de la contraseña no está vacío
+                if (!string.IsNullOrEmpty(txtPassword.Text))
+                {
+                    query += ", PasswordHash = @PasswordHash"; // Añadir el campo PasswordHash solo si la contraseña no está vacía
+                }
+
+                query += " WHERE EmployeeID = @EmployeeID"; // Filtro para el empleado específico
 
                 try
                 {
@@ -262,20 +271,26 @@ namespace ProyectoFinalPOS.Empleado
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
+                        // Agregar parámetros comunes
                         command.Parameters.AddWithValue("@EmployeeID", employeeId);
                         command.Parameters.AddWithValue("@FirstName", txtNombre.Text);
                         command.Parameters.AddWithValue("@LastName", txtApellido.Text);
                         command.Parameters.AddWithValue("@IdentificationNumber", txtID.Text);
                         command.Parameters.AddWithValue("@Position", txtPosition.Text);
                         command.Parameters.AddWithValue("@Username", txtUsername.Text);
-                        command.Parameters.AddWithValue("@PasswordHash", txtPassword.Text);
+
+                        // Si la contraseña no está vacía, agregar el parámetro PasswordHash
+                        if (!string.IsNullOrEmpty(txtPassword.Text))
+                        {
+                            command.Parameters.AddWithValue("@PasswordHash", txtPassword.Text); // Añadir la contraseña solo si no está vacía
+                        }
 
                         int rowsAffected = command.ExecuteNonQuery();
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Empleado actualizado exitosamente.");
-                            EmployeeCarga();
-                            LimpiarCampos();
+                            EmployeeCarga(); // Función para recargar la lista de empleados
+                            LimpiarCampos(); // Función para limpiar los campos de entrada
                         }
                         else
                         {
@@ -301,6 +316,7 @@ namespace ProyectoFinalPOS.Empleado
             }
         }
 
+
         // Método para eliminar un cliente seleccionado
         private void EliminarEmpleado()
         {
@@ -319,8 +335,8 @@ namespace ProyectoFinalPOS.Empleado
                 // Procede con la eliminación solo si el usuario confirma con "Sí"
                 if (confirmacion == DialogResult.Yes)
                 {
-                    string query = "DELETE FROM jsoberanis_db.Employees WHERE EmployeeID = @EmployeeID";
-                    //string query = "DELETE FROM Employees WHERE EmployeeID = @EmployeeID";
+                    //string query = "DELETE FROM jsoberanis_db.Employees WHERE EmployeeID = @EmployeeID";
+                    string query = "DELETE FROM Employees WHERE EmployeeID = @EmployeeID";
 
                     try
                     {
@@ -379,8 +395,8 @@ namespace ProyectoFinalPOS.Empleado
             }
 
             // Si hay texto en el campo, realiza la búsqueda
-            string query = "SELECT EmployeeID as ID, IdentificationNumber as [No. de Identificador],Position as Cargo, FirstName as Nombre, LastName as Apellido, Username as Usuario FROM jsoberanis_db.Employees WHERE IdentificationNumber LIKE @search OR FirstName LIKE @search OR Username LIKE @search";
-            //string query = "SELECT EmployeeID as ID, IdentificationNumber as [No. de Identificador] ,Position as Cargo, FirstName as Nombre, LastName as Apellido, Username as Usuario FROM Employees WHERE IdentificationNumber LIKE @search OR FirstName LIKE @search OR Username LIKE @search;";
+            //string query = "SELECT EmployeeID as ID, IdentificationNumber as [No. de Identificador],Position as Cargo, FirstName as Nombre, LastName as Apellido, Username as Usuario FROM jsoberanis_db.Employees WHERE IdentificationNumber LIKE @search OR FirstName LIKE @search OR Username LIKE @search";
+            string query = "SELECT EmployeeID as ID, IdentificationNumber as [No. de Identificador] ,Position as Cargo, FirstName as Nombre, LastName as Apellido, Username as Usuario FROM Employees WHERE IdentificationNumber LIKE @search OR FirstName LIKE @search OR Username LIKE @search;";
 
             try
             {

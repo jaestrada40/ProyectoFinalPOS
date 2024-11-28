@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnEliminar = new Button();
             btnNuevo = new Button();
             btnNit = new Button();
             textBuscar = new TextBox();
@@ -45,7 +46,6 @@
             lblCliente = new Label();
             panel6 = new Panel();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            btnEliminar = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             pnlCarrito.SuspendLayout();
@@ -65,10 +65,24 @@
             panel1.Controls.Add(txtNit);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(999, 105);
+            panel1.Size = new Size(874, 79);
             panel1.TabIndex = 21;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.BackColor = Color.FromArgb(37, 42, 60);
+            btnEliminar.FlatAppearance.BorderSize = 0;
+            btnEliminar.FlatStyle = FlatStyle.Flat;
+            btnEliminar.Font = new Font("Tahoma", 10F, FontStyle.Bold);
+            btnEliminar.ForeColor = Color.White;
+            btnEliminar.Location = new Point(386, 11);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(115, 31);
+            btnEliminar.TabIndex = 24;
+            btnEliminar.Text = "Limpiar Cliente";
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnNuevo
             // 
@@ -77,10 +91,9 @@
             btnNuevo.FlatStyle = FlatStyle.Flat;
             btnNuevo.Font = new Font("Tahoma", 10F, FontStyle.Bold);
             btnNuevo.ForeColor = Color.White;
-            btnNuevo.Location = new Point(304, 15);
-            btnNuevo.Margin = new Padding(3, 4, 3, 4);
+            btnNuevo.Location = new Point(266, 11);
             btnNuevo.Name = "btnNuevo";
-            btnNuevo.Size = new Size(131, 41);
+            btnNuevo.Size = new Size(115, 31);
             btnNuevo.TabIndex = 23;
             btnNuevo.Text = "Nuevo Cliente";
             btnNuevo.UseVisualStyleBackColor = false;
@@ -93,10 +106,9 @@
             btnNit.FlatStyle = FlatStyle.Flat;
             btnNit.Font = new Font("Tahoma", 10F, FontStyle.Bold);
             btnNit.ForeColor = Color.White;
-            btnNit.Location = new Point(195, 15);
-            btnNit.Margin = new Padding(3, 4, 3, 4);
+            btnNit.Location = new Point(171, 11);
             btnNit.Name = "btnNit";
-            btnNit.Size = new Size(103, 41);
+            btnNit.Size = new Size(90, 31);
             btnNit.TabIndex = 22;
             btnNit.Text = "Buscar";
             btnNit.UseVisualStyleBackColor = false;
@@ -104,18 +116,20 @@
             // 
             // textBuscar
             // 
-            textBuscar.Location = new Point(27, 63);
+            textBuscar.Location = new Point(24, 47);
+            textBuscar.Margin = new Padding(3, 2, 3, 2);
             textBuscar.Name = "textBuscar";
             textBuscar.PlaceholderText = "Ingrese el Código o Nombre del Producto para Buscar";
-            textBuscar.Size = new Size(550, 27);
+            textBuscar.Size = new Size(482, 23);
             textBuscar.TabIndex = 21;
             // 
             // txtNit
             // 
-            txtNit.Location = new Point(27, 21);
+            txtNit.Location = new Point(24, 16);
+            txtNit.Margin = new Padding(3, 2, 3, 2);
             txtNit.Name = "txtNit";
             txtNit.PlaceholderText = "Ingrese su NIT";
-            txtNit.Size = new Size(161, 27);
+            txtNit.Size = new Size(141, 23);
             txtNit.TabIndex = 19;
             // 
             // panel2
@@ -124,10 +138,9 @@
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(698, 105);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(611, 79);
             panel2.Name = "panel2";
-            panel2.Size = new Size(301, 782);
+            panel2.Size = new Size(263, 586);
             panel2.TabIndex = 22;
             // 
             // pnlCarrito
@@ -135,10 +148,9 @@
             pnlCarrito.BackColor = Color.FromArgb(37, 42, 60);
             pnlCarrito.Controls.Add(flowLayoutPanelCarrito);
             pnlCarrito.Dock = DockStyle.Fill;
-            pnlCarrito.Location = new Point(0, 59);
-            pnlCarrito.Margin = new Padding(3, 4, 3, 4);
+            pnlCarrito.Location = new Point(0, 44);
             pnlCarrito.Name = "pnlCarrito";
-            pnlCarrito.Size = new Size(301, 555);
+            pnlCarrito.Size = new Size(263, 416);
             pnlCarrito.TabIndex = 2;
             // 
             // flowLayoutPanelCarrito
@@ -147,9 +159,8 @@
             flowLayoutPanelCarrito.AutoSize = true;
             flowLayoutPanelCarrito.Dock = DockStyle.Fill;
             flowLayoutPanelCarrito.Location = new Point(0, 0);
-            flowLayoutPanelCarrito.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanelCarrito.Name = "flowLayoutPanelCarrito";
-            flowLayoutPanelCarrito.Size = new Size(301, 555);
+            flowLayoutPanelCarrito.Size = new Size(263, 416);
             flowLayoutPanelCarrito.TabIndex = 0;
             // 
             // panel4
@@ -158,10 +169,9 @@
             panel4.Controls.Add(btnPagar);
             panel4.Controls.Add(panel8);
             panel4.Dock = DockStyle.Bottom;
-            panel4.Location = new Point(0, 614);
-            panel4.Margin = new Padding(3, 4, 3, 4);
+            panel4.Location = new Point(0, 460);
             panel4.Name = "panel4";
-            panel4.Size = new Size(301, 168);
+            panel4.Size = new Size(263, 126);
             panel4.TabIndex = 1;
             // 
             // btnPagar
@@ -171,10 +181,9 @@
             btnPagar.FlatStyle = FlatStyle.Flat;
             btnPagar.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPagar.ForeColor = Color.White;
-            btnPagar.Location = new Point(61, 85);
-            btnPagar.Margin = new Padding(3, 4, 3, 4);
+            btnPagar.Location = new Point(53, 64);
             btnPagar.Name = "btnPagar";
-            btnPagar.Size = new Size(183, 56);
+            btnPagar.Size = new Size(160, 42);
             btnPagar.TabIndex = 3;
             btnPagar.Text = "Pagar";
             btnPagar.UseVisualStyleBackColor = false;
@@ -187,9 +196,8 @@
             panel8.Controls.Add(label1);
             panel8.Dock = DockStyle.Top;
             panel8.Location = new Point(0, 0);
-            panel8.Margin = new Padding(3, 4, 3, 4);
             panel8.Name = "panel8";
-            panel8.Size = new Size(301, 44);
+            panel8.Size = new Size(263, 33);
             panel8.TabIndex = 2;
             // 
             // lblTotal
@@ -197,9 +205,9 @@
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTotal.ForeColor = Color.White;
-            lblTotal.Location = new Point(82, 9);
+            lblTotal.Location = new Point(72, 7);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(76, 24);
+            lblTotal.Size = new Size(61, 19);
             lblTotal.TabIndex = 1;
             lblTotal.Text = "Q 0.00";
             // 
@@ -208,9 +216,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(9, 9);
+            label1.Location = new Point(8, 7);
             label1.Name = "label1";
-            label1.Size = new Size(67, 24);
+            label1.Size = new Size(58, 19);
             label1.TabIndex = 0;
             label1.Text = "Total:";
             // 
@@ -220,9 +228,8 @@
             panel3.Controls.Add(lblCliente);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
-            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(301, 59);
+            panel3.Size = new Size(263, 44);
             panel3.TabIndex = 0;
             // 
             // lblCliente
@@ -230,58 +237,42 @@
             lblCliente.AutoSize = true;
             lblCliente.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCliente.ForeColor = Color.White;
-            lblCliente.Location = new Point(7, 19);
+            lblCliente.Location = new Point(6, 14);
             lblCliente.Name = "lblCliente";
-            lblCliente.Size = new Size(75, 21);
+            lblCliente.Size = new Size(56, 16);
             lblCliente.TabIndex = 0;
             lblCliente.Text = "Cliente:";
             lblCliente.Click += lblCliente_Click;
             // 
             // panel6
             // 
+            panel6.AutoScroll = true;
             panel6.Controls.Add(flowLayoutPanel1);
             panel6.Dock = DockStyle.Fill;
-            panel6.Location = new Point(0, 105);
-            panel6.Margin = new Padding(3, 4, 3, 4);
+            panel6.Location = new Point(0, 79);
             panel6.Name = "panel6";
-            panel6.Size = new Size(698, 782);
+            panel6.Size = new Size(611, 586);
             panel6.TabIndex = 23;
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.AutoSize = true;
+            flowLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(699, 813);
+            flowLayoutPanel1.Size = new Size(0, 0);
             flowLayoutPanel1.TabIndex = 0;
-            // 
-            // btnEliminar
-            // 
-            btnEliminar.BackColor = Color.FromArgb(37, 42, 60);
-            btnEliminar.FlatAppearance.BorderSize = 0;
-            btnEliminar.FlatStyle = FlatStyle.Flat;
-            btnEliminar.Font = new Font("Tahoma", 10F, FontStyle.Bold);
-            btnEliminar.ForeColor = Color.White;
-            btnEliminar.Location = new Point(441, 15);
-            btnEliminar.Margin = new Padding(3, 4, 3, 4);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(131, 41);
-            btnEliminar.TabIndex = 24;
-            btnEliminar.Text = "Limpiar Cliente";
-            btnEliminar.UseVisualStyleBackColor = false;
-            btnEliminar.Click += btnEliminar_Click;
             // 
             // Ventas
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel6);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Ventas";
-            Size = new Size(999, 887);
+            Size = new Size(874, 665);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -293,6 +284,7 @@
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel6.ResumeLayout(false);
+            panel6.PerformLayout();
             ResumeLayout(false);
         }
 

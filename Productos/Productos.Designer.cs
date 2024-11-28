@@ -45,13 +45,11 @@
             label5 = new Label();
             txtStock = new TextBox();
             txtBuscar = new TextBox();
-            btnBuscar = new PictureBox();
             txtImagePath = new TextBox();
             label7 = new Label();
             pictureBoxProducto = new PictureBox();
             btnImagen = new Button();
             ((System.ComponentModel.ISupportInitialize)productsTable).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnBuscar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProducto).BeginInit();
             SuspendLayout();
             // 
@@ -243,18 +241,6 @@
             txtBuscar.Size = new Size(403, 23);
             txtBuscar.TabIndex = 11;
             // 
-            // btnBuscar
-            // 
-            btnBuscar.Image = Properties.Resources.search_12_24;
-            btnBuscar.Location = new Point(551, 244);
-            btnBuscar.Margin = new Padding(3, 2, 3, 2);
-            btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(21, 18);
-            btnBuscar.SizeMode = PictureBoxSizeMode.StretchImage;
-            btnBuscar.TabIndex = 20;
-            btnBuscar.TabStop = false;
-            btnBuscar.Click += btnBuscar_Click;
-            // 
             // txtImagePath
             // 
             txtImagePath.BackColor = SystemColors.Window;
@@ -308,7 +294,6 @@
             Controls.Add(pictureBoxProducto);
             Controls.Add(label7);
             Controls.Add(txtImagePath);
-            Controls.Add(btnBuscar);
             Controls.Add(txtBuscar);
             Controls.Add(label5);
             Controls.Add(txtStock);
@@ -329,7 +314,6 @@
             Name = "Productos";
             Size = new Size(875, 665);
             ((System.ComponentModel.ISupportInitialize)productsTable).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnBuscar).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProducto).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -354,7 +338,6 @@
         private Label label5;
         private TextBox txtStock;
         private TextBox txtBuscar;
-        private PictureBox btnBuscar;
         private TextBox txtImagePath;
         private Label label7;
         private PictureBox pictureBoxProducto;

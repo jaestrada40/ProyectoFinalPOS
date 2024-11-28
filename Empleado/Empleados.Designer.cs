@@ -248,9 +248,9 @@
             lblPosition.Font = new Font("Tahoma", 9F, FontStyle.Bold);
             lblPosition.Location = new Point(328, 112);
             lblPosition.Name = "lblPosition";
-            lblPosition.Size = new Size(61, 14);
+            lblPosition.Size = new Size(47, 14);
             lblPosition.TabIndex = 37;
-            lblPosition.Text = "Position:";
+            lblPosition.Text = "Cargo:";
             // 
             // employeesTable
             // 

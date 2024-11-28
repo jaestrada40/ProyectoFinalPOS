@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace ProyectoFinalPOS.Productos
 {
@@ -32,8 +33,8 @@ namespace ProyectoFinalPOS.Productos
 
         private void ProductosCarga()
         {
-            string query = "SELECT ProductID as ID, Code as Código, Name as Nombre, Description as Descripción, Price as Precio, Stock, ImagePath FROM jsoberanis_db.Products";
-            //string query = "SELECT ProductID as ID, Code as Código, Name as Nombre, Description as Descripción, Price as Precio, Stock, ImagePath as Imagen FROM Products";
+            //string query = "SELECT ProductID as ID, Code as Código, Name as Nombre, Description as Descripción, Price as Precio, Stock, ImagePath FROM jsoberanis_db.Products";
+            string query = "SELECT ProductID as ID, Code as Código, Name as Nombre, Description as Descripción, Price as Precio, Stock, ImagePath as Imagen FROM Products";
             try
             {
                 // Asegúrate de que la conexión esté abierta antes de usarla
@@ -86,7 +87,8 @@ namespace ProyectoFinalPOS.Productos
         // Metodo para guardar productos en base de datos
         private void GuardarProducto()
         {
-            string query = "INSERT INTO jsoberanis_db.Products (Code, Name, Description, Price, Stock, ImagePath) VALUES (@Code, @Name, @Description, @Price, @Stock, @ImagePath)";
+            //string query = "INSERT INTO jsoberanis_db.Products (Code, Name, Description, Price, Stock, ImagePath) VALUES (@Code, @Name, @Description, @Price, @Stock, @ImagePath)";
+            string query = "INSERT INTO Products (Code, Name, Description, Price, Stock, ImagePath) VALUES (@Code, @Name, @Description, @Price, @Stock, @ImagePath)";
 
             if (string.IsNullOrWhiteSpace(txtCodigo.Text) ||
                 string.IsNullOrWhiteSpace(txtNombre.Text) ||
@@ -153,23 +155,38 @@ namespace ProyectoFinalPOS.Productos
                 txtDescripcion.Text = selectedRow.Cells["Descripción"].Value.ToString();
                 txtPrecio.Text = selectedRow.Cells["Precio"].Value.ToString();
                 txtStock.Text = selectedRow.Cells["Stock"].Value.ToString();
-                txtImagePath.Text = selectedRow.Cells["ImagePath"].Value.ToString();
+                txtImagePath.Text = selectedRow.Cells["Imagen"].Value.ToString();
 
-                string imagePath = selectedRow.Cells["ImagePath"].Value.ToString();
+                string imagePath = selectedRow.Cells["Imagen"].Value.ToString();
+
+                // Forzar el uso de TLS 1.2 para la conexión SSL
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
                 if (Uri.IsWellFormedUriString(imagePath, UriKind.Absolute)) // Verificar si es una URL válida
                 {
                     try
                     {
                         pictureBoxProducto.Load(imagePath); // Cargar la imagen desde la URL
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        MessageBox.Show($"Error al cargar la imagen desde la URL: {ex.Message}", "Error de Carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         pictureBoxProducto.Image = null; // En caso de error cargar una imagen predeterminada o dejar vacía
                     }
                 }
                 else
                 {
-                    pictureBoxProducto.Image = null; // Si no es una URL válida
+                    // Si no es una URL válida, intentar cargarla como archivo local
+                    string localImagePath = Path.Combine(Application.StartupPath, imagePath); // Asegurarse que la ruta es correcta
+                    if (File.Exists(localImagePath)) // Verificar si el archivo existe
+                    {
+                        pictureBoxProducto.ImageLocation = localImagePath; // Cargar imagen desde archivo local
+                    }
+                    else
+                    {
+                        pictureBoxProducto.Image = null; // Imagen no encontrada
+                        MessageBox.Show("Imagen no encontrada en la ruta especificada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
 
                 btnGuardar.Enabled = false;
@@ -183,14 +200,15 @@ namespace ProyectoFinalPOS.Productos
             }
         }
 
+
         // Metodo para Actualizar los productos
         private void ActualizarProducto()
         {
             if (productsTable.SelectedRows.Count > 0)
             {
                 int productId = Convert.ToInt32(productsTable.SelectedRows[0].Cells["ID"].Value);
-                string query = "UPDATE jsoberanis_db.Products SET Code = @Code, Name = @Name, Description = @Description, Price = @Price, Stock = @Stock, ImagePath = @ImagePath WHERE ProductID = @ProductID";
-                //string query = "INSERT INTO Products (Code, Name, Description, Price, Stock, ImagePath) VALUES (@Code, @Name, @Description, @Price, @Stock, @ImagePath)";
+                //string query = "UPDATE jsoberanis_db.Products SET Code = @Code, Name = @Name, Description = @Description, Price = @Price, Stock = @Stock, ImagePath = @ImagePath WHERE ProductID = @ProductID";
+                string query = "UPDATE Products SET Code = @Code, Name = @Name, Description = @Description, Price = @Price, Stock = @Stock, ImagePath = @ImagePath WHERE ProductID = @ProductID";
 
                 try
                 {
@@ -246,7 +264,8 @@ namespace ProyectoFinalPOS.Productos
                 return;
             }
 
-            string query = "SELECT ProductID as ID, Code, Name as Nombre, Description as Descripcion, Price as Precio, Stock as Stock FROM jsoberanis_db.Products WHERE Code LIKE @search OR Name LIKE @search ";
+            //string query = "SELECT ProductID as ID, Code, Name as Nombre, Description as Descripcion, Price as Precio, Stock as Stock FROM jsoberanis_db.Products WHERE Code LIKE @search OR Name LIKE @search ";
+            string query = "SELECT ProductID as ID, Code, Name as Nombre, Description as Descripcion, Price as Precio, Stock as Stock FROM Products WHERE Code LIKE @search OR Name LIKE @search ";
 
             try
             {

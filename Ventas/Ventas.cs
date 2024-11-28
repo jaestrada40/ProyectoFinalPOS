@@ -58,8 +58,8 @@ namespace ProyectoFinalPOS.Ventas
         private List<Product> ObtenerProductos()    
         {
             List<Product> productos = new List<Product>();
-            string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products";
-            //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products";
+            //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products";
+            string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products";
 
             try
             {
@@ -186,7 +186,7 @@ namespace ProyectoFinalPOS.Ventas
         //Logica del boton pagar
         private void btnPagar_Click(object sender, EventArgs e)
         {
-            //Validacion del campo de NIT
+            // Validación del campo de NIT
             if (string.IsNullOrEmpty(NombreCliente) && string.IsNullOrEmpty(NitCliente))
             {
                 DialogResult result = MessageBox.Show("No se ha ingresado un NIT. ¿Desea proceder con 'CF'?",
@@ -204,7 +204,8 @@ namespace ProyectoFinalPOS.Ventas
                     return;
                 }
             }
-            //Validacion si no hay productos en el carrito
+
+            // Validación si no hay productos en el carrito
             if (flowLayoutPanelCarrito.Controls.Count == 0)
             {
                 MessageBox.Show("El carrito está vacío, por favor, agregue productos para continuar.",
@@ -219,73 +220,112 @@ namespace ProyectoFinalPOS.Ventas
             {
                 if (connection.State == ConnectionState.Closed)
                 {
-                    connection.Open(); // Abre la conexión antes de la transacción para verificar stock
+                    connection.Open(); // Abre la conexión antes de la transacción
                 }
 
-                //Validacion de stock disponible
-                foreach (var item in itemsCarrito)
-                {
-                    string queryCheckStock = "SELECT Stock FROM jsoberanis_db.Products WHERE ProductID = @ProductID";
-                    using (SqlCommand command = new SqlCommand(queryCheckStock, connection))
-                    {
-                        command.Parameters.AddWithValue("@ProductID", item.ProductID);
-                        int stockDisponible = Convert.ToInt32(command.ExecuteScalar());
-
-                        if (item.Cantidad > stockDisponible)
-                        {
-                            MessageBox.Show($"El producto {item.ProductName} tiene un stock insuficiente. Disponible: {stockDisponible}.",
-                                "Stock insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return; // Salir del proceso si hay un problema con el stock
-                        }
-                    }
-                }
-                //Resta de productos en SQL
+                // Inicia la transacción
                 using (SqlTransaction transaction = connection.BeginTransaction())
                 {
-                    try
+                    // Validación de stock disponible antes de realizar la venta
+                    foreach (var item in itemsCarrito)
                     {
-                        foreach (CarritoItemCard item in itemsCarrito)
+                        string queryCheckStock = "SELECT Stock FROM Products WHERE ProductID = @ProductID";
+                        using (SqlCommand command = new SqlCommand(queryCheckStock, connection, transaction))
                         {
-                            string query = "UPDATE jsoberanis_db.Products SET Stock = Stock - @Cantidad WHERE ProductID = @ProductID";
-                            using (SqlCommand command = new SqlCommand(query, connection, transaction))
-                            {
-                                command.Parameters.AddWithValue("@Cantidad", item.Cantidad);
-                                command.Parameters.AddWithValue("@ProductID", item.ProductID);
+                            command.Parameters.AddWithValue("@ProductID", item.ProductID);
+                            int stockDisponible = Convert.ToInt32(command.ExecuteScalar());
 
-                                int affectedRows = command.ExecuteNonQuery();
-                                if (affectedRows == 0)
-                                {
-                                    throw new Exception($"El producto {item.ProductName} no tiene suficiente stock.");
-                                }
+                            if (item.Cantidad > stockDisponible)
+                            {
+                                MessageBox.Show($"El producto {item.ProductName} tiene un stock insuficiente. Disponible: {stockDisponible}.",
+                                    "Stock insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                transaction.Rollback(); // Cancela la transacción si hay un error de stock
+                                return;
                             }
                         }
+                    }
 
-                        transaction.Commit(); // Si todo es exitoso, se confirma la transacción
-                        MessageBox.Show("Compra realizada con éxito. El inventario se ha actualizado.",
-                            "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        MostrarRecibo(itemsCarrito, total);
-                        RecargarProductos(); // Actualiza el stock diponible
-                    }
-                    catch (Exception ex)
+                    // Inserción de la venta en la tabla Sales
+                    string insertSaleQuery = "INSERT INTO Sales (CustomerID, EmployeeID, Total) OUTPUT INSERTED.SaleID VALUES (@CustomerID, @EmployeeID, @Total)";
+                    int saleID;
+                    using (SqlCommand command = new SqlCommand(insertSaleQuery, connection, transaction))
                     {
-                        transaction.Rollback(); // En caso de error, se revierte la transacción
-                        MessageBox.Show("Error al procesar la compra: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        command.Parameters.AddWithValue("@CustomerID", ObtenerCustomerID(transaction));  // Pasamos la transacción aquí
+                        command.Parameters.AddWithValue("@EmployeeID", Global.EmployeeID); // ID del empleado logueado
+                        command.Parameters.AddWithValue("@Total", total);
+                        saleID = (int)command.ExecuteScalar(); // Obtiene el SaleID generado
                     }
+
+                    // Insertar los detalles de la venta en SaleDetails
+                    foreach (CarritoItemCard item in itemsCarrito)
+                    {
+                        string insertDetailQuery = "INSERT INTO SaleDetails (SaleID, ProductID, Quantity, UnitPrice) VALUES (@SaleID, @ProductID, @Quantity, @UnitPrice)";
+                        using (SqlCommand command = new SqlCommand(insertDetailQuery, connection, transaction))
+                        {
+                            command.Parameters.AddWithValue("@SaleID", saleID);
+                            command.Parameters.AddWithValue("@ProductID", item.ProductID);
+                            command.Parameters.AddWithValue("@Quantity", item.Cantidad);
+                            command.Parameters.AddWithValue("@UnitPrice", item.Price);
+                            command.ExecuteNonQuery();
+                        }
+
+                        // Actualizar el stock en la tabla Products
+                        string updateStockQuery = "UPDATE Products SET Stock = Stock - @Cantidad WHERE ProductID = @ProductID";
+                        using (SqlCommand command = new SqlCommand(updateStockQuery, connection, transaction))
+                        {
+                            command.Parameters.AddWithValue("@Cantidad", item.Cantidad);
+                            command.Parameters.AddWithValue("@ProductID", item.ProductID);
+                            command.ExecuteNonQuery();
+                        }
+                    }
+
+                    // Confirmar la transacción si todo ha ido bien
+                    transaction.Commit();
+                    MessageBox.Show("Compra realizada con éxito. El inventario se ha actualizado.",
+                        "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    MostrarRecibo(itemsCarrito, total); // Mostrar el recibo
+                    RecargarProductos(); // Actualizar los productos disponibles
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al conectarse a la base de datos: " + ex.Message, "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al procesar la compra: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 if (connection.State == ConnectionState.Open)
                 {
-                    connection.Close(); // Cierra la conexión al final
+                    connection.Close(); // Cerrar la conexión al final
                 }
             }
 
-            // Limpiar el carrito
+            // Limpiar el carrito después de realizar la compra
+            LimpiarCarrito();
+        }
+
+        private int ObtenerCustomerID(SqlTransaction transaction)
+        {
+            if (string.IsNullOrEmpty(NitCliente)) return 0; // Si no hay cliente seleccionado, retornar 0 (o manejar como un "Consumidor Final")
+
+            try
+            {
+                string query = "SELECT CustomerID FROM Customers WHERE NIT = @NitCliente";
+                using (SqlCommand command = new SqlCommand(query, connection, transaction))  // Pasamos la transacción aquí
+                {
+                    command.Parameters.AddWithValue("@NitCliente", NitCliente);
+                    return Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el CustomerID: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0; // Manejar el error adecuadamente
+            }
+        }
+
+        private void LimpiarCarrito()
+        {
             flowLayoutPanelCarrito.Controls.Clear();
             totalCarrito = 0;
             lblTotal.Text = $"Q{totalCarrito:F2}";
@@ -293,6 +333,28 @@ namespace ProyectoFinalPOS.Ventas
             NitCliente = null;
             lblCliente.Text = "Cliente: ";
             btnPagar.Enabled = false;
+        }
+
+
+
+        // Método para obtener el CustomerID por el NIT
+        private int ObtenerCustomerIDPorNIT(string nit)
+        {
+            int customerID = 0;
+            try
+            {
+                string query = "SELECT CustomerID FROM Customers WHERE NIT = @NIT";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NIT", nit);
+                    customerID = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener CustomerID: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return customerID;
         }
         private void Ventas_Load(object sender, EventArgs e)
         {
@@ -310,7 +372,8 @@ namespace ProyectoFinalPOS.Ventas
                     connection.Open();
                 }
 
-                string query = "SELECT FirstName, LastName, Phone FROM jsoberanis_db.Customers WHERE NIT = @NIT";
+                //string query = "SELECT FirstName, LastName, Phone FROM jsoberanis_db.Customers WHERE NIT = @NIT";
+                string query = "SELECT FirstName, LastName, Phone FROM Customers WHERE NIT = @NIT";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Nit", nit);
@@ -384,7 +447,8 @@ namespace ProyectoFinalPOS.Ventas
                     return;
                 }
 
-                string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products WHERE Code LIKE @search OR Name LIKE @search";
+                //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products WHERE Code LIKE @search OR Name LIKE @search";
+                string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products WHERE Code LIKE @search OR Name LIKE @search";
 
                 try
                 {
@@ -451,6 +515,37 @@ namespace ProyectoFinalPOS.Ventas
 
         }
 
+        private Customer ObtenerClientePorNIT(string nit)
+        {
+
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            Customer cliente = null;
+            string query = "SELECT CustomerID, FirstName, LastName, Phone FROM Customers WHERE NIT = @NIT";
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@NIT", nit);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        cliente = new Customer
+                        {
+                            CustomerID = reader.GetInt32(0),
+                            FirstName = reader.GetString(1),
+                            LastName = reader.GetString(2),
+                            Phone = reader.GetString(3)
+                        };
+                    }
+                }
+            }
+            return cliente;
+        }
+
         //Evento para validar el NIT
         private void btnNit_Click(object sender, EventArgs e)
         {
@@ -467,7 +562,8 @@ namespace ProyectoFinalPOS.Ventas
                     connection.Open();
                 }
 
-                string query = "SELECT FirstName, LastName, Phone FROM jsoberanis_db.Customers WHERE NIT = @NIT";
+                //string query = "SELECT FirstName, LastName, Phone FROM jsoberanis_db.Customers WHERE NIT = @NIT";
+                string query = "SELECT FirstName, LastName, Phone FROM Customers WHERE NIT = @NIT";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Nit", nit);
@@ -526,5 +622,8 @@ namespace ProyectoFinalPOS.Ventas
             MessageBox.Show("Cliente eliminado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
+
+
+
 }
         
