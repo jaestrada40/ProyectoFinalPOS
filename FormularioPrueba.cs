@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ProyectoFinalPOS
 {
-    public partial class MenuVentas : Form
+    public partial class FormularioPrueba : Form
     {
-        public MenuVentas()
+        public FormularioPrueba()
         {
             InitializeComponent();
         }

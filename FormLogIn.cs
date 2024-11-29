@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using ProyectoFinalPOS.DBconexion;
+using ProyectoFinalPOS.Objects;
 using System.Data;
 
 namespace ProyectoFinalPOS
@@ -11,6 +12,10 @@ namespace ProyectoFinalPOS
         public FormLogIn()
         {
             InitializeComponent();
+            textBoxPassword.KeyDown += textBoxPassword_KeyDown;
+            textBoxUsuario.KeyDown += textBoxUsuario_KeyDown;
+            this.AcceptButton = buttonIngresar;
+            this.ActiveControl = textBoxUsuario;
         }
 
         private void buttonIngresar_Click(object sender, EventArgs e)
@@ -19,7 +24,6 @@ namespace ProyectoFinalPOS
             string password = textBoxPassword.Text.Trim();
 
             // Validación de campos vacíos
-            // if (username == null || username == "" || password == null || password == "")
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Por favor, ingrese el usuario y la contraseña.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -42,10 +46,28 @@ namespace ProyectoFinalPOS
             }
         }
 
+        private void textBoxUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                buttonIngresar_Click(sender, e);
+            }
+        }
+
+        private void textBoxPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                buttonIngresar_Click(sender, e);
+            }
+        }
+
         private bool ValidarCredenciales(string username, string password)
         {
-            //string query = "SELECT COUNT(1) FROM jsoberanis_db.Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
-            string query = "SELECT COUNT(1) FROM Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
+            string query = "SELECT EmployeeID, Username, FirstName FROM jsoberanis_db.Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
+            //string query = "SELECT EmployeeID, Username, FirstName FROM Employees WHERE Username = @Username AND PasswordHash = @PasswordHash";
             bool esValido = false;
 
             try
@@ -59,11 +81,26 @@ namespace ProyectoFinalPOS
                 {
                     // Agregar los parámetros para la consulta
                     command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@PasswordHash", password); // Asegúrate de que el password esté encriptado si la base de datos así lo requiere
+                    command.Parameters.AddWithValue("@PasswordHash", password);
 
-                    // Ejecutar la consulta
-                    int count = Convert.ToInt32(command.ExecuteScalar());
-                    esValido = (count == 1);
+                    // Ejecutar la consulta y obtener los datos
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Almacenar los valores de EmployeeID, Username y FirstName
+                            int employeeID = reader.GetInt32(0);
+                            string usernameFromDb = reader.GetString(1);
+                            string firstName = reader.GetString(2);
+
+                            // Asignar estos valores a las variables estáticas
+                            Global.EmployeeID = employeeID;
+                            Global.Username = usernameFromDb;
+                            Global.FirstName = firstName;
+
+                            esValido = true;
+                        }
+                    }
                 }
             }
             catch (SqlException ex)

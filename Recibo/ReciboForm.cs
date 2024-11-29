@@ -13,20 +13,27 @@ namespace ProyectoFinalPOS.Recibo
 {
     public partial class ReciboForm : Form
     {
-        public ReciboForm(List<CarritoItemCard> itemsCarrito, decimal total)
+        public List<CarritoItemCard> ItemsCarrito { get; set; }
+        public decimal Total { get; set; }
+        public ReciboForm(List<CarritoItemCard> itemsCarrito, decimal total, string nombreCompleto, string nitCliente)
         {
             InitializeComponent();
-            CargarRecibo(itemsCarrito, total);
+            lblCliente.Text = $"Cliente: {nombreCompleto}";
+            lblNit.Text = $"NIT: {nitCliente}";
+            ItemsCarrito = itemsCarrito;
+            Total = total;
+
+            CargarRecibo();
         }
 
-        private void CargarRecibo(List<CarritoItemCard> itemsCarrito, decimal total)
+        private void CargarRecibo()
         {
             // Configurar encabezado
             lblEncabezado.Text = "Recibo de Compra";
             lblFecha.Text = $"Fecha: {DateTime.Now.ToString("dd/MM/yyyy HH:mm")}";
 
             // Agregar los productos al FlowLayoutPanel
-            foreach (var item in itemsCarrito)
+            foreach (var item in ItemsCarrito)
             {
                 // Crear un contenedor para cada producto en el recibo
                 var panelItem = new Panel
@@ -59,7 +66,8 @@ namespace ProyectoFinalPOS.Recibo
                 {
                     Text = $"Subtotal: Q{(item.Price * item.Cantidad):F2}",
                     Location = new System.Drawing.Point(390, 10),
-                    Width = 100
+                    //Width = 100
+                    AutoSize = true
                 };
 
                 // Agregar las etiquetas al panel
@@ -73,12 +81,22 @@ namespace ProyectoFinalPOS.Recibo
             }
 
             // Mostrar el total
-            lblTotal.Text = $"Total a pagar: Q{total:F2}";
+            lblTotal.Text = $"Total: Q{Total:F2}";
         }
 
         private void lblFecha_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ReciboForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCompletar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
