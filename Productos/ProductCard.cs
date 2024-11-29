@@ -31,11 +31,10 @@ namespace ProyectoFinalPOS.Productos
             ProductName = string.Empty;
             ProductCode = string.Empty;
         }
-
         public void SetProductData(Product producto)
         {
-            ProductName= producto.Name;
-            ProductCode= producto.Code;
+            ProductName = producto.Name;
+            ProductCode = producto.Code;
 
             this.producto = producto;
             lblName.Text = producto.Name;
@@ -48,19 +47,32 @@ namespace ProyectoFinalPOS.Productos
             {
                 try
                 {
-                //pictureBoxImage.Image = Image.FromFile(producto.ImagePath);
-                pictureBoxImage.Load(producto.ImagePath);
-
+                    pictureBoxImage.Load(producto.ImagePath);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error al cargar la imagen desde la URL: {ex.Message}", "Error de Carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    pictureBoxImage.Image = null;
+                    MessageBox.Show($"Error al cargar la imagen desde el archivo local: {ex.Message}", "Error de Carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CargarImagenPredeterminada();
                 }
             }
             else
             {
-                pictureBoxImage.Image = null;
+                CargarImagenPredeterminada();
+            }
+        }
+
+        // Método para cargar la imagen quemada (predeterminada)
+        private void CargarImagenPredeterminada()
+        {
+            try
+            {
+                pictureBoxImage.Load(producto.ImagePath);
+                pictureBoxImage.SizeMode = PictureBoxSizeMode.StretchImage; // Opcional, ajusta la imagen al tamaño del PictureBox
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar la imagen predeterminada desde la URL: {ex.Message}", "Error de Carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //pictureBoxImage.Image = Properties.Resources.ImagePlaceholder; // Usa una imagen local en caso de falla
             }
         }
 

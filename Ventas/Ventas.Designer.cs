@@ -246,7 +246,7 @@
             // 
             // panel6
             // 
-            panel6.AutoScroll = true;
+            panel6.AutoSize = true;
             panel6.Controls.Add(flowLayoutPanel1);
             panel6.Dock = DockStyle.Fill;
             panel6.Location = new Point(0, 79);
@@ -286,6 +286,7 @@
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
