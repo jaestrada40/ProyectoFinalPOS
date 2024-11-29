@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -49,11 +50,14 @@ namespace ProyectoFinalPOS
                 return;
             }
 
+            // Encriptar la contraseña antes de guardarla
+            string hashedPassword = PasswordHelper.HashPassword(txtContraseña.Text);
+
             // Consulta SQL para insertar un nuevo empleado
-            string query = "INSERT INTO jsoberanis_db.Employees (FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash) " +
-                           "VALUES (@FirstName, @LastName, @IdentificationNumber, @Position, @Username, @PasswordHash)";
-            //string query = "INSERT INTO Employees (FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash) " +
-            //   "VALUES (@FirstName, @LastName, @IdentificationNumber, @Position, @Username, @PasswordHash)";
+            //string query = "INSERT INTO jsoberanis_db.Employees (FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash) " +
+            //               "VALUES (@FirstName, @LastName, @IdentificationNumber, @Position, @Username, @PasswordHash)";
+            string query = "INSERT INTO Employees (FirstName, LastName, IdentificationNumber, Position, Username, PasswordHash) " +
+               "VALUES (@FirstName, @LastName, @IdentificationNumber, @Position, @Username, @PasswordHash)";
 
             try
             {
@@ -71,7 +75,8 @@ namespace ProyectoFinalPOS
                     command.Parameters.AddWithValue("@IdentificationNumber", txtIdentificador.Text);
                     command.Parameters.AddWithValue("@Position", txtPosition.Text);
                     command.Parameters.AddWithValue("@Username", txtUsuario.Text);
-                    command.Parameters.AddWithValue("@PasswordHash", txtContraseña.Text);
+                    // Guardar el hash de la contraseña
+                    command.Parameters.AddWithValue("@PasswordHash", hashedPassword); 
 
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
@@ -119,6 +124,19 @@ namespace ProyectoFinalPOS
         {
             // Es un operador ternario que evalúa si chkVerContraseña.Checked es true o false.
             txtContraseña.PasswordChar = chkVerContraseña.Checked ? '\0' : '*';
+        }
+        public class PasswordHelper
+        {
+            // Método para generar un hash de la contraseña usando SHA256
+            public static string HashPassword(string password)
+            {
+                using (SHA256 sha256 = SHA256.Create())
+                {
+                    byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                    // Devuelve el hash en formato hexadecimal
+                    return BitConverter.ToString(bytes).Replace("-", "").ToLower(); 
+                }
+            }
         }
     }
 }
