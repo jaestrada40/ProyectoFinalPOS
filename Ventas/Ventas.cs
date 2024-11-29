@@ -58,8 +58,8 @@ namespace ProyectoFinalPOS.Ventas
         private List<Product> ObtenerProductos()    
         {
             List<Product> productos = new List<Product>();
-            //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products";
-            string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products";
+            string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products";
+            //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products";
 
             try
             {
@@ -229,7 +229,8 @@ namespace ProyectoFinalPOS.Ventas
                     // Validación de stock disponible antes de realizar la venta
                     foreach (var item in itemsCarrito)
                     {
-                        string queryCheckStock = "SELECT Stock FROM Products WHERE ProductID = @ProductID";
+                        string queryCheckStock = "SELECT Stock FROM jsoberanis_db.Products WHERE ProductID = @ProductID";
+                        //string queryCheckStock = "SELECT Stock FROM Products WHERE ProductID = @ProductID";
                         using (SqlCommand command = new SqlCommand(queryCheckStock, connection, transaction))
                         {
                             command.Parameters.AddWithValue("@ProductID", item.ProductID);
@@ -246,7 +247,8 @@ namespace ProyectoFinalPOS.Ventas
                     }
 
                     // Inserción de la venta en la tabla Sales
-                    string insertSaleQuery = "INSERT INTO Sales (CustomerID, EmployeeID, Total) OUTPUT INSERTED.SaleID VALUES (@CustomerID, @EmployeeID, @Total)";
+                    string insertSaleQuery = "INSERT INTO jsoberanis_db.Sales (CustomerID, EmployeeID, Total) OUTPUT INSERTED.SaleID VALUES (@CustomerID, @EmployeeID, @Total)";
+                    //string insertSaleQuery = "INSERT INTO Sales (CustomerID, EmployeeID, Total) OUTPUT INSERTED.SaleID VALUES (@CustomerID, @EmployeeID, @Total)";
                     int saleID;
                     using (SqlCommand command = new SqlCommand(insertSaleQuery, connection, transaction))
                     {
@@ -259,7 +261,8 @@ namespace ProyectoFinalPOS.Ventas
                     // Insertar los detalles de la venta en SaleDetails
                     foreach (CarritoItemCard item in itemsCarrito)
                     {
-                        string insertDetailQuery = "INSERT INTO SaleDetails (SaleID, ProductID, Quantity, UnitPrice) VALUES (@SaleID, @ProductID, @Quantity, @UnitPrice)";
+                        string insertDetailQuery = "INSERT INTO jsoberanis_db.SaleDetails (SaleID, ProductID, Quantity, UnitPrice) VALUES (@SaleID, @ProductID, @Quantity, @UnitPrice)";
+                        //string insertDetailQuery = "INSERT INTO SaleDetails (SaleID, ProductID, Quantity, UnitPrice) VALUES (@SaleID, @ProductID, @Quantity, @UnitPrice)";
                         using (SqlCommand command = new SqlCommand(insertDetailQuery, connection, transaction))
                         {
                             command.Parameters.AddWithValue("@SaleID", saleID);
@@ -270,7 +273,8 @@ namespace ProyectoFinalPOS.Ventas
                         }
 
                         // Actualizar el stock en la tabla Products
-                        string updateStockQuery = "UPDATE Products SET Stock = Stock - @Cantidad WHERE ProductID = @ProductID";
+                        string updateStockQuery = "UPDATE jsoberanis_db.Products SET Stock = Stock - @Cantidad WHERE ProductID = @ProductID";
+                        //string updateStockQuery = "UPDATE Products SET Stock = Stock - @Cantidad WHERE ProductID = @ProductID";
                         using (SqlCommand command = new SqlCommand(updateStockQuery, connection, transaction))
                         {
                             command.Parameters.AddWithValue("@Cantidad", item.Cantidad);
@@ -310,7 +314,8 @@ namespace ProyectoFinalPOS.Ventas
 
             try
             {
-                string query = "SELECT CustomerID FROM Customers WHERE NIT = @NitCliente";
+                string query = "SELECT CustomerID FROM jsoberanis_db.Customers WHERE NIT = @NitCliente";
+                //string query = "SELECT CustomerID FROM Customers WHERE NIT = @NitCliente";
                 using (SqlCommand command = new SqlCommand(query, connection, transaction))  // Pasamos la transacción aquí
                 {
                     command.Parameters.AddWithValue("@NitCliente", NitCliente);
@@ -343,7 +348,8 @@ namespace ProyectoFinalPOS.Ventas
             int customerID = 0;
             try
             {
-                string query = "SELECT CustomerID FROM Customers WHERE NIT = @NIT";
+                string query = "SELECT CustomerID FROM jsoberanis_db.Customers WHERE NIT = @NIT";
+                //string query = "SELECT CustomerID FROM Customers WHERE NIT = @NIT";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@NIT", nit);
@@ -372,8 +378,8 @@ namespace ProyectoFinalPOS.Ventas
                     connection.Open();
                 }
 
-                //string query = "SELECT FirstName, LastName, Phone FROM jsoberanis_db.Customers WHERE NIT = @NIT";
-                string query = "SELECT FirstName, LastName, Phone FROM Customers WHERE NIT = @NIT";
+                string query = "SELECT FirstName, LastName, Phone FROM jsoberanis_db.Customers WHERE NIT = @NIT";
+                //string query = "SELECT FirstName, LastName, Phone FROM Customers WHERE NIT = @NIT";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Nit", nit);
@@ -447,8 +453,8 @@ namespace ProyectoFinalPOS.Ventas
                     return;
                 }
 
-                //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products WHERE Code LIKE @search OR Name LIKE @search";
-                string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products WHERE Code LIKE @search OR Name LIKE @search";
+                string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM jsoberanis_db.Products WHERE Code LIKE @search OR Name LIKE @search";
+                //string query = "SELECT ProductID, Code, Name, Description, Price, Stock, ImagePath FROM Products WHERE Code LIKE @search OR Name LIKE @search";
 
                 try
                 {
@@ -523,7 +529,8 @@ namespace ProyectoFinalPOS.Ventas
                 connection.Open();
             }
             Customer cliente = null;
-            string query = "SELECT CustomerID, FirstName, LastName, Phone FROM Customers WHERE NIT = @NIT";
+            string query = "SELECT CustomerID, FirstName, LastName, Phone FROM jsoberanis_db.Customers WHERE NIT = @NIT";
+            //string query = "SELECT CustomerID, FirstName, LastName, Phone FROM Customers WHERE NIT = @NIT";
 
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -562,8 +569,8 @@ namespace ProyectoFinalPOS.Ventas
                     connection.Open();
                 }
 
-                //string query = "SELECT FirstName, LastName, Phone FROM jsoberanis_db.Customers WHERE NIT = @NIT";
-                string query = "SELECT FirstName, LastName, Phone FROM Customers WHERE NIT = @NIT";
+                string query = "SELECT FirstName, LastName, Phone FROM jsoberanis_db.Customers WHERE NIT = @NIT";
+                //string query = "SELECT FirstName, LastName, Phone FROM Customers WHERE NIT = @NIT";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Nit", nit);

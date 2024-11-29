@@ -28,8 +28,8 @@ namespace ProyectoFinalPOS
 
         private void totalVentas()
         {
-            //string query = "SELECT COUNT(*) AS TotalProducts FROM jsoberanis_db.Sales;";
-            string query = "SELECT COUNT(*) AS TotalVentas FROM Sales;";
+            string query = "SELECT COUNT(*) AS TotalProducts FROM jsoberanis_db.Sales;";
+            //string query = "SELECT COUNT(*) AS TotalVentas FROM Sales;";
 
             try
             {
@@ -60,8 +60,9 @@ namespace ProyectoFinalPOS
 
         private void totalProducts()
         {
-            //string query = "SELECT COUNT(*) AS TotalProducts FROkM jsoberanis_db.Products;";
-            string query = "SELECT COUNT(*) AS TotalProducts FROM Products;";
+            string query = "SELECT COUNT(*) AS TotalProducts FRO" +
+                "M jsoberanis_db.Products;";
+            //string query = "SELECT COUNT(*) AS TotalProducts FROM Products;";
 
             try
             {
@@ -92,8 +93,8 @@ namespace ProyectoFinalPOS
 
         private void totalCustomers()
         {
-            //string query = "SELECT COUNT(*) AS TotalCustomers FROM jsoberanis_db.Customers;";
-            string query = "SELECT COUNT(*) AS TotalCustomers FROM Customers;";
+            string query = "SELECT COUNT(*) AS TotalCustomers FROM jsoberanis_db.Customers;";
+            //string query = "SELECT COUNT(*) AS TotalCustomers FROM Customers;";
 
             try
             {
@@ -123,8 +124,8 @@ namespace ProyectoFinalPOS
 
         private void totalEmployees()
         {
-            //string query = "SELECT COUNT(*) AS TotalEmployees FROM jsoberanis_db.Employees;";
-            string query = "SELECT COUNT(*) AS TotalEmployees FROM Employees;";
+            string query = "SELECT COUNT(*) AS TotalEmployees FROM jsoberanis_db.Employees;";
+            //string query = "SELECT COUNT(*) AS TotalEmployees FROM Employees;";
 
             try
             {

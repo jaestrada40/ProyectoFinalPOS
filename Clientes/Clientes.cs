@@ -24,8 +24,8 @@ namespace ProyectoFinalPOS.Clientes
         // Método para cargar los datos en el DataGridView
         private void CustomersCarga()
         {
-            //string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM jsoberanis_db.Customers";
-            string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM Customers";
+            string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM jsoberanis_db.Customers";
+            //string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM Customers";
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -61,7 +61,8 @@ namespace ProyectoFinalPOS.Clientes
                 return; // Si la validación falla, no procedemos con el guardado
             }
 
-            string query = "INSERT INTO Customers (NIT, FirstName, LastName, Address, Phone) VALUES (@NIT, @FirstName, @LastName, @Address, @Phone)";
+            string query = "INSERT INTO jsoberanis_db.Customers (NIT, FirstName, LastName, Address, Phone) VALUES (@NIT, @FirstName, @LastName, @Address, @Phone)";
+            //string query = "INSERT INTO Customers (NIT, FirstName, LastName, Address, Phone) VALUES (@NIT, @FirstName, @LastName, @Address, @Phone)";
 
             try
             {
@@ -176,7 +177,8 @@ namespace ProyectoFinalPOS.Clientes
         // Método para verificar si el NIT ya está registrado en la base de datos
         private bool EsNitDuplicado(string nit)
         {
-            string query = "SELECT COUNT(*) FROM Customers WHERE NIT = @NIT";
+            string query = "SELECT COUNT(*) FROM jsoberanis_db.Customers WHERE NIT = @NIT";
+            //string query = "SELECT COUNT(*) FROM Customers WHERE NIT = @NIT";
 
             try
             {
@@ -244,8 +246,8 @@ namespace ProyectoFinalPOS.Clientes
             if (customersTable.SelectedRows.Count > 0)
             {
                 int customerId = Convert.ToInt32(customersTable.SelectedRows[0].Cells["ID"].Value);
-                //string query = "UPDATE jsoberanis_db.Customers SET NIT = @NIT, FirstName = @FirstName, LastName = @LastName, Address = @Address, Phone = @Phone WHERE CustomerID = @CustomerID";
-                string query = "UPDATE Customers SET NIT = @NIT, FirstName = @FirstName, LastName = @LastName, Address = @Address, Phone = @Phone WHERE CustomerID = @CustomerID";
+                string query = "UPDATE jsoberanis_db.Customers SET NIT = @NIT, FirstName = @FirstName, LastName = @LastName, Address = @Address, Phone = @Phone WHERE CustomerID = @CustomerID";
+                //string query = "UPDATE Customers SET NIT = @NIT, FirstName = @FirstName, LastName = @LastName, Address = @Address, Phone = @Phone WHERE CustomerID = @CustomerID";
 
                 try
                 {
@@ -310,8 +312,8 @@ namespace ProyectoFinalPOS.Clientes
             }
 
             // Si hay texto en el campo, realiza la búsqueda
-            //string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM jsoberanis_db.Customers WHERE NIT LIKE @search OR FirstName LIKE @search";
-            string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM Customers WHERE NIT LIKE @search OR FirstName LIKE @search";
+            string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM jsoberanis_db.Customers WHERE NIT LIKE @search OR FirstName LIKE @search";
+            //string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM Customers WHERE NIT LIKE @search OR FirstName LIKE @search";
 
             try
             {
@@ -362,8 +364,8 @@ namespace ProyectoFinalPOS.Clientes
                 // Procede con la eliminación solo si el usuario confirma con "Sí"
                 if (confirmacion == DialogResult.Yes)
                 {
-                    //string query = "DELETE FROM jsoberanis_db.Customers WHERE CustomerID = @CustomerID";
-                    string query = "DELETE FROM Customers WHERE CustomerID = @CustomerID";
+                    string query = "DELETE FROM jsoberanis_db.Customers WHERE CustomerID = @CustomerID";
+                    //string query = "DELETE FROM Customers WHERE CustomerID = @CustomerID";
 
                     try
                     {

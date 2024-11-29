@@ -26,48 +26,48 @@ namespace ProyectoFinalPOS.Factura
         private void CargarFactura()
         {
 
-            //string detalleVentaQuery = @"
-            //                            SELECT 
-            //                                jsoberanis_db.Sales.Total AS [Total Venta],
-            //                                jsoberanis_db.Employees.FirstName + ' ' + jsoberanis_db.Employees.LastName AS [Empleado],
-            //                                jsoberanis_db.Customers.FirstName + ' ' + jsoberanis_db.Customers.LastName AS [Cliente],
-            //                                jsoberanis_db.Customers.NIT
-            //                            FROM jsoberanis_db.Sales
-            //                            JOIN jsoberanis_db.Employees ON jsoberanis_db.Sales.EmployeeID = jsoberanis_db.Employees.EmployeeID
-            //                            JOIN jsoberanis_db.Customers ON jsoberanis_db.Sales.CustomerID = jsoberanis_db.Customers.CustomerID
-            //                            WHERE jsoberanis_db.Sales.SaleID = @SaleID";
-
-            //string productosQuery = @"
-            //                        SELECT 
-            //                            jsoberanis_db.Products.Name AS [Producto],
-            //                            jsoberanis_db.SaleDetails.Quantity AS [Cantidad],
-            //                            jsoberanis_db.SaleDetails.UnitPrice AS [Precio Unitario],
-            //                            (jsoberanis_db.SaleDetails.Quantity * jsoberanis_db.SaleDetails.UnitPrice) AS [Subtotal]
-            //                        FROM jsoberanis_db.SaleDetails
-            //                        JOIN jsoberanis_db.Products ON jsoberanis_db.SaleDetails.ProductID = jsoberanis_db.Products.ProductID
-            //                        WHERE jsoberanis_db.SaleDetails.SaleID = @SaleID";
-
-
             string detalleVentaQuery = @"
                                         SELECT 
-                                            Sales.Total AS [Total Venta],
-                                            Employees.FirstName + ' ' + Employees.LastName AS [Empleado],
-                                            Customers.FirstName + ' ' + Customers.LastName AS [Cliente],
-                                            Customers.NIT
-                                        FROM Sales
-                                        JOIN Employees ON Sales.EmployeeID = Employees.EmployeeID
-                                        JOIN Customers ON Sales.CustomerID = Customers.CustomerID
-                                        WHERE Sales.SaleID = @SaleID";
+                                            jsoberanis_db.Sales.Total AS [Total Venta],
+                                            jsoberanis_db.Employees.FirstName + ' ' + jsoberanis_db.Employees.LastName AS [Empleado],
+                                            jsoberanis_db.Customers.FirstName + ' ' + jsoberanis_db.Customers.LastName AS [Cliente],
+                                            jsoberanis_db.Customers.NIT
+                                        FROM jsoberanis_db.Sales
+                                        JOIN jsoberanis_db.Employees ON jsoberanis_db.Sales.EmployeeID = jsoberanis_db.Employees.EmployeeID
+                                        JOIN jsoberanis_db.Customers ON jsoberanis_db.Sales.CustomerID = jsoberanis_db.Customers.CustomerID
+                                        WHERE jsoberanis_db.Sales.SaleID = @SaleID";
 
             string productosQuery = @"
                                     SELECT 
-                                        Products.Name AS [Producto],
-                                        SaleDetails.Quantity AS [Cantidad],
-                                        SaleDetails.UnitPrice AS [Precio Unitario],
-                                        (SaleDetails.Quantity * SaleDetails.UnitPrice) AS [Total]
-                                    FROM SaleDetails
-                                    JOIN Products ON SaleDetails.ProductID = Products.ProductID
-                                    WHERE SaleDetails.SaleID = @SaleID";
+                                        jsoberanis_db.Products.Name AS [Producto],
+                                        jsoberanis_db.SaleDetails.Quantity AS [Cantidad],
+                                        jsoberanis_db.SaleDetails.UnitPrice AS [Precio Unitario],
+                                        (jsoberanis_db.SaleDetails.Quantity * jsoberanis_db.SaleDetails.UnitPrice) AS [Subtotal]
+                                    FROM jsoberanis_db.SaleDetails
+                                    JOIN jsoberanis_db.Products ON jsoberanis_db.SaleDetails.ProductID = jsoberanis_db.Products.ProductID
+                                    WHERE jsoberanis_db.SaleDetails.SaleID = @SaleID";
+
+
+            //string detalleVentaQuery = @"
+            //                            SELECT 
+            //                                Sales.Total AS [Total Venta],
+            //                                Employees.FirstName + ' ' + Employees.LastName AS [Empleado],
+            //                                Customers.FirstName + ' ' + Customers.LastName AS [Cliente],
+            //                                Customers.NIT
+            //                            FROM Sales
+            //                            JOIN Employees ON Sales.EmployeeID = Employees.EmployeeID
+            //                            JOIN Customers ON Sales.CustomerID = Customers.CustomerID
+            //                            WHERE Sales.SaleID = @SaleID";
+
+            //string productosQuery = @"
+            //                        SELECT 
+            //                            Products.Name AS [Producto],
+            //                            SaleDetails.Quantity AS [Cantidad],
+            //                            SaleDetails.UnitPrice AS [Precio Unitario],
+            //                            (SaleDetails.Quantity * SaleDetails.UnitPrice) AS [Total]
+            //                        FROM SaleDetails
+            //                        JOIN Products ON SaleDetails.ProductID = Products.ProductID
+            //                        WHERE SaleDetails.SaleID = @SaleID";
 
             try
             {
