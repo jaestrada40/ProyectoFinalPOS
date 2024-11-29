@@ -213,7 +213,7 @@
             btnGuardar.TabIndex = 14;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
-            btnGuardar.Click += btnGuardar_Click;
+            //btnGuardar.Click += btnGuardar_Click;
             // 
             // btnEliminar
             // 
@@ -229,7 +229,7 @@
             btnEliminar.TabIndex = 15;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
-            btnEliminar.Click += btnEliminar_Click;
+            //btnEliminar.Click += btnEliminar_Click;
             // 
             // btnActualizar
             // 
@@ -245,7 +245,7 @@
             btnActualizar.TabIndex = 17;
             btnActualizar.Text = "Actualizar";
             btnActualizar.UseVisualStyleBackColor = false;
-            btnActualizar.Click += btnActualizar_Click;
+            //btnActualizar.Click += btnActualizar_Click;
             // 
             // lblCliente
             // 
@@ -272,7 +272,7 @@
             btnLimiarCampos.TabIndex = 19;
             btnLimiarCampos.Text = "Limpiar";
             btnLimiarCampos.UseVisualStyleBackColor = false;
-            btnLimiarCampos.Click += btnLimiarCampos_Click;
+            //btnLimiarCampos.Click += btnLimiarCampos_Click;
             // 
             // panel1
             // 

@@ -17,9 +17,10 @@ namespace ProyectoFinalPOS.Clientes
             CustomersCarga();
             txtBuscar.TextChanged += txtBuscar_TextChanged;
             customersTable.SelectionChanged += CustomersTable_SelectionChanged;
-            // Deshabilitar el botón Actualizar al iniciar
-            btnActualizar.Enabled = false;
+            btnActualizar.Enabled = false; // Deshabilitar el botón de Actualizar al iniciar
         }
+
+        #region Métodos de Carga y Manejo de Datos
 
         // Método para cargar los datos en el DataGridView
         private void CustomersCarga()
@@ -35,7 +36,6 @@ namespace ProyectoFinalPOS.Clientes
 
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(query, this.connection);
                 DataTable dataTable = new DataTable();
-                // Ejecuta la consutla de sql y llena el objeto dataTable
                 dataAdapter.Fill(dataTable);
                 customersTable.DataSource = dataTable;
             }
@@ -52,18 +52,18 @@ namespace ProyectoFinalPOS.Clientes
             }
         }
 
+        #endregion
+
+        #region Métodos de Validación y Guardado
+
         // Método para guardar un nuevo cliente en la base de datos
         private void GuardarCliente()
         {
             // Validación de campos antes de proceder
-            if (!ValidarCampos())
-            {
-                return; // Si la validación falla, no procedemos con el guardado
-            }
+            if (!ValidarCampos()) return;
 
             string query = "INSERT INTO jsoberanis_db.Customers (NIT, FirstName, LastName, Address, Phone) VALUES (@NIT, @FirstName, @LastName, @Address, @Phone)";
             //string query = "INSERT INTO Customers (NIT, FirstName, LastName, Address, Phone) VALUES (@NIT, @FirstName, @LastName, @Address, @Phone)";
-
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -83,8 +83,8 @@ namespace ProyectoFinalPOS.Clientes
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("Cliente guardado exitosamente.");
-                        CustomersCarga();
-                        LimpiarCampos();
+                        CustomersCarga(); // Recargar datos
+                        LimpiarCampos(); // Limpiar campos
                     }
                     else
                     {
@@ -108,78 +108,44 @@ namespace ProyectoFinalPOS.Clientes
         // Método para validar los campos antes de guardar
         private bool ValidarCampos()
         {
-            // Validación de NIT (no puede estar vacío)
-            if (string.IsNullOrWhiteSpace(txtNIT.Text))
+            if (string.IsNullOrWhiteSpace(txtNIT.Text) || !System.Text.RegularExpressions.Regex.IsMatch(txtNIT.Text, @"^\d{6,8}[0-9K]$"))
             {
-                MessageBox.Show("El NIT no puede estar vacío.");
+                MessageBox.Show("El NIT no es válido.");
                 return false;
             }
-
-            // Validación del formato del NIT (de 6 a 8 dígitos seguidos de un guion y luego un dígito o 'K')
-            string nitPattern = @"^\d{6,8}[0-9K]$";
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNIT.Text, nitPattern))
-            {
-                MessageBox.Show("El NIT debe estar en un formato válido (ej: 121567K, 3567891, 48086370).");
-                return false;
-            }
-
-            // Verificar que el NIT no esté duplicado
             if (EsNitDuplicado(txtNIT.Text))
             {
                 MessageBox.Show("Este NIT ya está registrado.");
                 return false;
             }
-
-            // Validación de Nombre (no puede estar vacío y solo puede contener letras)
-            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || !System.Text.RegularExpressions.Regex.IsMatch(txtNombre.Text, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$"))
             {
-                MessageBox.Show("El nombre no puede estar vacío.");
+                MessageBox.Show("El nombre no es válido.");
                 return false;
             }
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNombre.Text, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$"))
+            if (string.IsNullOrWhiteSpace(txtApellido.Text) || !System.Text.RegularExpressions.Regex.IsMatch(txtApellido.Text, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$"))
             {
-                MessageBox.Show("El nombre solo debe contener letras.");
+                MessageBox.Show("El apellido no es válido.");
                 return false;
             }
-
-            // Validación de Apellido (no puede estar vacío y solo puede contener letras)
-            if (string.IsNullOrWhiteSpace(txtApellido.Text))
-            {
-                MessageBox.Show("El apellido no puede estar vacío.");
-                return false;
-            }
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtApellido.Text, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$"))
-            {
-                MessageBox.Show("El apellido solo debe contener letras.");
-                return false;
-            }
-
-            // Validación de Dirección (no puede estar vacía)
             if (string.IsNullOrWhiteSpace(txtDireccion.Text))
             {
                 MessageBox.Show("La dirección no puede estar vacía.");
                 return false;
             }
-
-            // Validación de Teléfono: si no está vacío, debe contener exactamente 8 dígitos
-            if (!string.IsNullOrWhiteSpace(txtTelefono.Text))
+            if (!string.IsNullOrWhiteSpace(txtTelefono.Text) && !System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d{8}$"))
             {
-                if (!System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d{8}$"))
-                {
-                    MessageBox.Show("El teléfono debe contener exactamente 8 dígitos.");
-                    return false;
-                }
+                MessageBox.Show("El teléfono debe contener exactamente 8 dígitos.");
+                return false;
             }
-
             return true;
         }
 
         // Método para verificar si el NIT ya está registrado en la base de datos
         private bool EsNitDuplicado(string nit)
         {
-            string query = "SELECT COUNT(*) FROM jsoberanis_db.Customers WHERE NIT = @NIT";
-            //string query = "SELECT COUNT(*) FROM Customers WHERE NIT = @NIT";
-
+            //string query = "SELECT COUNT(*) FROM jsoberanis_db.Customers WHERE NIT = @NIT";
+            string query = "SELECT COUNT(*) FROM Customers WHERE NIT = @NIT";
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -191,8 +157,6 @@ namespace ProyectoFinalPOS.Clientes
                 {
                     command.Parameters.AddWithValue("@NIT", nit);
                     int count = (int)command.ExecuteScalar();
-
-                    // Si hay algún registro con el NIT, significa que está duplicado
                     return count > 0;
                 }
             }
@@ -210,12 +174,16 @@ namespace ProyectoFinalPOS.Clientes
             }
         }
 
+        #endregion
+
+        #region Métodos de Selección, Actualización y Eliminación
+
         // Método para cargar los datos del cliente seleccionado
         private void CustomersTable_SelectionChanged(object sender, EventArgs e)
         {
             if (customersTable.SelectedRows.Count > 0)
             {
-                DataGridViewRow selectedRow = customersTable.SelectedRows[0];
+                var selectedRow = customersTable.SelectedRows[0];
                 txtNIT.Text = selectedRow.Cells["NIT"].Value.ToString();
                 txtNombre.Text = selectedRow.Cells["Nombre"].Value.ToString();
                 txtApellido.Text = selectedRow.Cells["Apellido"].Value.ToString();
@@ -234,21 +202,16 @@ namespace ProyectoFinalPOS.Clientes
             }
         }
 
-
         // Método para actualizar los datos de un cliente en la base de datos
         private void ActualizarCliente()
         {
-            // Validación de campos antes de proceder
-            if (!ValidarCampos())
-            {
-                return; // Si la validación falla, no procedemos con el guardado
-            }
+            if (!ValidarCampos()) return;
+
             if (customersTable.SelectedRows.Count > 0)
             {
                 int customerId = Convert.ToInt32(customersTable.SelectedRows[0].Cells["ID"].Value);
                 string query = "UPDATE jsoberanis_db.Customers SET NIT = @NIT, FirstName = @FirstName, LastName = @LastName, Address = @Address, Phone = @Phone WHERE CustomerID = @CustomerID";
                 //string query = "UPDATE Customers SET NIT = @NIT, FirstName = @FirstName, LastName = @LastName, Address = @Address, Phone = @Phone WHERE CustomerID = @CustomerID";
-
                 try
                 {
                     if (connection.State == ConnectionState.Closed)
@@ -296,56 +259,6 @@ namespace ProyectoFinalPOS.Clientes
             }
         }
 
-
-
-        // Método para buscar clientes por NIT o nombre
-        private void BuscarCliente()
-        {
-            // Eliminar espacios en blanco alrededor del texto
-            string searchValue = txtBuscar.Text.Trim();
-
-            // Si el campo de búsqueda está vacío, carga todos los clientes
-            if (string.IsNullOrWhiteSpace(searchValue))
-            {
-                CustomersCarga();
-                return;
-            }
-
-            // Si hay texto en el campo, realiza la búsqueda
-            string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM jsoberanis_db.Customers WHERE NIT LIKE @search OR FirstName LIKE @search";
-            //string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM Customers WHERE NIT LIKE @search OR FirstName LIKE @search";
-
-            try
-            {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@search", "%" + searchValue + "%");
-
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    dataAdapter.Fill(dataTable);
-
-                    customersTable.DataSource = dataTable;
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error al buscar el cliente: " + ex.Message);
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
-            }
-        }
-
         // Método para eliminar un cliente seleccionado
         private void EliminarCliente()
         {
@@ -353,7 +266,6 @@ namespace ProyectoFinalPOS.Clientes
             {
                 int customerId = Convert.ToInt32(customersTable.SelectedRows[0].Cells["ID"].Value);
 
-                // Mostrar un cuadro de diálogo de confirmación
                 var confirmacion = MessageBox.Show(
                     "¿Estás seguro de que deseas eliminar este cliente?",
                     "Confirmar Eliminación",
@@ -361,12 +273,10 @@ namespace ProyectoFinalPOS.Clientes
                     MessageBoxIcon.Warning
                 );
 
-                // Procede con la eliminación solo si el usuario confirma con "Sí"
                 if (confirmacion == DialogResult.Yes)
                 {
                     string query = "DELETE FROM jsoberanis_db.Customers WHERE CustomerID = @CustomerID";
                     //string query = "DELETE FROM Customers WHERE CustomerID = @CustomerID";
-
                     try
                     {
                         if (connection.State == ConnectionState.Closed)
@@ -382,8 +292,8 @@ namespace ProyectoFinalPOS.Clientes
                             if (rowsAffected > 0)
                             {
                                 MessageBox.Show("Cliente eliminado exitosamente.");
-                                CustomersCarga();
-                                LimpiarCampos();
+                                CustomersCarga(); // Recargar los datos
+                                LimpiarCampos(); // Limpiar los campos
                             }
                             else
                             {
@@ -410,45 +320,58 @@ namespace ProyectoFinalPOS.Clientes
             }
         }
 
-        // Método para limpiar los campos de texto
+        #endregion
+
+        #region Métodos Auxiliares
+
+        // Método para limpiar los campos del formulario
         private void LimpiarCampos()
         {
-            txtNIT.Text = "";
-            txtNombre.Text = "";
-            txtApellido.Text = "";
-            txtDireccion.Text = "";
-            txtTelefono.Text = "";
-            customersTable.ClearSelection();
+            txtNIT.Clear();
+            txtNombre.Clear();
+            txtApellido.Clear();
+            txtDireccion.Clear();
+            txtTelefono.Clear();
+            btnGuardar.Enabled = true;
+            btnActualizar.Enabled = false;
         }
 
-        // Evento para el botón de guardar
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            GuardarCliente();
-        }
+        #endregion
 
-        // Evento para el botón de eliminar
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            EliminarCliente();
-        }
+        #region Búsqueda
 
-        // Evento para el botón de buscar
+        // Método para filtrar clientes según la búsqueda en tiempo real
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            BuscarCliente(); 
+            string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM jsoberanis_db.Customers WHERE FirstName LIKE @search OR LastName LIKE @search OR NIT LIKE @search";
+            //string query = "SELECT CustomerID as ID, NIT, FirstName as Nombre, LastName as Apellido, Address as Dirección, Phone as Teléfono FROM Customers WHERE FirstName LIKE @search OR LastName LIKE @search OR NIT LIKE @search";
+
+            try
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+                dataAdapter.SelectCommand.Parameters.AddWithValue("@search", "%" + txtBuscar.Text + "%");
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+                customersTable.DataSource = dataTable;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al buscar clientes: " + ex.Message);
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
         }
 
-        // Evento para el botón de actualizar
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            ActualizarCliente();
-        }
-
-        private void btnLimiarCampos_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
-        }
-
+        #endregion
     }
 }

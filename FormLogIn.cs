@@ -67,8 +67,8 @@ namespace ProyectoFinalPOS
 
         private bool ValidarCredenciales(string username, string password)
         {
-            //string query =  "SELECT EmployeeID, Username, FirstName, PasswordHash FROM jsoberanis_db.Employees WHERE Username = @Username";
-            string query = "SELECT EmployeeID, Username, FirstName, PasswordHash FROM Employees WHERE Username = @Username";
+            string query = "SELECT EmployeeID, Username, FirstName, PasswordHash FROM jsoberanis_db.Employees WHERE Username = @Username";
+            //string query = "SELECT EmployeeID, Username, FirstName, PasswordHash FROM Employees WHERE Username = @Username";
             bool esValido = false;
 
             try
@@ -86,7 +86,8 @@ namespace ProyectoFinalPOS
                     {
                         if (reader.Read())
                         {
-                            string storedPasswordHash = reader.GetString(3); // Obtener el hash de la contraseña almacenado en la base de datos
+                            // Obtener el hash de la contraseña almacenado en la base de datos
+                            string storedPasswordHash = reader.GetString(3); 
 
                             // Compara el hash de la contraseña ingresada con el hash almacenado
                             if (VerifyPassword(password, storedPasswordHash))
