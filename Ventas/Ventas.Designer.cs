@@ -45,6 +45,7 @@
             panel3 = new Panel();
             lblCliente = new Label();
             panel6 = new Panel();
+            flowLayoutPanel2 = new FlowLayoutPanel();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -247,12 +248,21 @@
             // panel6
             // 
             panel6.AutoSize = true;
+            panel6.Controls.Add(flowLayoutPanel2);
             panel6.Controls.Add(flowLayoutPanel1);
             panel6.Dock = DockStyle.Fill;
             panel6.Location = new Point(0, 79);
             panel6.Name = "panel6";
             panel6.Size = new Size(611, 586);
             panel6.TabIndex = 23;
+            // 
+            // flowLayoutPanel2
+            // 
+            flowLayoutPanel2.AutoScroll = true;
+            flowLayoutPanel2.Location = new Point(0, 0);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(612, 586);
+            flowLayoutPanel2.TabIndex = 1;
             // 
             // flowLayoutPanel1
             // 
@@ -309,5 +319,6 @@
         private Button btnNit;
         private Button btnNuevo;
         private Button btnEliminar;
+        private FlowLayoutPanel flowLayoutPanel2;
     }
 }

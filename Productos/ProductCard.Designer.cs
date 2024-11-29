@@ -141,6 +141,7 @@
             Controls.Add(lblDescription);
             Controls.Add(lblName);
             Controls.Add(pictureBoxImage);
+            Margin = new Padding(1);
             Name = "ProductCard";
             Size = new Size(195, 337);
             ((System.ComponentModel.ISupportInitialize)pictureBoxImage).EndInit();

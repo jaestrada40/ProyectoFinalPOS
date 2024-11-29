@@ -44,13 +44,13 @@ namespace ProyectoFinalPOS.Ventas
             {
                 ProductCard productCard = new ProductCard();
                 productCard.SetProductData(producto);
-                productCard.Width = 198;
+                productCard.Width = 195;
                 productCard.Height = 300;
 
                 // Suscribirse al evento AgregarAlCarritoClicked
                 productCard.AgregarAlCarritoClicked += ProductCard_AgregarAlCarritoClicked;
 
-                flowLayoutPanel1.Controls.Add(productCard);
+                flowLayoutPanel2.Controls.Add(productCard);
             }
         }
 
@@ -438,7 +438,7 @@ namespace ProyectoFinalPOS.Ventas
 
         private void RecargarProductos()
         {
-            flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel2.Controls.Clear();
             CargarFlashCards();
         }
 
@@ -488,7 +488,7 @@ namespace ProyectoFinalPOS.Ventas
                     }
 
                     // Actualizar el flowLayoutPanel1 con los productos filtrados
-                    flowLayoutPanel1.Controls.Clear();
+                    flowLayoutPanel2.Controls.Clear();
                     foreach (Product producto in productosFiltrados)
                     {
                         ProductCard productCard = new ProductCard();
@@ -499,7 +499,7 @@ namespace ProyectoFinalPOS.Ventas
                         // Suscribirse al evento AgregarAlCarritoClicked
                         productCard.AgregarAlCarritoClicked += ProductCard_AgregarAlCarritoClicked;
 
-                        flowLayoutPanel1.Controls.Add(productCard);
+                        flowLayoutPanel2.Controls.Add(productCard);
                     }
                 }
                 catch (SqlException ex)
