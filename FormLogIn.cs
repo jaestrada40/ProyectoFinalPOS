@@ -122,6 +122,19 @@ namespace ProyectoFinalPOS
             return esValido;
         }
 
+        private bool VerifyPassword(string enteredPassword, string storedPasswordHash)
+        {
+            // Encriptar la contraseña ingresada y comparar con el hash almacenado
+            string enteredPasswordHash = PasswordHelper.HashPassword(enteredPassword);
+            return enteredPasswordHash == storedPasswordHash;
+        }
+
+        private void chkVerContraseña_CheckedChanged(object sender, EventArgs e)
+        {
+            // Es un operador ternario que evalúa si chkVerContraseña.Checked es true o false.
+            textBoxPassword.PasswordChar = chkVerContraseña.Checked ? '\0' : '*';
+        }
+
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -132,19 +145,6 @@ namespace ProyectoFinalPOS
             FormSigUp formSigUp = new FormSigUp();
             formSigUp.ShowDialog();
             this.Hide();
-        }
-
-        private void chkVerContraseña_CheckedChanged(object sender, EventArgs e)
-        {
-            // Es un operador ternario que evalúa si chkVerContraseña.Checked es true o false.
-            textBoxPassword.PasswordChar = chkVerContraseña.Checked ? '\0' : '*';
-        }
-
-        private bool VerifyPassword(string enteredPassword, string storedPasswordHash)
-        {
-            // Encriptar la contraseña ingresada y comparar con el hash almacenado
-            string enteredPasswordHash = PasswordHelper.HashPassword(enteredPassword);
-            return enteredPasswordHash == storedPasswordHash;
         }
     }
 }

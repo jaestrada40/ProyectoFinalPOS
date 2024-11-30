@@ -20,8 +20,6 @@ namespace ProyectoFinalPOS.Clientes
             btnActualizar.Enabled = false; // Deshabilitar el botón de Actualizar al iniciar
         }
 
-        #region Métodos de Carga y Manejo de Datos
-
         // Método para cargar los datos en el DataGridView
         private void CustomersCarga()
         {
@@ -51,10 +49,6 @@ namespace ProyectoFinalPOS.Clientes
                 }
             }
         }
-
-        #endregion
-
-        #region Métodos de Validación y Guardado
 
         // Método para guardar un nuevo cliente en la base de datos
         private void GuardarCliente()
@@ -173,11 +167,6 @@ namespace ProyectoFinalPOS.Clientes
                 }
             }
         }
-
-        #endregion
-
-        #region Métodos de Selección, Actualización y Eliminación
-
         // Método para cargar los datos del cliente seleccionado
         private void CustomersTable_SelectionChanged(object sender, EventArgs e)
         {
@@ -320,10 +309,6 @@ namespace ProyectoFinalPOS.Clientes
             }
         }
 
-        #endregion
-
-        #region Métodos Auxiliares
-
         // Método para limpiar los campos del formulario
         private void LimpiarCampos()
         {
@@ -335,10 +320,6 @@ namespace ProyectoFinalPOS.Clientes
             btnGuardar.Enabled = true;
             btnActualizar.Enabled = false;
         }
-
-        #endregion
-
-        #region Búsqueda
 
         // Método para filtrar clientes según la búsqueda en tiempo real
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -372,6 +353,26 @@ namespace ProyectoFinalPOS.Clientes
             }
         }
 
-        #endregion
+        private void btnGuardar_Click_1(object sender, EventArgs e)
+        {
+            GuardarCliente();
+        }
+
+        private void btnActualizar_Click_1(object sender, EventArgs e)
+        {
+            ActualizarCliente();
+        }
+
+        private void btnEliminar_Click_1(object sender, EventArgs e)
+        {
+            EliminarCliente();
+        }
+
+        private void btnLimiarCampos_Click_1(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+
     }
 }

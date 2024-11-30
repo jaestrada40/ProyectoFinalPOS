@@ -78,10 +78,9 @@
             panel2.Controls.Add(label3);
             panel2.Controls.Add(btnRegistrase);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(343, 0);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(300, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(514, 707);
+            panel2.Size = new Size(450, 530);
             panel2.TabIndex = 11;
             // 
             // panel6
@@ -90,10 +89,9 @@
             panel6.BorderStyle = BorderStyle.FixedSingle;
             panel6.Controls.Add(txtIdentificador);
             panel6.ForeColor = SystemColors.AppWorkspace;
-            panel6.Location = new Point(7, 280);
-            panel6.Margin = new Padding(3, 4, 3, 4);
+            panel6.Location = new Point(6, 210);
             panel6.Name = "panel6";
-            panel6.Size = new Size(496, 59);
+            panel6.Size = new Size(434, 45);
             panel6.TabIndex = 9;
             // 
             // txtIdentificador
@@ -102,12 +100,13 @@
             txtIdentificador.BorderStyle = BorderStyle.None;
             txtIdentificador.Font = new Font("Century Gothic", 10F);
             txtIdentificador.ForeColor = Color.FromArgb(41, 128, 185);
-            txtIdentificador.Location = new Point(10, 16);
+            txtIdentificador.Location = new Point(9, 12);
+            txtIdentificador.Margin = new Padding(3, 2, 3, 2);
             txtIdentificador.Multiline = true;
             txtIdentificador.Name = "txtIdentificador";
             txtIdentificador.PlaceholderText = "Ingresar Identificador";
             txtIdentificador.RightToLeft = RightToLeft.No;
-            txtIdentificador.Size = new Size(473, 27);
+            txtIdentificador.Size = new Size(414, 20);
             txtIdentificador.TabIndex = 3;
             // 
             // panel7
@@ -115,10 +114,9 @@
             panel7.BackColor = Color.White;
             panel7.BorderStyle = BorderStyle.FixedSingle;
             panel7.Controls.Add(txtContraseña);
-            panel7.Location = new Point(7, 484);
-            panel7.Margin = new Padding(3, 4, 3, 4);
+            panel7.Location = new Point(6, 363);
             panel7.Name = "panel7";
-            panel7.Size = new Size(496, 59);
+            panel7.Size = new Size(434, 45);
             panel7.TabIndex = 12;
             // 
             // txtContraseña
@@ -126,12 +124,13 @@
             txtContraseña.BorderStyle = BorderStyle.None;
             txtContraseña.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtContraseña.ForeColor = Color.FromArgb(41, 128, 185);
-            txtContraseña.Location = new Point(10, 16);
+            txtContraseña.Location = new Point(9, 12);
+            txtContraseña.Margin = new Padding(3, 2, 3, 2);
             txtContraseña.Multiline = true;
             txtContraseña.Name = "txtContraseña";
             txtContraseña.PasswordChar = '*';
             txtContraseña.PlaceholderText = "Ingresar Contraseña";
-            txtContraseña.Size = new Size(473, 27);
+            txtContraseña.Size = new Size(414, 20);
             txtContraseña.TabIndex = 6;
             // 
             // panel5
@@ -139,10 +138,9 @@
             panel5.BackColor = Color.White;
             panel5.BorderStyle = BorderStyle.FixedSingle;
             panel5.Controls.Add(txtUsuario);
-            panel5.Location = new Point(7, 416);
-            panel5.Margin = new Padding(3, 4, 3, 4);
+            panel5.Location = new Point(6, 312);
             panel5.Name = "panel5";
-            panel5.Size = new Size(496, 59);
+            panel5.Size = new Size(434, 45);
             panel5.TabIndex = 11;
             // 
             // txtUsuario
@@ -150,12 +148,13 @@
             txtUsuario.BorderStyle = BorderStyle.None;
             txtUsuario.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsuario.ForeColor = Color.FromArgb(41, 128, 185);
-            txtUsuario.Location = new Point(10, 16);
+            txtUsuario.Location = new Point(9, 12);
+            txtUsuario.Margin = new Padding(3, 2, 3, 2);
             txtUsuario.Multiline = true;
             txtUsuario.Name = "txtUsuario";
             txtUsuario.PasswordChar = '*';
             txtUsuario.PlaceholderText = "Ingresar Usuario";
-            txtUsuario.Size = new Size(473, 27);
+            txtUsuario.Size = new Size(414, 20);
             txtUsuario.TabIndex = 5;
             txtUsuario.UseSystemPasswordChar = true;
             // 
@@ -163,10 +162,9 @@
             // 
             chkVerContraseña.AutoSize = true;
             chkVerContraseña.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkVerContraseña.Location = new Point(376, 552);
-            chkVerContraseña.Margin = new Padding(3, 4, 3, 4);
+            chkVerContraseña.Location = new Point(329, 414);
             chkVerContraseña.Name = "chkVerContraseña";
-            chkVerContraseña.Size = new Size(129, 22);
+            chkVerContraseña.Size = new Size(109, 18);
             chkVerContraseña.TabIndex = 13;
             chkVerContraseña.Text = "Ver contraseña";
             chkVerContraseña.UseVisualStyleBackColor = true;
@@ -178,10 +176,9 @@
             panel8.BorderStyle = BorderStyle.FixedSingle;
             panel8.Controls.Add(txtPosition);
             panel8.ForeColor = SystemColors.AppWorkspace;
-            panel8.Location = new Point(7, 348);
-            panel8.Margin = new Padding(3, 4, 3, 4);
+            panel8.Location = new Point(6, 261);
             panel8.Name = "panel8";
-            panel8.Size = new Size(496, 59);
+            panel8.Size = new Size(434, 45);
             panel8.TabIndex = 10;
             // 
             // txtPosition
@@ -190,12 +187,13 @@
             txtPosition.BorderStyle = BorderStyle.None;
             txtPosition.Font = new Font("Century Gothic", 10F);
             txtPosition.ForeColor = Color.FromArgb(41, 128, 185);
-            txtPosition.Location = new Point(10, 16);
+            txtPosition.Location = new Point(9, 12);
+            txtPosition.Margin = new Padding(3, 2, 3, 2);
             txtPosition.Multiline = true;
             txtPosition.Name = "txtPosition";
-            txtPosition.PlaceholderText = "Ingresar Position";
+            txtPosition.PlaceholderText = "Ingresar Cargo";
             txtPosition.RightToLeft = RightToLeft.No;
-            txtPosition.Size = new Size(473, 27);
+            txtPosition.Size = new Size(414, 20);
             txtPosition.TabIndex = 4;
             // 
             // btnCerrar
@@ -204,10 +202,9 @@
             btnCerrar.FlatStyle = FlatStyle.Flat;
             btnCerrar.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCerrar.ForeColor = Color.FromArgb(0, 119, 70);
-            btnCerrar.Location = new Point(467, 1);
-            btnCerrar.Margin = new Padding(3, 4, 3, 4);
+            btnCerrar.Location = new Point(409, 1);
             btnCerrar.Name = "btnCerrar";
-            btnCerrar.Size = new Size(46, 53);
+            btnCerrar.Size = new Size(40, 40);
             btnCerrar.TabIndex = 16;
             btnCerrar.Text = "X";
             btnCerrar.UseVisualStyleBackColor = true;
@@ -218,10 +215,9 @@
             panel4.BackColor = Color.White;
             panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Controls.Add(txtApellido);
-            panel4.Location = new Point(7, 211);
-            panel4.Margin = new Padding(3, 4, 3, 4);
+            panel4.Location = new Point(6, 158);
             panel4.Name = "panel4";
-            panel4.Size = new Size(496, 59);
+            panel4.Size = new Size(434, 45);
             panel4.TabIndex = 8;
             // 
             // txtApellido
@@ -229,12 +225,13 @@
             txtApellido.BorderStyle = BorderStyle.None;
             txtApellido.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtApellido.ForeColor = Color.FromArgb(41, 128, 185);
-            txtApellido.Location = new Point(10, 16);
+            txtApellido.Location = new Point(9, 12);
+            txtApellido.Margin = new Padding(3, 2, 3, 2);
             txtApellido.Multiline = true;
             txtApellido.Name = "txtApellido";
             txtApellido.PasswordChar = '*';
             txtApellido.PlaceholderText = "Ingresar Apellido";
-            txtApellido.Size = new Size(473, 27);
+            txtApellido.Size = new Size(414, 20);
             txtApellido.TabIndex = 2;
             txtApellido.UseSystemPasswordChar = true;
             // 
@@ -244,10 +241,9 @@
             panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Controls.Add(txtNombre);
             panel3.ForeColor = SystemColors.AppWorkspace;
-            panel3.Location = new Point(7, 144);
-            panel3.Margin = new Padding(3, 4, 3, 4);
+            panel3.Location = new Point(6, 108);
             panel3.Name = "panel3";
-            panel3.Size = new Size(496, 59);
+            panel3.Size = new Size(434, 45);
             panel3.TabIndex = 7;
             // 
             // txtNombre
@@ -256,12 +252,13 @@
             txtNombre.BorderStyle = BorderStyle.None;
             txtNombre.Font = new Font("Century Gothic", 10F);
             txtNombre.ForeColor = Color.FromArgb(41, 128, 185);
-            txtNombre.Location = new Point(10, 16);
+            txtNombre.Location = new Point(9, 12);
+            txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.Multiline = true;
             txtNombre.Name = "txtNombre";
             txtNombre.PlaceholderText = "Ingresar Nombre";
             txtNombre.RightToLeft = RightToLeft.No;
-            txtNombre.Size = new Size(473, 27);
+            txtNombre.Size = new Size(414, 20);
             txtNombre.TabIndex = 1;
             // 
             // label3
@@ -269,9 +266,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Tahoma", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(37, 42, 60);
-            label3.Location = new Point(9, 72);
+            label3.Location = new Point(8, 54);
             label3.Name = "label3";
-            label3.Size = new Size(171, 33);
+            label3.Size = new Size(132, 25);
             label3.TabIndex = 6;
             label3.Text = "Registrarse";
             // 
@@ -281,9 +278,10 @@
             btnRegistrase.FlatStyle = FlatStyle.Flat;
             btnRegistrase.Font = new Font("Tahoma", 14F);
             btnRegistrase.ForeColor = Color.White;
-            btnRegistrase.Location = new Point(72, 609);
+            btnRegistrase.Location = new Point(63, 457);
+            btnRegistrase.Margin = new Padding(3, 2, 3, 2);
             btnRegistrase.Name = "btnRegistrase";
-            btnRegistrase.Size = new Size(393, 65);
+            btnRegistrase.Size = new Size(344, 49);
             btnRegistrase.TabIndex = 14;
             btnRegistrase.Text = "Guardar";
             btnRegistrase.UseVisualStyleBackColor = false;
@@ -301,9 +299,8 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(343, 707);
+            panel1.Size = new Size(300, 530);
             panel1.TabIndex = 10;
             // 
             // btnIniciarSesion
@@ -313,9 +310,10 @@
             btnIniciarSesion.FlatStyle = FlatStyle.Flat;
             btnIniciarSesion.Font = new Font("Tahoma", 14F);
             btnIniciarSesion.ForeColor = Color.White;
-            btnIniciarSesion.Location = new Point(54, 565);
+            btnIniciarSesion.Location = new Point(47, 424);
+            btnIniciarSesion.Margin = new Padding(3, 2, 3, 2);
             btnIniciarSesion.Name = "btnIniciarSesion";
-            btnIniciarSesion.Size = new Size(264, 56);
+            btnIniciarSesion.Size = new Size(231, 42);
             btnIniciarSesion.TabIndex = 15;
             btnIniciarSesion.Text = "Iniciar Sesión";
             btnIniciarSesion.UseVisualStyleBackColor = false;
@@ -326,9 +324,9 @@
             label8.AutoSize = true;
             label8.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.FromArgb(0, 119, 70);
-            label8.Location = new Point(216, 671);
+            label8.Location = new Point(189, 503);
             label8.Name = "label8";
-            label8.Size = new Size(115, 19);
+            label8.Size = new Size(93, 16);
             label8.TabIndex = 21;
             label8.Text = "Group #3 USPG";
             // 
@@ -337,9 +335,9 @@
             label7.AutoSize = true;
             label7.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.FromArgb(0, 119, 70);
-            label7.Location = new Point(216, 649);
+            label7.Location = new Point(189, 487);
             label7.Name = "label7";
-            label7.Size = new Size(91, 19);
+            label7.Size = new Size(72, 16);
             label7.TabIndex = 20;
             label7.Text = "Develop By ";
             // 
@@ -348,9 +346,9 @@
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold);
             label6.ForeColor = Color.FromArgb(0, 119, 70);
-            label6.Location = new Point(203, 443);
+            label6.Location = new Point(178, 332);
             label6.Name = "label6";
-            label6.Size = new Size(127, 32);
+            label6.Size = new Size(100, 25);
             label6.TabIndex = 19;
             label6.Text = "Servicios";
             // 
@@ -359,9 +357,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold);
             label5.ForeColor = Color.FromArgb(0, 119, 70);
-            label5.Location = new Point(82, 396);
+            label5.Location = new Point(72, 297);
             label5.Name = "label5";
-            label5.Size = new Size(264, 32);
+            label5.Size = new Size(206, 25);
             label5.TabIndex = 18;
             label5.Text = "Sistema Gestión de";
             // 
@@ -371,31 +369,29 @@
             label4.BackColor = Color.FromArgb(37, 42, 60);
             label4.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.FromArgb(0, 119, 70);
-            label4.Location = new Point(136, 340);
+            label4.Location = new Point(119, 255);
             label4.Name = "label4";
-            label4.Size = new Size(202, 32);
+            label4.Size = new Size(159, 25);
             label4.TabIndex = 17;
             label4.Text = "Bienvenidos al";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(67, 111);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(59, 83);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(231, 132);
+            pictureBox1.Size = new Size(202, 99);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // FormSigUp
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(857, 707);
+            ClientSize = new Size(750, 530);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FormSigUp";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormSigUp";

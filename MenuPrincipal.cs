@@ -30,13 +30,6 @@ namespace ProyectoFinalPOS
             Form MenuMantenimiento = new MenuMantenimiento();
             MenuMantenimiento.Show();
         }
-
-        private void btnVentas_Click(object sender, EventArgs e)
-        {
-            Form MenuVentas = new NuevoCliente();
-            MenuVentas.Show();
-        }
-
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Application.Exit();
