@@ -194,13 +194,12 @@ namespace ProyectoFinalPOS.Clientes
         // Método para actualizar los datos de un cliente en la base de datos
         private void ActualizarCliente()
         {
-            if (!ValidarCampos()) return;
-
             if (customersTable.SelectedRows.Count > 0)
             {
                 int customerId = Convert.ToInt32(customersTable.SelectedRows[0].Cells["ID"].Value);
                 string query = "UPDATE jsoberanis_db.Customers SET NIT = @NIT, FirstName = @FirstName, LastName = @LastName, Address = @Address, Phone = @Phone WHERE CustomerID = @CustomerID";
                 //string query = "UPDATE Customers SET NIT = @NIT, FirstName = @FirstName, LastName = @LastName, Address = @Address, Phone = @Phone WHERE CustomerID = @CustomerID";
+
                 try
                 {
                     if (connection.State == ConnectionState.Closed)
